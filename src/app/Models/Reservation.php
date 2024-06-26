@@ -15,4 +15,12 @@ class Reservation extends Model
         'guest_count',
         'start_at'
     ];
+
+    public function shop(){
+        return $this->belongsTo(Shop::class);
+    }
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }

@@ -22,22 +22,27 @@
 
 @section('content')
 <div class="card__area">
+  @foreach ($shops as $shop)
   <article class="card__group">
     <div class="card__img">
-      <img src="" alt="">
+      <img src="{{ $shop->image_url}}" alt="店舗画像">
     </div>
     <div class="card__content">
-      <h2 class="card__ttl">店の名前</h2>
-      <p class="card__tag">#</p>
-      <p class="card__tag">#</p>
+      <h2 class="card__ttl">{{ $shop->name }}</h2>
+      <p class="card__tag">{{ $shop->area_id }}</p>
+      <p class="card__tag">{{ $shop->genre_id }}</p>
       <div class="card__flex">
-        <div class="card__desc">
-          <a class="card__link" href="/shop_detail">
-              詳しく見る</a>
-        </div>
-      <div class="heart"></div>
+        <form class="card__button" action="/detail{shop_id}" method="get">
+          @csrf
+          <button class="card__button--submit" type="submit">
+            詳しく見る
+          </button>
+        </form>
+        <div class="heart"></div>
+      </div>
     </div>
   </article>
+  @endforeach
 </div>
 
 <div class="modal" id="">

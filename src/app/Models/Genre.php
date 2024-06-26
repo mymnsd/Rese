@@ -10,4 +10,8 @@ class Genre extends Model
     use HasFactory;
 
     protected $fillable = ['name'];
+
+    public function shops(){
+        return $this->hasMany(Shop::class);
+    }
 }
