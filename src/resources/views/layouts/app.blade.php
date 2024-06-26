@@ -12,13 +12,19 @@
 <body>
   <header class="header">
     <div class="header__inner">
-      <div class="header__inner-link">
-        <a calss="header__inner-link--icon" href="/">
-        <span class="header__inner-link--border"></span></a>
-        <span class="header__inner-link--border"></span></a>
-        <span class="header__inner-link--border"></span></a>
+      <form class="header__inner-link">
+        @csrf
+        <div class="header__inner-button">
+          <button class="header__inner-button--icon" type="submit">
+            <span class="header__inner-link--border"></span>
+            <span class="header__inner-link--border"></span>
+            <span class="header__inner-link--border"></span>
+
+          </button>
+          
+        </div>
         @yield('title')
-      </div>
+      </form>
       @yield('nav')
     </div>
   </header>

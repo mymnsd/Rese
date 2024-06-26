@@ -12,16 +12,17 @@
 <div class="detail__content">
   <div class="detail__group">
     <div class="detail__link">
-      <a class="detail__icon" href=""></a>
+      <a class="detail__icon" href="">#</a>
     </div>
     <h2 class="shop__name">仙人</h2>
     <div class="shop__img">
       <img src="" alt="仙人">
     </div>
-    <p class="shop__tag"></p>
-    <p class="shop__tag"></p>
-    <p class="shop__desc"></p>
+    <p class="shop__tag">#</p>
+    <p class="shop__tag">#</p>
+    <p class="shop__desc">#</p>
   </div>
+
   <div class="reservation__group">
     <p class="reservation__ttl">予約</p>
     <form class="reservation__form" action="/reserve" method="post">

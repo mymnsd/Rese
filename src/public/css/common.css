@@ -7,22 +7,43 @@ a {
 }
 
 .header {
+  height: 100px;
   max-width: 1500px;
 }
 
 .header__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
   width: 100%;
 }
 
 .header__inner-link {
+  display: flex;
+  align-items: center;
+  width: 200px;
+  
+}
+
+.header__inner-button{
+  
+}
+
+.header__inner-button--icon {
   background-color: blue;
   border-radius: 5px;
-  height: 30px;
-  width: 30px;
+  cursor: pointer;
+  height: 40px;
+  width: 40px;
 }
 
-.header__inner-link--icon {
-  display: block;
+.header__inner-link--border {
+
 }
 
-.header__inner-link--border {}
+.site__ttl{
+  color: blue;
+  padding-left: 20px;
+}
+
