@@ -11,15 +11,29 @@
 }
 
 .card__area{
+  max-width: 1500px;
+}
 
+.card__area-inner{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 0 5%;
+  width: 100%;
 }
 
 .card__group{
+  width: 23%;
 
 }
 
 .card__img{
+  width: 100%;
 
+}
+
+.card__img img{
+  width: 100%;
 }
 
 .card__content{
@@ -38,11 +52,11 @@
   
 }
 
-.card__button{
+.card-link{
 
 }
 
-.card__button--submit{
+.card-link--submit{
 
 }
 

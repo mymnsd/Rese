@@ -1,0 +1,84 @@
+.detail__content{
+  max-width: 1500px;
+}
+
+.detail__content-inner{
+  display: flex;
+  justify-content: space-between;
+  padding: 0cap0 5%;
+  width: 100%;
+}
+
+.card__group{
+  width: 40%;
+}
+
+.ttl-group {
+  display: flex;
+  align-items: center;
+}
+
+.back-link{
+  background-color: #fff;
+  border-radius: 3px;
+  border: 1px solid blue;
+  display: block;
+  color: blue;
+  padding: 13px;
+  position: relative;
+  text-align: center;
+  transition: 0.3s;
+  width: 40px;
+}
+
+.back-link::after{
+  content: '';
+  border: 0;
+  border-top: 2px solid blue;
+  border-right: 2px solid blue;
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  top: 50%;
+  left: 45%;
+  transform: translateY(-50%) rotate(-135deg);
+  }
+
+  .card__ttl{
+    
+  }
+
+  .card__img{
+    max-width: 100%;
+  }
+
+  .card__img img{
+    width: 100%;
+  }
+
+  .card__content{
+
+  }
+
+  .card__tag{
+
+  }
+
+  .card-desc{
+
+  }
+
+  .reservation__group{
+    width: 40%;
+  }
+
+  .reservation__ttl{
+
+  }
+
+  .reservation__form{
+
+  }
+
+
