@@ -12,24 +12,51 @@
 <body>
   <header class="header">
     <div class="header__inner">
-      <form class="header__inner-link">
+      <div class="header__inner-button">
+        <a class="header__inner-button--icon" href="#modal"></a>
+      
+      {{-- <form class="header__inner-link" action="/auth/register" method="get">
         @csrf
         <div class="header__inner-button">
-          <button class="header__inner-button--icon" type="submit">
+          <button class="header__inner-button--icon" type="submit"> --}}
             <span class="header__inner-link--border"></span>
             <span class="header__inner-link--border"></span>
             <span class="header__inner-link--border"></span>
-
-          </button>
-          
-        </div>
+          {{-- </button> --}}
+      </div>
         @yield('title')
-      </form>
+      {{-- </form> --}}
       @yield('nav')
     </div>
   </header>
 
   <main>
+    <div class="modal" id="modal">
+  <a href="#!" class="modal-overlay"></a>
+    <div class="modal__inner">
+      <div class="modal__content">
+        <a href="#" class="modal__close-btn">×</a>
+          <div class="modal-form__group">
+            <a href="/">Home</a>
+            <a href="/register">Registration</a>
+            <a href="/login">Login</a>
+          </div>
+      </div>
+    </div>
+</div>
+<div class="modal" id="modal2">
+  <a href="#!" class="modal-overlay"></a>
+    <div class="modal__inner">
+      <div class="modal__content">
+        <a href="#" class="modal__close-btn">×</a>
+          <div class="modal-form__group">
+            <a href="/">Home</a>
+            <a href="/logout">Logout</a>
+            <a href="/mypage">Mypage</a>
+          </div>
+      </div>
+    </div>
+</div>
     @yield('content')
   </main>
   

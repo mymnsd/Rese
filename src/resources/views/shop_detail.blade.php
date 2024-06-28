@@ -30,8 +30,9 @@
     <div class="reservation__group">
       <p class="reservation__ttl">予約</p>
       <form class="reservation__form" action="/reserve" method="post">
-        <input class="reservation__form-date" type="date" name="date" value="{{ request('date') }}">
-        <select class="reservation__form-time" name="time" id="">
+        @csrf
+        <input class="reservation__form-date" type="date" name="date" id="date" value="{{ request('date') }}">
+        <select class="reservation__form-time" name="time" id="time">
           <option value="" selected="">選択してください</option>
           @for($i = 11; $i <= 23; $i++)
             @for($j = 0; $j <= 30; $j += 30)
@@ -39,7 +40,7 @@
             @endfor
           @endfor
         </select>
-        <select class="reservation__form-people" name="guest_count" id="">
+        <select class="reservation__form-people" name="guest_count" id="guest_count">
           <option value="" selected="">選択してください</option>
           @for($i = 1; $i <=20; $i++)
             <option value="{{ $i }}" @if(request('guest_count') == $i) selected @endif>
@@ -52,13 +53,13 @@
             <span class="confirm__item">{{ $shop->name }}</span>
           </p>
           <p class="confirm__ttl">Date
-            <span class="confirm__item"></span>
+            <span id="confirm_date" class="confirm__item"></span>
           </p>
           <p class="confirm__ttl">Time
-            <span class="confirm__item"></span>
+            <span id="confirm_time" class="confirm__item"></span>
           </p>
           <p class="confirm__ttl">Number
-            <span class="confirm__item"></span>
+            <span id="confirm_guest_count" class="confirm__item"></span>
           </p>
         </div>
         <button class="reservation__btn" type="submit">予約する</button>
@@ -66,4 +67,17 @@
     </div>
   </div>  
 </div>
+<script>
+    document.getElementById('date').addEventListener('input', function() {
+        document.getElementById('confirm_date').textContent = this.value;
+    });
+
+    document.getElementById('time').addEventListener('change', function() {
+        document.getElementById('confirm_time').textContent = this.value;
+    });
+
+    document.getElementById('guest_count').addEventListener('change', function() {
+        document.getElementById('confirm_guest_count').textContent = this.options[this.selectedIndex].text;
+    });
+</script>
 @endsection
