@@ -17,5 +17,6 @@ use App\Http\Controllers\RegisterController;
 
 Route::get('/',[ShopController::class,'index']);
 Route::get('/detail/{shop_id}',[ShopController::class,'detail'])->name('shops.detail');
-// Route::get('/auth/register',[RegisterController::class,'create']);
+Route::get('/register',[RegisterController::class,'create']);
+Route::post('/register',[RegisterController::class,'store']);
 Route::post('/reserve',[ReservationController::class,'create']);
