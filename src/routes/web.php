@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ShopController;
+use App\Http\Controllers\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +17,5 @@ use App\Http\Controllers\ShopController;
 
 Route::get('/',[ShopController::class,'index']);
 Route::get('/detail/{shop_id}',[ShopController::class,'detail'])->name('shops.detail');
+// Route::get('/auth/register',[RegisterController::class,'create']);
+Route::post('/reserve',[ReservationController::class,'create']);
