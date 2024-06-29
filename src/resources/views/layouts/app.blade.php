@@ -1,62 +1,92 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Rese</title>
-  <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/common.css') }}">
-  @yield('css')
-</head>
-<body>
-  <header class="header">
-    <div class="header__inner">
-      <div class="header__inner-button">
-        <a class="header__inner-button--icon" href="#modal"></a>
-      
-      {{-- <form class="header__inner-link" action="/auth/register" method="get">
-        @csrf
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Rese</title>
+    <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/common.css') }}">
+    @yield('css')
+  </head>
+  <body>
+    <header class="header">
+      <div class="header__inner">
         <div class="header__inner-button">
-          <button class="header__inner-button--icon" type="submit"> --}}
+          @if(Auth::check())
+          <a class="header__inner-button--icon"
+          href="#modal2"></a>
             <span class="header__inner-link--border"></span>
             <span class="header__inner-link--border"></span>
             <span class="header__inner-link--border"></span>
-          {{-- </button> --}}
+          @else
+          <a class="header__inner-button--icon" href="#modal"></a>
+          <span class="header__inner-link--border"></span>
+          <span class="header__inner-link--border"></span>
+          <span class="header__inner-link--border"></span>
+          @endif
+        </div>
+          @yield('title')
+          @yield('nav')
       </div>
-        @yield('title')
-      {{-- </form> --}}
-      @yield('nav')
-    </div>
-  </header>
+    </header>
 
-  <main>
+    <main>
     <div class="modal" id="modal">
-  <a href="#!" class="modal-overlay"></a>
-    <div class="modal__inner">
-      <div class="modal__content">
-          <div class="modal-form__group">
-            <a href="/">Home</a>
-            <a href="/register">Registration</a>
-            <a href="/login">Login</a>
+      <a href="#!" class="modal-overlay"></a>
+        <div class="modal__inner">
+          <div class="modal__content">
+            <div class="modal-form__group">
+              <a href="/">Home</a>
+              <a href="/register">Registration</a>
+              <a href="/login">Login</a>
           </div>
+        </div>
       </div>
     </div>
-</div>
-<div class="modal" id="modal2">
-  <a href="#!" class="modal-overlay"></a>
-    <div class="modal__inner">
-      <div class="modal__content">
-          <div class="modal-form__group">
-            <a href="/">Home</a>
-            <a href="/logout">Logout</a>
-            <a href="/mypage">Mypage</a>
+    <div class="modal" id="modal2">
+      <a href="#!" class="modal-overlay"></a>
+        <div class="modal__inner">
+          <div class="modal__content">
+              <div class="modal-form__group">
+                <a href="/">Home</a>
+                <form class="form__logout" action="/logout" method="post">
+                @csrf
+                  <button class="logout__btn" type="submit">logout</button>
+                </form>
+                <a href="/mypage">Mypage</a>
+              </div>
           </div>
-      </div>
+        </div>
     </div>
-</div>
+    @if(session('modal') === 'modal3')
+    <div class="modal" id="modal3" style="display: none;">
+      <a href="#!" class="modal-overlay"></a>
+        <div class="modal__inner">
+          <div class="modal__content">
+              <div class="modal-form__group">
+                <a href="/">Home</a>
+                <form class="form__logout" action="/logout" method="post">
+                @csrf
+                  <button class="logout__btn" type="submit">logout</button>
+                </form>
+                <a href="/mypage">Mypage</a>
+              </div>
+          </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var modal = document.getElementById('modal3');
+            if (modal) {
+                modal.style.display = 'block';
+            }
+        });
+    </script>
+    
+    @endif
     @yield('content')
-  </main>
-  
-</body>
+    </main>
+    
+  </body>
 </html>

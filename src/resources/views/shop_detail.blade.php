@@ -31,7 +31,9 @@
       <p class="reservation__ttl">予約</p>
       <form class="reservation__form" action="/reserve" method="post">
         @csrf
+        <input type="hidden" name="shop_id" value="{{ $shop->id }}">
         <input class="reservation__form-date" type="date" name="date" id="date" value="{{ request('date') }}">
+        
         <select class="reservation__form-time" name="time" id="time">
           <option value="" selected="">選択してください</option>
           @for($i = 11; $i <= 23; $i++)
@@ -48,6 +50,7 @@
             </option>
           @endfor
         </select>
+        <input type="hidden" name="start_at" id="start_at">
         <div class="confirm">
           <p class="confirm__ttl">Shop
             <span class="confirm__item">{{ $shop->name }}</span>

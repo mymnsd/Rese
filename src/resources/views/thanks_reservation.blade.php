@@ -12,9 +12,7 @@
 <div class="thanks-page">
   <div class="thanks-page__inner">
     <p class="thanks-page__message">ご予約ありがとうございます</p>
-    <form class="thanks-page__form" action="/" method="get">
-      <button class="thanks-page__btn btn">戻る</button>
-    </form>
+      <a class="thanks-page__link" href="/">戻る</a>
   </div>
 </div>
 @endsection

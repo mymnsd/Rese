@@ -61,8 +61,32 @@
 }
 
 .heart{
-  
+  cursor: pointer;
+  height: 45px;
+  position: relative;
+  transform: rotate(-45deg);
+  width: 50px;
 }
 
+.heart:before,
+.heart:after {
+  content: "";
+  width: 50px;
+  height: 80px;
+  border-radius: 50px 50px 0 0;
+  background: #ccc;
+  position: absolute;
+  top: 0;
+  left: 25px;
+}
 
+.heart:before {
+  left: 0;
+  transform: rotate(90deg);
+}
+
+.heart.active:before,
+.heart.active:after {
+  background: red;
+}
 
