@@ -16,6 +16,15 @@ class Reservation extends Model
         'start_at'
     ];
 
+    protected $dates = [
+        'start_at',
+    ];
+
+    public function setStartAtAttribute($value)
+    {
+        $this->attributes['start_at'] = \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $value);
+    }
+
     public function shop(){
         return $this->belongsTo(Shop::class);
     }
