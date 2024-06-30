@@ -5,9 +5,11 @@
 @endsection
 
 @section('title')
+<div class="ttl__group">
   <h1 class="site__ttl">
-    Rese
+    <a href="/">Rese</a>
   </h1>
+</div>
 @endsection
 
 @section('nav')
@@ -36,13 +38,15 @@
           <div class="card-link">
             <a class="card-link--button" href="{{ route('shops.detail', $shop->id) }}">詳しく見る</a>
           </div>
-          <div class="heart"></div>
+          <label class="heart">
+            <input type="checkbox" id="heartCheckbox">
+            <i class="fa-solid fa-heart"></i>
+          </label>
         </div>
       </div>
     </article>
     @endforeach
   </div>
 </div>
-
 
 @endsection

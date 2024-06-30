@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}">
     <link rel="stylesheet" href="{{ asset('css/common.css') }}">
     @yield('css')
+    <script src="https://kit.fontawesome.com/cf74f62674.js" crossorigin="anonymous"></script>
   </head>
   <body>
     <header class="header">
@@ -54,7 +55,10 @@
                 @csrf
                   <button class="logout__btn" type="submit">logout</button>
                 </form>
-                <a href="/mypage">Mypage</a>
+                <form class="form__mypage" action="/mypage" method="get">
+                  @csrf
+                  <button class="mypage__btn" type="submit">Mypage</button>
+                </form>
               </div>
           </div>
         </div>

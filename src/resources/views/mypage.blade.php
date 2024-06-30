@@ -5,46 +5,54 @@
 @endsection
 
 @section('title')
-  <h1 class="header__ttl">Rese</h1>
+  <div class="ttl__group">
+  <h1 class="site__ttl">
+    <a href="/">Rese</a>
+  </h1>
+</div>
 @endsection
 
 @section('content')
-<div class="content__group">
-  <h3 class="content__ttl">予約状況</h3>
-  <div class="status-area">
-    <p class="status-ttl">Shop
-          <span class="status__item"></span>
-        </p>
-        <p class="status-ttl">Date
-          <span class="status__item"></span>
-        </p>
-        <p class="status-ttl">Time
-          <span class="status__item"></span>
-        </p>
-        <p class="status-ttl">Number
-          <span class="status__item"></span>
-        </p>
-  </div>
-</div>
-
-<div class="favorite__group">
-  <h2 class="user">testさん</h2>
-  <h3 class="content__ttl">お気に入り店舗</h3>
-  <div class="card__area">
-  <article class="card__group">
-    <div class="card__img">
-      <img src="" alt="">
-    </div>
-      <div class="card__content">
-        <h2 class="card__ttl">店の名前</h2>
-        <p class="card__tag">#</p>
-        <p class="card__tag">#</p>
-        <div class="card__flex">
-          <div class="card__desc">詳しく見る</div>
-          <div class="heart"></div>
-        </div>
+<div class="mypage">
+  <div class="mypage__inner">
+    <div class="content__group">
+      <h3 class="content__ttl">予約状況</h3>
+      @foreach($reservations as $index => $reservation)
+      <div class="status-area">
+        <p class="reservation-num">予約{{ $index + 1 }}</p>
+        <a href="#" class="close-btn">×</a>
+        <p class="status-ttl">Shop</p>
+        <span class="status__item">{{ $reservation->shop->name }}</span>
+          <p class="status-ttl">Date</p>
+          <span class="status__item">{{ $reservation->start_at->format('Y-m-d') }}</span></p>
+          <p class="status-ttl">Time
+          <span class="status__item">{{ $reservation->start_at->format('H:i') }}</span>
+          <p class="status-ttl">Number</p>
+          <span class="status__item">{{ $reservation->guest_count }}人</span>   
       </div>
-  </article>
-</div>
+      @endforeach
+    </div>
+
+    <div class="favorite__group">
+      <h2 class="user">{{ Auth::user()->name }}さん</h2>
+      <h3 class="content__ttl">お気に入り店舗</h3>
+      <div class="card__area">
+        <article class="card__group">
+          <div class="card__img">
+            <img src="" alt="">
+          </div>
+            <div class="card__content">
+              <h2 class="card__ttl">店の名前</h2>
+              <p class="card__tag">#</p>
+              <p class="card__tag">#</p>
+              <div class="card__flex">
+                <div class="card__desc">詳しく見る</div>
+                <div class="heart"></div>
+              </div>
+            </div>
+        </article>
+      </div>
+    </div>
+  </div>
 </div>
 @endsection

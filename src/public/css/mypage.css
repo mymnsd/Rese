@@ -1,0 +1,32 @@
+.mypage{
+  max-width: 1500px;
+}
+
+.mypage__inner{
+  display: flex;
+  justify-content: space-between;
+  padding: 0 5%;
+  width: 100%;
+}
+
+.content__group,
+.favorite__group{
+  width: 45%;
+}
+
+.status-area{
+  position: relative;
+}
+
+.close-btn {
+  position: absolute;
+  top: 0;
+  right: 32px;
+  width: 32px;
+  height: 32px;
+  border: 1px solid #8B7969;
+  border-radius: 50%;
+  color: #8B7969;
+  text-align: center;
+  text-decoration: none;
+}
