@@ -5,7 +5,11 @@
 @endsection
 
 @section('title')
-<h1 class="header__ttl">Rese</h1>
+<div class="ttl__group">
+  <h1 class="site__ttl">
+    <a href="/">Rese</a>
+  </h1>
+</div>
 @endsection
 
 @section('content')

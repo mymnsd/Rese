@@ -5,7 +5,11 @@
 @endsection
 
 @section('title')
-  <h1 class="header__ttl">Rese</h1>
+<div class="ttl__group">
+  <h1 class="site__ttl">
+    <a href="/">Rese</a>
+  </h1>
+</div>
 @endsection
 
 @section('content')
@@ -13,7 +17,7 @@
   <div class="detail__content-inner">
     <article class="card__group">
       <div class="ttl-group">
-        <a class="back-link" href="/"></a>
+        <a class="back-link" href="/mypage"></a>
         <h2 class="card__ttl">{{ $shop->name }}</h2>
       </div>
       <div class="card__img">
@@ -42,6 +46,7 @@
             @endfor
           @endfor
         </select>
+
         <select class="reservation__form-people" name="guest_count" id="guest_count">
           <option value="" selected="">選択してください</option>
           @for($i = 1; $i <=20; $i++)
@@ -50,6 +55,7 @@
             </option>
           @endfor
         </select>
+        
         <input type="hidden" name="start_at" id="start_at">
         <div class="confirm">
           <p class="confirm__ttl">Shop

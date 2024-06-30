@@ -60,33 +60,17 @@
 
 }
 
-.heart{
+.heart {
+  font-size: 30px;
+  color: #ccc;
   cursor: pointer;
-  height: 45px;
-  position: relative;
-  transform: rotate(-45deg);
-  width: 50px;
+  transition: color 0.3s;
 }
 
-.heart:before,
-.heart:after {
-  content: "";
-  width: 50px;
-  height: 80px;
-  border-radius: 50px 50px 0 0;
-  background: #ccc;
-  position: absolute;
-  top: 0;
-  left: 25px;
+.heart input[type="checkbox"] {
+  display: none;
 }
 
-.heart:before {
-  left: 0;
-  transform: rotate(90deg);
+.heart input[type="checkbox"]:checked+.fa-heart {
+  color: red;
 }
-
-.heart.active:before,
-.heart.active:after {
-  background: red;
-}
-

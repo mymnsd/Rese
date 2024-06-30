@@ -5,6 +5,7 @@ use App\Http\Controllers\ShopController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\UserController;
 
 
 /*
@@ -29,4 +30,6 @@ Route::post('/login',[AuthController::class,'store']);
 Route::middleware('auth')->group(function () {
   Route::post('/logout', [AuthController::class, 'destroy']);
   Route::post('/reserve',[ReservationController::class,'create']);
+  Route::get('/mypage',[UserController::class,'mypage']);
+  Route::post('/favorite',[FavoriteController::class,'create']);
 });
