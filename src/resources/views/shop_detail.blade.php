@@ -17,7 +17,11 @@
   <div class="detail__content-inner">
     <article class="card__group">
       <div class="ttl-group">
+        @if(Auth::check())
         <a class="back-link" href="/mypage"></a>
+        @else
+        <a class="back-link" href="/"></a>
+        @endif
         <h2 class="card__ttl">{{ $shop->name }}</h2>
       </div>
       <div class="card__img">

@@ -38,10 +38,14 @@
           <div class="card-link">
             <a class="card-link--button" href="{{ route('shops.detail', $shop->id) }}">詳しく見る</a>
           </div>
-          <label class="heart">
-            <input type="checkbox" id="heartCheckbox">
-            <i class="fa-solid fa-heart"></i>
-          </label>
+          <form class="favorite-form" action="/favorite" method="post">
+          @csrf
+            <input class="favorite-input" type="hidden" name="shop_id" value="{{ $shop->id }}">
+            <label class="heart">
+            <input type="checkbox" id="heartCheckbox" name="favorite" value="1" {{ $shop->isFavorite() ? 'checked' : '' }} onchange="this.form.submit()">
+            <i class="fa-solid{{ $shop->isFavorite() ? ' fa-solid' : ' fa-regular' }} fa-heart"></i>
+            </label>
+          </form>
         </div>
       </div>
     </article>

@@ -17,6 +17,11 @@ class Shop extends Model
         'image_url'
     ];
 
+    public function isFavorite()
+    {
+        return $this->favorites()->where('user_id', auth()->id())->exists();
+    }
+
     public function area(){
         return $this->belongsTo(Area::class);
     }

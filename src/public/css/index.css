@@ -60,7 +60,21 @@
 
 }
 
-.heart {
+.heart input[type="checkbox"] {
+  display: none;
+}
+
+.heart i {
+  color: gray;
+}
+
+.heart input[type="checkbox"]:checked+i {
+  color: red;
+}
+
+
+
+/* .heart {
   font-size: 30px;
   color: #ccc;
   cursor: pointer;
@@ -71,6 +85,6 @@
   display: none;
 }
 
-.heart input[type="checkbox"]:checked+.fa-heart {
+.heart input[type="checkbox"]:checked+.fa-heart{
   color: red;
-}
+} */

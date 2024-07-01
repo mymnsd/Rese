@@ -6,6 +6,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\FavoriteController;
 
 
 /*
@@ -32,4 +33,5 @@ Route::middleware('auth')->group(function () {
   Route::post('/reserve',[ReservationController::class,'create']);
   Route::get('/mypage',[UserController::class,'mypage']);
   Route::post('/favorite',[FavoriteController::class,'create']);
+  Route::post('/favorite/delete',[FavoriteController::class,'delete']);
 });
