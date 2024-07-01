@@ -14,6 +14,11 @@ class Favorite extends Model
         'user_id'
     ];
 
+    public function isFavorite()
+    {
+        return $this->where('user_id', auth()->id())->exists();
+    }
+
     public function shop(){
         return $this->belongsTo(Shop::class);
     }

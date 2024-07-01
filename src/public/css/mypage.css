@@ -30,3 +30,15 @@
   text-align: center;
   text-decoration: none;
 }
+
+.heart input[type="checkbox"] {
+  display: none;
+}
+
+.heart i {
+  color: gray;
+}
+
+.heart input[type="checkbox"]:checked+i {
+  color: red;
+}
