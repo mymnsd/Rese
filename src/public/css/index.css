@@ -72,6 +72,11 @@
   color: red;
 }
 
+.fa-regular.fa-heart {
+  color: gray;
+  /* お気に入り解除の色 */
+}
+
 
 
 /* .heart {

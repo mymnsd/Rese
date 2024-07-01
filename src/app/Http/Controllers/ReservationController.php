@@ -33,7 +33,7 @@ class ReservationController extends Controller
 
         $shop = Shop::find($reservation->shop_id); 
 
-        return view('thanks_reservation');
+        return view('done');
         
     }
 }

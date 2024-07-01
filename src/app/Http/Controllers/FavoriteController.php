@@ -13,6 +13,7 @@ class FavoriteController extends Controller
         $user = auth()->user();
         $userId = Auth::id();
         $shopId = $request->input('shop_id');
+        $redirectUrl = $request->input('redirect_url', '/');
 
         // $favorite =Favorite::where('user_id',$userId)->where('shop_id',$shopId)->first();
 
@@ -31,21 +32,31 @@ class FavoriteController extends Controller
                 ]);
             }
 
-        return redirect()->back();
+        return redirect($redirectUrl);
     }
 
     public function delete(Request $request){
         $user = auth()->user();
         $userId = Auth::id();
         $shopId = $request->input('shop_id');
+        $redirectUrl = $request->input('redirect_url', 'mypage');
+
+        // $user->favorite()->detach($shopId);
+
+        // if ($user->favorites()->where('shop_id', $shopId)->exists()) {
+        // $user->favorites()->detach($shopId); // お気に入り解除
+        $favorite = $user->favorites()->where('shop_id', $shopId)->first();
+        if ($favorite) {
+        $favorite->delete(); // お気に入り解除
+        }
 
         // $favorite =Favorite::where('user_id',$userId)->where('shop_id',$shopId)->first();
 
-        $favorite = $user->favorites()->where('shop_id', $shopId)->first();
-
-        if($favorite){
-            $favorite->delete();
-        }
-        return redirect()->back();
+        return redirect($redirectUrl);
     }
+
+        // if($favorite){
+        //     $favorite->delete();
+        // }
 }
+

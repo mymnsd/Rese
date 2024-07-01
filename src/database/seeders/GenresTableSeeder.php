@@ -15,23 +15,23 @@ class GenresTableSeeder extends Seeder
     public function run()
     {
         $genreData = [
-            'name' => '#寿司'
+            'name' => '寿司'
         ];
         DB::table('genres')->insert($genreData);
         $genreData = [
-            'name' => '#焼肉'
+            'name' => '焼肉'
         ];
         DB::table('genres')->insert($genreData);
         $genreData = [
-            'name' => '#ラーメン'
+            'name' => 'ラーメン'
         ];
         DB::table('genres')->insert($genreData);
         $genreData = [
-            'name' => '#イタリアン'
+            'name' => 'イタリアン'
         ];
         DB::table('genres')->insert($genreData);
         $genreData = [
-            'name' => '#居酒屋'
+            'name' => '居酒屋'
         ];
         DB::table('genres')->insert($genreData);
     }

@@ -32,6 +32,6 @@ Route::middleware('auth')->group(function () {
   Route::post('/logout', [AuthController::class, 'destroy']);
   Route::post('/reserve',[ReservationController::class,'create']);
   Route::get('/mypage',[UserController::class,'mypage']);
-  Route::post('/favorite',[FavoriteController::class,'create']);
-  Route::post('/favorite/delete',[FavoriteController::class,'delete']);
+  Route::post('/favorite',[FavoriteController::class,'create'])->name('favorite.create');
+  Route::post('/favorite/delete',[FavoriteController::class,'delete'])->name('favorite.delete');
 });

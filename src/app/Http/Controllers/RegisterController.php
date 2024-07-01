@@ -16,6 +16,6 @@ class RegisterController extends Controller
         $user = $request->only(['name','email','password']);
         $user['password'] = Hash::make($user['password']);
         User::create($user);
-        return view('thanks_register');
+        return view('thanks');
     }
 }
