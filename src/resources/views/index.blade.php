@@ -32,19 +32,21 @@
       </div>
       <div class="card__content">
         <h2 class="card__ttl">{{ $shop->name }}</h2>
-        <p class="card__tag">{{ $shop->area->name }}</p>
-        <p class="card__tag">{{ $shop->genre->name }}</p>
+        <p class="card__tag">#{{ $shop->area->name }}</p>
+        <p class="card__tag">#{{ $shop->genre->name }}</p>
         <div class="card__flex">
           <div class="card-link">
             <a class="card-link--button" href="{{ route('shops.detail', $shop->id) }}">詳しく見る</a>
           </div>
-          <form class="favorite-form" action="/favorite" method="post">
+          <form class="favorite-form" action="{{ $shop->isFavorite() ? route('favorite.delete') : route('favorite.create') }}" method="post">
           @csrf
             <input class="favorite-input" type="hidden" name="shop_id" value="{{ $shop->id }}">
+            <input type="hidden" name="redirect_url" value="/">
             <label class="heart">
             <input type="checkbox" id="heartCheckbox" name="favorite" value="1" {{ $shop->isFavorite() ? 'checked' : '' }} onchange="this.form.submit()">
             <i class="fa-solid{{ $shop->isFavorite() ? ' fa-solid' : ' fa-regular' }} fa-heart"></i>
             </label>
+            <button type="submit" style="display: none;"></button>
           </form>
         </div>
       </div>

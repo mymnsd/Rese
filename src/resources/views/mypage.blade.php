@@ -44,40 +44,26 @@
           </div>
           <div class="card__content">
             <h2 class="card__ttl">{{ $favorite->shop->name }}</h2>
-            <p class="card__tag">{{ $favorite->shop->area->name }}</p>
-            <p class="card__tag">{{ $favorite->shop->genre->name }}</p>
+            <p class="card__tag">#{{ $favorite->shop->area->name }}</p>
+            <p class="card__tag">#{{ $favorite->shop->genre->name }}</p>
             <div class="card__flex">
               <div class="card-link">
                 <a class="card-link--button" href="{{ route('shops.detail', $favorite->shop->id) }}">詳しく見る</a>
               </div>
-              <form class="favorite-form" action="/delete" method="post">
+              <form class="favorite-form" action="{{ route('favorite.delete') }}" method="post">
               @csrf
                 <input class="favorite-input" type="hidden" name="shop_id" value="{{ $favorite->shop->id }}">
+                <input type="hidden" name="redirect_url" value="{{ url()->current() }}">
                 <label class="heart">
-                  <input type="checkbox" id="heartCheckbox" name="favorite" value="1" {{ $shop->isFavorite() ? 'checked' : '' }} onchange="this.form.submit()">
-            <i class="fa-solid{{ $shop->isFavorite() ? ' fa-solid' : ' fa-regular' }} fa-heart"></i>
-                  {{-- <input type="checkbox" id="heartCheckbox" name="favorite" value="1"  onchange="this.form.submit()">
-                  <i class="fa-solid fa-heart"></i> --}}
+                  <input type="checkbox" id="heartCheckbox" name="favorite" value="1" checked onchange="this.form.submit()">
+                  <i class="fa-solid {{ $favorite->shop->isFavorite() ? ' fa-solid' : ' fa-regular' }} fa-heart"></i>
                 </label>
+                <button type="submit" style="display: none;"></button>
               </form>
             </div>
           </div>
         </article>
         @endforeach
-        {{-- <article class="card__group">
-          <div class="card__img">
-            <img src="" alt="">
-          </div>
-            <div class="card__content">
-              <h2 class="card__ttl">店の名前</h2>
-              <p class="card__tag">#</p>
-              <p class="card__tag">#</p>
-              <div class="card__flex">
-                <div class="card__desc">詳しく見る</div>
-                <div class="heart"></div>
-              </div>
-            </div>
-        </article> --}}
       </div>
     </div>
   </div>
