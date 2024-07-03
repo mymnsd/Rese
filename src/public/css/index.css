@@ -2,8 +2,14 @@
 
 }
 
-.header__nav-list{
+.search-form{
+  display: flex;
+  justify-content: left;
+  width: 300px;
+}
 
+.header__nav-list{
+  
 }
 
 .header__nav-item{
