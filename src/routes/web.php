@@ -22,6 +22,7 @@ use App\Http\Controllers\FavoriteController;
 
 Route::get('/',[ShopController::class,'index']);
 Route::get('/detail/{shop_id}',[ShopController::class,'detail'])->name('shops.detail');
+// Route::get('/seach',[ShopController::class,'search']);
 Route::get('/register',[RegisterController::class,'create']);
 Route::post('/register',[RegisterController::class,'store']);
 Route::get('/login',[AuthController::class,'create'])->name('login');

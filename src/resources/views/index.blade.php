@@ -15,14 +15,44 @@
 @section('nav')
 <nav class="header__nav">
   <ul class="header__nav-list">
-    <li class="header__nav-item">All area</li>
-    <li class="header__nav-item">All genre</li>
-    <li class="header__nav-item">Search...</li>
+    {{-- @php
+        $areas = $shops->pluck('area.name')->unique();
+        $genres = $shops->pluck('genre.name')->unique();
+    @endphp --}}
+    
+    <form class="search-form" action="" method="get">
+        @csrf
+      <li class="header__nav-item">
+        <select name="area" id="area">
+          <option value="All area" {{ request('area') == 'All area' ? 'selected' : '' }}>All area</option>
+          @foreach($areas as $area)
+          <option value="{{ $area->name }}" {{ request('area') == $area->name ? 'selected' : '' }}>{{ $area->name }}
+          </option>
+          @endforeach 
+        </select>
+      </li>
+      <li class="header__nav-item">
+        <select name="genre" id="genre">
+          <option value="All genre" {{ request('genre') == 'All genre' ? 'selected' : '' }}>All genre</option>
+          @foreach($genres as $genre)
+          <option value="{{ $genre->name }}" {{ request('genre') == $genre->name ? 'selected' : '' }}>{{  $genre->name }}
+          </option>
+          @endforeach 
+        </select>
+      </li>
+      <button class="search-btn" type="submit">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </button>
+      <li class="header__nav-item">
+        <input class="search-form__keyword" type="text" name="keyword" id="keyword" placeholder="Search..." value="{{request('keyword')}}">
+      </li>
+    </form>
   </ul>
 </nav>
 @endsection
 
 @section('content')
+
 <div class="card__area">
   <div class="card__area-inner">
     @foreach ($shops as $shop)
