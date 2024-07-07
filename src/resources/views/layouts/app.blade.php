@@ -63,8 +63,8 @@
           </div>
         </div>
     </div>
-    @if(session('modal') === 'modal3')
-    <div class="modal" id="modal3" style="display: none;">
+    @if(session('modal') === 'modal2')
+    <div class="modal" id="modal2" style="display: none;">
       <a href="#!" class="modal-overlay"></a>
         <div class="modal__inner">
           <div class="modal__content">
@@ -81,7 +81,7 @@
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            var modal = document.getElementById('modal3');
+            var modal = document.getElementById('modal2');
             if (modal) {
                 modal.style.display = 'block';
             }

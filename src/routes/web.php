@@ -31,7 +31,11 @@ Route::post('/login',[AuthController::class,'store']);
 
 Route::middleware('auth')->group(function () {
   Route::post('/logout', [AuthController::class, 'destroy']);
+  Route::get('/reserve',[ReservationController::class,'index']);
   Route::post('/reserve',[ReservationController::class,'create']);
+  Route::get('/reserve/delete/{id}',[ReservationController::class,'destroy'])->name('reserve.delete');
+  Route::post('/reserve/confirm-cancel-page/{id}',[ReservationController::class,'confirmCancelPage'])->name('reserve.confirmCancelPage');
+  Route::post('/reserve/confirm-cancel/{id}', [reservationController::class,'confirmCancel'])->name('reserve.confirmCancel');
   Route::get('/mypage',[UserController::class,'mypage']);
   Route::post('/favorite',[FavoriteController::class,'create'])->name('favorite.create');
   Route::post('/favorite/delete',[FavoriteController::class,'delete'])->name('favorite.delete');
