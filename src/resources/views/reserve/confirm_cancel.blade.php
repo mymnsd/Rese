@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-<div class="container">
+<div class="cancel-container">
     <h1>予約のキャンセル確認</h1>
     <p>本当に予約をキャンセルしますか？この操作は取り消せません。</p>
     <p>Shop: {{ $reservation->shop->name }}</p>

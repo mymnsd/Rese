@@ -12,11 +12,11 @@ use Carbon\Carbon;
 
 class ReservationController extends Controller
 {
-    public function index()
-    {
+    public function index(){
         $reservations = Reservation::where('user_id', auth()->id())->get();
         return view('reserve.index', compact('reservations'));
     }
+
     public function create(request $request){
         $request->validate([
         'shop_id' => 'required|integer',
@@ -41,58 +41,40 @@ class ReservationController extends Controller
         return view('done'); 
     }
 
-    // public function showCancelConfirmation($id){
-    //     $reservation = Reservation::find($id);
-
-    //     if ($reservation) {
-    //         session()->flash('showCancelModal', true);
-    //     session()->flash('reservationId', $id);
-        // session(['showCancelModal' => true, 'reservationId' => $id]);
-        // dd(session()->all()); 
-        // すべてのセッションデータをダンプして確認
-        // }
-
-        // return redirect()->back();
-        // ->with('showCancelModal', true)->with('reservationId', $id);
-        // ->with([
-        // 'showCancelModal' => true,
-        // 'reservationId' => $id
-        // ]);
-
-        public function confirmCancelPage($id)
-    {
-        $reservation = Reservation::find($id);
-        return view('reserve.confirm_cancel', compact('reservation'));
-
+    public function confirmCancelPage($id){
         $reservation = Reservation::find($id);
         return view('reserve.confirm_cancel', compact('reservation'));
     }
 
-    public function confirmCancel(Request $request, $id)
-    {
+    public function confirmCancel(Request $request, $id){
         $reservation = Reservation::find($id)->delete();
-        // $reservation->delete();
         
-        return redirect('/mypage')->with('message', '予約をキャンセルしました。');
+        return view('reserve.cancel');
     }
 
-    // public function destroy($id)
-    // {
-    //     $reservation = Reservation::find($id)->delete();
-        
-        // 予約をキャンセル（ここでは単に削除とします）
-        // $reservation->delete();
-        
-    //     return redirect()->route('reserve.index')->with('message', '予約をキャンセルしました。');
-    // }
+    public function edit($id){
+        $reservation = Reservation::find($id);
+        return view('reserve.edit_reserve', compact('reservation'));
+    }
 
-    
-    // public function delete(Request $request,$id){
-    //     $reservation = Reservation::find($id)->delete();
-    //     // $reservation = delete();
+    public function update(Request $request,$id){
+        $reservation = Reservation::find($id);
+        $date = $request->input('start_at');
+    $time = $request->input('time');
+    $datetime = $date . ' ' . $time . ':00';
 
-    //     return redirect()->back()->with('message','予約をキャンセルしました');
-    // }
+        $reservation->start_at = $datetime;
+    $reservation->guest_count = $request->input('guest_count');
+
+        // $reservation->date = $request->input('date');
+        // $reservation->start_at = $request->input('start_at') . ' ' . $request->input('time') . ':00';
+        // $reservation->guest_count = $request->input('guest_coutn');
+        $reservation->save();
+
+         return view('reserve.edit');
+
+    }
+
 }
 
 

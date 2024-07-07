@@ -15,11 +15,6 @@
 @section('nav')
 <nav class="header__nav">
   <ul class="header__nav-list">
-    {{-- @php
-        $areas = $shops->pluck('area.name')->unique();
-        $genres = $shops->pluck('genre.name')->unique();
-    @endphp --}}
-    
     <form class="search-form" action="" method="get">
         @csrf
       <li class="header__nav-item">
