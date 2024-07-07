@@ -30,13 +30,21 @@ Route::post('/login',[AuthController::class,'store']);
 
 
 Route::middleware('auth')->group(function () {
+  // ログアウト
   Route::post('/logout', [AuthController::class, 'destroy']);
+
+  // 予約登録、キャンセル、変更
   Route::get('/reserve',[ReservationController::class,'index']);
   Route::post('/reserve',[ReservationController::class,'create']);
-  Route::get('/reserve/delete/{id}',[ReservationController::class,'destroy'])->name('reserve.delete');
   Route::post('/reserve/confirm-cancel-page/{id}',[ReservationController::class,'confirmCancelPage'])->name('reserve.confirmCancelPage');
-  Route::post('/reserve/confirm-cancel/{id}', [reservationController::class,'confirmCancel'])->name('reserve.confirmCancel');
+  Route::post('/reserve/confirm-cancel/{id}', [ReservationController::class,'confirmCancel'])->name('reserve.confirmCancel');
+  Route::get('/reserve/{id}/edit',[ReservationController::class,'edit'])->name('reserve.edit_reserve');
+  Route::put('/reserve/{id}',[ReservationController::class,'update'])->name('reserve.update');
+
+  // マイページ
   Route::get('/mypage',[UserController::class,'mypage']);
+
+  // お気に入り登録、解除
   Route::post('/favorite',[FavoriteController::class,'create'])->name('favorite.create');
   Route::post('/favorite/delete',[FavoriteController::class,'delete'])->name('favorite.delete');
 });
