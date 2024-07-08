@@ -13,27 +13,35 @@
   <body>
     <header class="header">
       <div class="header__inner">
-        <div class="header__inner-button">
-          @if(Auth::check())
-          <a class="header__inner-button--icon"
-          href="#modal2"></a>
+        <div class="header__inner--ttl">
+          <div class="header__inner-button">
+            @if(Auth::check())
+            <a class="header__inner-button--icon"
+            href="#modal2">
             <span class="header__inner-link--border"></span>
             <span class="header__inner-link--border"></span>
             <span class="header__inner-link--border"></span>
-          @else
-          <a class="header__inner-button--icon" href="#modal"></a>
-          <span class="header__inner-link--border"></span>
-          <span class="header__inner-link--border"></span>
-          <span class="header__inner-link--border"></span>
-          @endif
+            </a>
+            @else
+            <a class="header__inner-button--icon" href="#modal">
+            <span class="header__inner-link--border"></span>
+            <span class="header__inner-link--border"></span>
+            <span class="header__inner-link--border"></span>
+            </a>
+            @endif
+          </div>
+          <div class="ttl__group">
+            <h1 class="site__ttl">
+              <a href="/">Rese</a>
+            </h1>
+          </div>
         </div>
-          @yield('title')
-          @yield('nav')
+        @yield('nav')
       </div>
     </header>
 
     <main>
-    <div class="modal" id="modal">
+    {{-- <div class="modal" id="modal">
       <a href="#!" class="modal-overlay"></a>
         <div class="modal__inner">
           <div class="modal__content">
@@ -88,7 +96,7 @@
         });
     </script>
     
-    @endif
+    @endif --}}
     @yield('content')
     </main>
     
