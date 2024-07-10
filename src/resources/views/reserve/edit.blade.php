@@ -15,8 +15,12 @@
 @section('content')
 <div class="edit-page">
   <div class="edit-page__inner">
-    <p class="edit-page__message">予約を変更しました</p>
-      <a class="edit-page__link" href="/">トップページへ戻る</a>
+    <div class="edit-page__content">
+      <p class="edit-page__message">予約を変更しました</p>
+      <div class="edit-page__btn">
+        <a class="edit-page__link" href="/">トップページへ戻る</a>
+      </div>
+    </div>
   </div>
 </div>
 @endsection

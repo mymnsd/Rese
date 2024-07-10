@@ -1,0 +1,108 @@
+.edit-container{
+  max-width: 1500px;
+}
+
+.edit-container__inner{
+  width: 100%;
+}
+
+.edit-container__content{
+  background-color: #2b43f8;
+  border-radius: 5px;
+  box-shadow: 3px 3px 5px #888;
+  color: #fff;
+  margin: 100px auto 0;
+  padding-top: 20px;
+  width: 40%;
+}
+
+.edit__ttl{
+  text-align: center;
+}
+
+.edit-form{
+  
+}
+
+.edit-table{
+  margin-bottom: 50px;
+  width: 95%;
+}
+
+.edit-table__row{
+
+}
+
+.edit-table__ttl{
+  padding: 8px 20px;
+  text-align: left;
+  width: 25%;
+}
+
+.edit-table__item--time,
+.edit-table__item--people{
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  position: relative;
+}
+
+.edit-table__item--time::after,
+.edit-table__item--people::after{
+  position: absolute;
+  top: 50%;
+  right: 1%;
+  width: 0;
+  height: 0;
+  border-top: 12px solid #aaa;
+  border-right: 8px solid transparent;
+  border-left: 8px solid transparent;
+  content: "";
+  transform: translateY(-50%);
+}
+
+.edit__form--date{
+  border-radius: 5px;
+  outline: none;
+  padding: 3px 10px;
+}
+
+.edit__form--time,
+.edit__form--people{
+  border-radius: 5px;
+  outline: none;
+  padding: 3px 10px;
+  width: 100%;
+
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  position: relative;
+}
+
+.btn-area{
+  display: flex;
+  justify-content: center;
+  border-radius: 0 0 5px 5px;
+  background-color: blue;
+  gap: 100px;
+  margin-top: 50px;
+  padding: 20px;
+}
+
+.edit__form-btn{
+  background-color: blue;
+  color: #fff;
+  cursor: pointer;
+  border-style: none;
+  font-size: 1rem;
+}
+
+.edit__form-link{
+  color: #fff;
+}
+
+.edit__form-btn:hover,
+.edit__form-link:hover{
+  opacity: 0.7;
+}

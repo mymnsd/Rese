@@ -1,0 +1,40 @@
+.cancel-page {
+  max-width: 1500px;
+}
+
+.cancel-page__inner {
+  width: 100%;
+}
+
+.cancel-page__content {
+  background-color: #fff;
+  border-radius: 5px;
+  box-sizing: border-box;
+  box-shadow: 3px 3px 5px #888;
+  margin: 80px auto 0;
+  padding: 30px;
+  width: 40%;
+}
+
+.cancel-page__message {
+  font-weight: bold;
+  font-size: 20px;
+  text-align: center;
+  margin-top: 60px;
+}
+
+.cancel-page__btn{
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.cancel-page__link{
+  background: blue;
+  border-radius: 5px;
+  color: #fff;
+  padding: 8px 20px;
+}
+
+.cancel-page__link{
+  opacity: 0.7;
+}

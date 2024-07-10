@@ -88,13 +88,13 @@
 
 .search-btn::before {
   content: "";
-    position: absolute;
-    top: 15%;
-    left: 0;
-    width: 1px;
-    height: 70%;
-    background-color: #aaa;
-    transform: translateX(-50%);
+  position: absolute;
+  top: 15%;
+  left: 0;
+  width: 1px;
+  height: 70%;
+  background-color: #aaa;
+  transform: translateX(-50%);
 }
 
 .search-form__keyword{
@@ -185,7 +185,6 @@
 
 .fa-regular.fa-heart {
   color: gray;
-  /* お気に入り解除の色 */
 }
 
 /* モーダル */
@@ -233,11 +232,6 @@
 
 .modal-form__group {
   text-align: center;
-  /* display: grid;
-  margin-top: 32px;
-
-  grid-template-columns: 1fr 2fr;
-  gap: 20px; */
 }
 
 
@@ -251,6 +245,7 @@
 }
 
 .modal-form__btn{
+  margin: 0;
   margin-top: 10px;
 }
 
@@ -313,32 +308,3 @@
   font-weight: bold;
 }
 
-/* .modal__close-btn {
-  position: absolute;
-  top: 32px;
-  right: 32px;
-  width: 32px;
-  height: 32px;
-  border: 1px solid #8B7969;
-  border-radius: 50%;
-  color: #8B7969;
-  text-align: center;
-  text-decoration: none;
-} */
-
-
-
-/* .heart {
-  font-size: 30px;
-  color: #ccc;
-  cursor: pointer;
-  transition: color 0.3s;
-}
-
-.heart input[type="checkbox"] {
-  display: none;
-}
-
-.heart input[type="checkbox"]:checked+.fa-heart{
-  color: red;
-} */

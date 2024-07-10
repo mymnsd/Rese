@@ -1,14 +1,18 @@
 @extends('layouts.app')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/thanks_reservation.css') }}">
+<link rel="stylesheet" href="{{ asset('css/done.css') }}">
 @endsection
 
 @section('content')
-<div class="thanks-page">
-  <div class="thanks-page__inner">
-    <p class="thanks-page__message">ご予約ありがとうございます</p>
-      <a class="thanks-page__link" href="/">戻る</a>
+<div class="done-page">
+  <div class="done-page__inner">
+    <div class="done-page__content">
+      <p class="done-page__message">ご予約ありがとうございます</p>
+      <div class="done-btn">
+        <a class="done-page__link" href="/">戻る</a>
+      </div>
+    </div>
   </div>
 </div>
 @endsection
