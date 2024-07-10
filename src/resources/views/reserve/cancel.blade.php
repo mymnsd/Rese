@@ -15,8 +15,12 @@
 @section('content')
 <div class="cancel-page">
   <div class="cancel-page__inner">
-    <p class="cancel-page__message">予約をキャンセルしました</p>
-      <a class="cancel-page__link" href="/">トップページへ戻る</a>
+    <div class="cancel-page__content">
+      <p class="cancel-page__message">予約をキャンセルしました</p>
+      <div class="cancel-page__btn">
+        <a class="cancel-page__link" href="/">トップページへ戻る</a>
+      </div>
+    </div>
   </div>
 </div>
 @endsection

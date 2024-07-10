@@ -58,21 +58,16 @@ class ReservationController extends Controller
     }
 
     public function update(Request $request,$id){
-        $reservation = Reservation::find($id);
+        $reservation = Reservation::with('shop')->find($id);
         $date = $request->input('start_at');
-    $time = $request->input('time');
-    $datetime = $date . ' ' . $time . ':00';
+        $time = $request->input('time');
+        $datetime = $date . ' ' . $time . ':00';
 
         $reservation->start_at = $datetime;
-    $reservation->guest_count = $request->input('guest_count');
-
-        // $reservation->date = $request->input('date');
-        // $reservation->start_at = $request->input('start_at') . ' ' . $request->input('time') . ':00';
-        // $reservation->guest_count = $request->input('guest_coutn');
+        $reservation->guest_count = $request->input('guest_count');
         $reservation->save();
 
-         return view('reserve.edit');
-
+        return view('reserve.edit');
     }
 
 }

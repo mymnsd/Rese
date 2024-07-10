@@ -12,11 +12,11 @@ use Carbon\Carbon;
 
 class UserController extends Controller
 {
-    public function mypage(Request $request){
-        $user = auth()->user();
-        $favorites = $user->favorites()->with('shop')->get();
-        $reservations = Reservation::where('user_id',Auth::id())->get();
+  public function mypage(Request $request){
+    $user = auth()->user();
+    $favorites = $user->favorites()->with('shop')->get();
+    $reservations = Reservation::where('user_id',Auth::id())->get();
 
     return view('mypage', compact('reservations','favorites'));
-    }
+  }
 }

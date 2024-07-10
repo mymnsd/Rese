@@ -86,7 +86,7 @@
         </p>
         <form class="form__logout" action="/logout" method="post">
         @csrf
-          <button class="logout__btn" type="submit">logout</button>
+          <button class="logout__btn" type="submit">Logout</button>
         </form>
         <form class="form__mypage" action="/mypage" method="get">
           @csrf
@@ -105,7 +105,7 @@
         <a href="/">Home</a>
         <form class="form__logout" action="/logout" method="post">
         @csrf
-          <button class="logout__btn" type="submit">logout</button>
+          <button class="logout__btn" type="submit">Logout</button>
         </form>
         <form class="form__mypage" action="/mypage" method="get">
           @csrf

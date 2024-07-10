@@ -1,0 +1,78 @@
+.cancel-container{
+  max-width: 1500px;
+}
+
+.cancel-container__inner{
+  width: 100%;
+}
+
+.cancle-container__content{
+  border-radius: 5px;
+  box-shadow: 3px 3px 5px #888;
+  background: #2b43f8;
+  color: #fff;
+  margin: 100px auto 0;
+  padding-top: 20px;
+  width: 40%;
+}
+
+.cancel__ttl{
+  text-align: center;
+}
+
+.cancel-message{
+  text-align: center;
+}
+
+.confirm-table{
+  background-color: #456afd;
+  border-radius: 5px;
+  margin: 20px auto 0;
+  padding: 10px;
+  width: 95%;
+}
+
+.confirm-table__row{
+
+}
+
+.confirm-table__ttl{
+  padding: 8px 20px;
+  text-align: left;
+  width: 30%;
+}
+
+.confirm-table__item{
+
+}
+
+.cancel-form{
+  display: flex;
+  justify-content: center;
+  border-radius: 0 0 5px 5px;
+  background-color: blue;
+  gap: 100px;
+  margin-top: 50px;
+  padding: 20px;
+}
+
+.cancel-btn-1{
+  border-style: none;
+  background-color: blue;
+  color: #fff;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.cancel-btn-2{
+
+}
+
+.cancel-btn-2--link{
+  color: #fff;
+}
+
+.cancel-btn-1:hover,
+.cancel-btn-2--link:hover {
+  opacity: 0.7;
+}
