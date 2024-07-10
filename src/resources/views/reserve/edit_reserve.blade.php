@@ -29,11 +29,12 @@
       @csrf
       @method('put')
         <tr class="edit-table__row">
-          <th class="edit-table__ttl"><label for="new_date">日付</label></th>
+          <th class="edit-table__ttl"><label for="new_date">Date</label>
+          </th>
           <td class="edit-table__item--date"><input class="edit__form--date" type="date" id="new_date" name="start_at" value="{{ $reservation->start_at->format('Y-m-d') }}"></td>
         </tr>
       <tr class="edit-table__row">
-        <th class="edit-table__ttl"><label for="new_time">時間</label>
+        <th class="edit-table__ttl"><label for="new_time">Time</label>
         </th>
         <td class="edit-table__item--time">
         <select class="edit__form--time" name="time" id="time">
@@ -54,7 +55,7 @@
       
       <tr class="edit-table__row">
         <th class="edit-table__ttl">
-        <label class="label" for="new_guest_count">人数</label>
+        <label class="label" for="new_guest_count">Number</label>
         </th>
         <td class="edit-table__item--people">
         <select class="edit__form--people" name="guest_count" id="guest_count">

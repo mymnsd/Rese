@@ -1,3 +1,5 @@
+
+
 body {
   background-color: #ddd;
 }
@@ -16,7 +18,7 @@ a {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 100%;
+  height: 100px;
   padding: 0 5%;
   width: 100%;
 }
@@ -69,7 +71,8 @@ a {
 }
 
 .site__ttl{
-  padding-left: 20px;
+  padding-left: 10px;
+    font-size: 2rem;
 }
 
 .site__ttl a{
@@ -81,4 +84,15 @@ a {
 }
 
 
+@media screen and(min-width:768px) {
+  .header {
+    height: 100px;
+    max-width: 1500px;
+  }
+
+  .header__inner {
+    
+  }
+  
+}
 

@@ -34,9 +34,9 @@
       </table>
       <form class="cancel-form" action="{{ route('reserve.confirmCancel', ['id' => $reservation->id]) }}" method="POST">
       @csrf
-        <button type="submit" class="cancel-btn-1">キャンセルを確定</button>
+        <button type="submit" class="cancel-btn-1">OK</button>
         <div class="cancel-btn-2">
-          <a href="/mypage" class="cancel-btn-2--link">キャンセルしない</a>
+          <a href="/mypage" class="cancel-btn-2--link">戻る</a>
         </div>
       </form>
     </div>
