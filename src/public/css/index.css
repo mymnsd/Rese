@@ -1,9 +1,10 @@
 .header__nav{
-  width: 550px;
+  width: 60%;
 }
 
 .header__nav-list{
   box-shadow: 3px 3px 5px #888;
+  margin: 0;
   width: 100%;
 }
 
@@ -43,6 +44,7 @@
 
 .header__nav-item:last-child {
   width: 100%;
+  z-index: 1;
 }
 
 .search-select--area{
@@ -104,6 +106,14 @@
   width: 100%;
 }
 
+@media screen and (min-width: 768px) {
+  .header__nav {
+    
+      
+  }
+}
+
+/* 店舗パネル */
 .card__area{
   max-width: 1500px;
 }
@@ -121,8 +131,7 @@
   box-shadow: 3px 3px 5px #888;
   border-radius: 5px;
   margin-bottom: 20px;
-  width: 24%;
-
+  width: 48%;
 }
 
 .card__img{
@@ -139,11 +148,12 @@
 }
 
 .card__ttl{
+  font-size: 1.2rem;
   margin-bottom: 0;
 }
 
 .card__tag{
-
+  font-size: 0.9rem;
 }
 
 .card__flex{
@@ -185,6 +195,24 @@
 
 .fa-regular.fa-heart {
   color: gray;
+}
+
+@media screen and (min-width: 768px) {
+  .card__area-inner {
+    /* display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 0 5%;
+    width: 100%; */
+  }
+
+  .card__group {
+    /* background-color: #fff;
+    box-shadow: 3px 3px 5px #888;
+    border-radius: 5px;
+    margin-bottom: 20px; */
+    width: 24%;
+  }
 }
 
 /* モーダル */

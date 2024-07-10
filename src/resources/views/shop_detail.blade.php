@@ -31,48 +31,33 @@
       <h3 class="reservation__ttl">予約</h3>
       <form class="reservation__form" action="/reserve" method="post">
         @csrf
-        <input type="hidden" name="shop_id" value="{{ $shop->id }}">
-        <input class="reservation__form--date" type="date" name="date" id="date" value="{{ request('date') }}">
-        <div class="select-area">
-          <select class="reservation__form--time" name="time" id="time">
-            <option value="" selected="">選択してください</option>
-            @for($i = 11; $i <= 23; $i++)
-              @for($j = 0; $j <= 30; $j += 30)
-              <option label="{{ $i }}:{{ sprintf('%02d',$j) }}" value="{{ $i }}:{{ sprintf('%02d',$j) }}">{{ $i }}:{{ sprintf('%02d',$j) }}</option>
+        <div class="select-area__group">
+          <input type="hidden" name="shop_id" value="{{ $shop->id }}">
+          <input class="reservation__form--date" type="date" name="date" id="date" value="{{ request('date') }}">
+        
+          <div class="select-area">
+            <select class="reservation__form--time" name="time" id="time">
+              <option value="" selected="">選択してください</option>
+              @for($i = 11; $i <= 23; $i++)
+                @for($j = 0; $j <= 30; $j += 30)
+                <option label="{{ $i }}:{{ sprintf('%02d',$j) }}" value="{{ $i }}:{{ sprintf('%02d',$j) }}">{{ $i }}:{{ sprintf('%02d',$j) }}</option>
+                @endfor
               @endfor
-            @endfor
-          </select>
-        </div>
-        <div class="select-area">
-          <select class="reservation__form--people" name="guest_count" id="guest_count">
-            <option value="" selected="">選択してください</option>
-            @for($i = 1; $i <=20; $i++)
-              <option value="{{ $i }}" @if(request('guest_count') == $i) selected @endif>
-              {{ $i }}人
-              </option>
-            @endfor
-          </select>
+            </select>
+          </div>
+          <div class="select-area">
+            <select class="reservation__form--people" name="guest_count" id="guest_count">
+              <option value="" selected="">選択してください</option>
+              @for($i = 1; $i <=20; $i++)
+                <option value="{{ $i }}" @if(request('guest_count') == $i) selected @endif>
+                {{ $i }}人
+                </option>
+              @endfor
+            </select>
+          </div>
         </div>
         
       <input type="hidden" name="start_at" id="start_at"> 
-      {{-- <table class="reservation-table">
-        <tr class="reservation-table__row">
-          <th class="reservation-table__ttl">Shop</th>
-          <td class="reservation-table__item">{{ $shop->name }}</td>
-        </tr>
-        <tr class="reservation-table__row">
-          <th class="reservation-table__ttl">Date</th>
-          <td class="reservation-table__item">{{ $reservation->start_at->format('Y-m-d') }}</td>
-        </tr>
-        <tr class="reservation-table__row">
-          <th class="reservation-table__ttl">Time</th>
-          <td class="reservation-table__item">{{ $reservation->start_at->format('H:i') }}</td>
-        </tr>
-        <tr class="reservation-table__row">
-          <th class="reservation-table__ttl">Number</th>
-          <td class="reservation-table__item">{{ $reservation->guest_count }}人</td>
-        </tr> --}}
-        
       </table>
         <table class="reservation-table">
           <tr class="reservation-table__row">

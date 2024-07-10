@@ -39,3 +39,9 @@
 .login-link:hover{
   opacity: 0.7;
 }
+
+@media screen and (min-width: 768px) {
+  .thanks-page__message {
+    font-size: 1.1rem;
+  }
+}
