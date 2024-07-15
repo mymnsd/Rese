@@ -8,6 +8,11 @@ a {
   text-decoration: none;
 }
 
+.register-form__error-message,
+.login-form__error-message{
+  color: red;
+}
+
 /* ヘッダー */
 .header {
   height: 100px;

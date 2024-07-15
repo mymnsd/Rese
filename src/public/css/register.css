@@ -11,7 +11,7 @@
   border-radius: 0 0 5px 5px;
   box-shadow: 3px 3px 5px #888;
   margin: 100px auto 0;
-  width: 40%;
+  width: 50%;
 }
 
 .register-form__ttl {
@@ -65,4 +65,10 @@
 
 .fa-solid{
   
+}
+
+@media screen and (min-width: 768px) {
+  .register-form__content {
+    width: 40%;
+  }
 }

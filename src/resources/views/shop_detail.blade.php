@@ -44,6 +44,9 @@
                 @endfor
               @endfor
             </select>
+            @error('date')
+            {{ $message }}
+            @enderror
           </div>
           <div class="select-area">
             <select class="reservation__form--people" name="guest_count" id="guest_count">
@@ -54,6 +57,9 @@
                 </option>
               @endfor
             </select>
+            @error('time')
+            {{ $message }}
+            @enderror
           </div>
         </div>
         
@@ -90,6 +96,9 @@
               <span id="show_guest_count" class="show__item"></span>
             
           </div> --}}
+          @error('guest_count')
+            {{ $message }}
+            @enderror
         </table>
         <button class="reservation__btn" type="submit">予約する</button>
       </form>

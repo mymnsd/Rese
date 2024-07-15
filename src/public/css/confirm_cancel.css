@@ -13,7 +13,7 @@
   color: #fff;
   margin: 100px auto 0;
   padding-top: 20px;
-  width: 40%;
+  width: 50%;
 }
 
 .cancel__ttl{
@@ -48,10 +48,10 @@
 
 .cancel-form{
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   border-radius: 0 0 5px 5px;
   background-color: blue;
-  gap: 100px;
+  /* gap: 100px; */
   margin-top: 50px;
   padding: 20px;
 }
@@ -75,4 +75,12 @@
 .cancel-btn-1:hover,
 .cancel-btn-2--link:hover {
   opacity: 0.7;
+}
+
+@media screen and(min-width:768px) {
+  .cancel-page__content {
+    width: 40%;
+  }
+
+    
 }

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Reservation;
 use App\Models\Shop;
 use Carbon\Carbon;
+use App\Http\Requests\ReservationRequest;
 
 
 
@@ -17,13 +18,13 @@ class ReservationController extends Controller
         return view('reserve.index', compact('reservations'));
     }
 
-    public function create(request $request){
-        $request->validate([
-        'shop_id' => 'required|integer',
-        'date' => 'required|date_format:Y-m-d',
-        'time' => 'required|date_format:H:i',
-        'guest_count' => 'required|integer|min:1',
-        ]);
+    public function create(ReservatioRrequest $request){
+        // $request->validate([
+        // 'shop_id' => 'required|integer',
+        // 'date' => 'required|date_format:Y-m-d',
+        // 'time' => 'required|date_format:H:i',
+        // 'guest_count' => 'required|integer|min:1',
+        // ]);
 
         $user = Auth::user();
 

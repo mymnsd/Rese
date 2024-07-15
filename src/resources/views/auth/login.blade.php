@@ -23,23 +23,23 @@
             <label class="login-form__label" for="email"></label>
             <i class="fa-solid fa-envelope fa-2x"></i>
             <input class="login-form__input" type="email" name="email" id="email" value="{{ old('email') }}" placeholder="Email">
-            <p class="register-form__error-message">
-              @error('email')
-              {{ $message }}
-              @enderror
-            </p>
           </div>
+          <p class="login-form__error-message">
+            @error('email')
+            {{ $message }}
+            @enderror
+          </p>
           <div class="login-form__group">
             <label class="login-form__label" for="password"></label>
             <i class="fa-solid fa-lock fa-2x"></i>
             <input class="login-form__input" type="password" name="password" id="password" placeholder="Password">
-            <p>
-            @error('password')
-            {{ $message }}
-            @enderror
-            </p>
           </div>
-          <div class="register-form__btn">
+          <p class="login-form__error-message">
+          @error('password')
+          {{ $message }}
+          @enderror
+          </p>
+          <div class="login-form__btn">
             <input class="login-form__btn--blue" type="submit" value="ログイン">
           </div>
         </form>

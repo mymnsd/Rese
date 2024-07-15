@@ -11,7 +11,7 @@
   border-radius: 0 0 5px 5px;
   box-shadow: 3px 3px 5px #888;
   margin: 100px auto 0;
-  width: 40%;
+  width: 50%;
 }
 
 .login-form__ttl{
@@ -55,7 +55,7 @@
 
 }
 
-.register-form__btn{
+.login-form__btn{
   text-align: right;
   width: 100%;
 }
@@ -66,4 +66,10 @@
   border-radius: 5px;
   color: #fff;
   padding: 10px 20px;
+}
+
+@media screen and (min-width: 768px) {
+  .login-form__content {
+      width: 40%;
+  }
 }
