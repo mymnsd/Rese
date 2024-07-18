@@ -7,6 +7,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\FavoriteController;
+use App\Http\Controllers\Auth\VerificationController;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 
 /*
@@ -20,9 +22,10 @@ use App\Http\Controllers\FavoriteController;
 |
 */
 
+
+
 Route::get('/',[ShopController::class,'index']);
 Route::get('/detail/{shop_id}',[ShopController::class,'detail'])->name('shops.detail');
-// Route::get('/seach',[ShopController::class,'search']);
 Route::get('/register',[RegisterController::class,'create']);
 Route::post('/register',[RegisterController::class,'store']);
 Route::get('/login',[AuthController::class,'create'])->name('login');
@@ -30,6 +33,11 @@ Route::post('/login',[AuthController::class,'store']);
 
 
 Route::middleware('auth')->group(function () {
+  // メール認証
+  Route::get('email/verify', [VerificationController::class, 'show'])->name('verification.notice');
+  Route::get('email/verify/{id}/{hash}', [VerificationController::class, 'verify'])->middleware(['signed','throttle:6,1'])->name('verification.verify');
+  Route::post('email/resend', [VerificationController::class, 'resend'])->name('verification.resend');
+  
   // ログアウト
   Route::post('/logout', [AuthController::class, 'destroy']);
 
