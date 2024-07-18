@@ -5,12 +5,14 @@
         </x-slot>
 
         <div class="mb-4 text-sm text-gray-600">
-            {{ __('Before continuing, could you verify your email address by clicking on the link we just emailed to you? If you didn\'t receive the email, we will gladly send you another.') }}
+            ご登録ありがとうございます！<br>
+            ご入力いただいたメールアドレスへ認証リンクを送信しましたので、クリックして認証を完了させてください。<br>
+            もし、認証メールが届かない場合は再送させていただきます。
         </div>
 
         @if (session('status') == 'verification-link-sent')
             <div class="mb-4 font-medium text-sm text-green-600">
-                {{ __('A new verification link has been sent to the email address you provided in your profile settings.') }}
+                新しい認証メールが送信されました。
             </div>
         @endif
 
@@ -20,7 +22,7 @@
 
                 <div>
                     <x-jet-button type="submit">
-                        {{ __('Resend Verification Email') }}
+                        認証メールを再送する
                     </x-jet-button>
                 </div>
             </form>
@@ -36,7 +38,7 @@
                     @csrf
 
                     <button type="submit" class="underline text-sm text-gray-600 hover:text-gray-900 ml-2">
-                        {{ __('Log Out') }}
+                        ログアウト
                     </button>
                 </form>
             </div>
@@ -44,7 +46,7 @@
     </x-jet-authentication-card>
 </x-guest-layout> --}}
 
-@extends('layouts.app')
+{{-- @extends('layouts.app')
 
 @section('content')
     <div class="container">
@@ -54,5 +56,66 @@
             @csrf
             <button type="submit">Resend Verification Email</button>
         </form>
+    </div>
+@endsection --}}
+
+
+{{-- @extends('layouts.app')
+
+@section('content')
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">メールアドレスをご確認ください</div>
+
+                    <div class="card-body">
+                        @if (session('status') == 'verification-link-sent')
+                            <div class="alert alert-success" role="alert">
+                                <p>ご登録いただいたメールアドレスに確認用のリンクをお送りしました。</p>
+                            </div>
+                        @endif
+
+                        <p>メールをご確認ください。</p>
+                        <p>もし確認用メールが送信されていない場合は、下記をクリックしてください。</p>
+                        
+                        <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
+                            @csrf
+                            <button type="submit" class="btn btn-link p-0 m-0 align-baseline">確認メールを再送信する</button>.
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection --}}
+
+@extends('layouts.app')
+
+@section('content')
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">{{ __('メールアドレスをご確認ください') }}</div>
+
+                    <div class="card-body">
+                        @if (session('message'))
+                            <div class="alert alert-success" role="alert">
+                                {{ session('message') }}
+                            </div>
+                        @endif
+
+                        <p>{{ __('メールをご確認ください。') }}</p>
+                        <p>{{ __('もし確認用メールが送信されていない場合は、下記をクリックしてください。') }}</p>
+
+                        <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
+                            @csrf
+                            <button type="submit" class="btn btn-link p-0 m-0 align-baseline">{{ __('click here to request another') }}</button>.
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection
