@@ -34,6 +34,9 @@
         <div class="select-area__group">
           <input type="hidden" name="shop_id" value="{{ $shop->id }}">
           <input class="reservation__form--date" type="date" name="date" id="date" value="{{ request('date') }}">
+          @error('date')
+            <div class="reservation-error-message">{{ $message }}</div>
+          @enderror
         
           <div class="select-area">
             <select class="reservation__form--time" name="time" id="time">
@@ -44,10 +47,10 @@
                 @endfor
               @endfor
             </select>
-            @error('date')
-            {{ $message }}
-            @enderror
           </div>
+          @error('time')
+          <div class="reservation-error-message">{{ $message }}</div>
+          @enderror
           <div class="select-area">
             <select class="reservation__form--people" name="guest_count" id="guest_count">
               <option value="" selected="">選択してください</option>
@@ -57,14 +60,15 @@
                 </option>
               @endfor
             </select>
-            @error('time')
-            {{ $message }}
-            @enderror
           </div>
+          @error('guest_count')
+            <div class="reservation-error-message">
+            {{ $message }}
+            </div>
+          @enderror
         </div>
         
       <input type="hidden" name="start_at" id="start_at"> 
-      </table>
         <table class="reservation-table">
           <tr class="reservation-table__row">
             <th class="reservation-table__ttl">Shop</th>
@@ -82,23 +86,6 @@
             <th class="reservation-table__ttl">Number</th>
             <td id="reservation_guest_count" class="reservation-table__item"></td>
           </tr>
-          {{-- <div class="show-reservation">
-            
-            <p class="show__ttl">Shop </p>
-              <span class="show__item">{{ $shop->name }}</span>
-            <p class="show__ttl">Date</p>
-              <span id="show_date" class="show__item"></span>
-            
-            <p class="show__ttl">Time</p>
-              <span id="show_time" class="show__item"></span>
-            
-            <p class="show__ttl">Number</p>
-              <span id="show_guest_count" class="show__item"></span>
-            
-          </div> --}}
-          @error('guest_count')
-            {{ $message }}
-            @enderror
         </table>
         <button class="reservation__btn" type="submit">予約する</button>
       </form>

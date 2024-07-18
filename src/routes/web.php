@@ -37,6 +37,7 @@ Route::middleware('auth')->group(function () {
   Route::get('email/verify', [VerificationController::class, 'show'])->name('verification.notice');
   Route::get('email/verify/{id}/{hash}', [VerificationController::class, 'verify'])->middleware(['signed','throttle:6,1'])->name('verification.verify');
   Route::post('email/resend', [VerificationController::class, 'resend'])->name('verification.resend');
+  Route::get('/thanks',[VerificationController::class,'thanks'])->name('thanks');
   
   // ログアウト
   Route::post('/logout', [AuthController::class, 'destroy']);

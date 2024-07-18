@@ -9,7 +9,8 @@ a {
 }
 
 .register-form__error-message,
-.login-form__error-message{
+.login-form__error-message,
+.reservation-error-message{
   color: red;
 }
 

@@ -27,16 +27,21 @@ class VerificationController extends Controller
         }
 
         if ($user->hasVerifiedEmail()) {
-            return redirect()->route('verification.notice')
-                ->with('message', 'Already verified.');
+            return redirect()->route('thanks')
+                ->with('message', 'このメールは認証されています');
         }
 
         if ($user->markEmailAsVerified()) {
             event(new Verified($user));
         }
 
-        return redirect()->route('verification.notice')
-            ->with('message', 'Email verified.');
+        return redirect()->route('thanks')
+            ->with('message', 'メールアドレスが確認されました');
+
+    }
+
+    public function thanks(){
+        return view('thanks');
     }
 
 
