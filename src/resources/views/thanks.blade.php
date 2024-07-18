@@ -7,6 +7,11 @@
 @section('content')
 <div class="thanks-page">
   <div class="thanks-page__inner">
+    @if (session('message'))
+      <div class="alert alert-success">
+          {{ session('message') }}
+      </div>
+    @endif
     <div class="thanks-page__content">
       <p class="thanks-page__message">会員登録ありがとうございます</p>
       <div class="thanks-btn">

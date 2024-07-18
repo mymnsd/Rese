@@ -18,14 +18,7 @@ class ReservationController extends Controller
         return view('reserve.index', compact('reservations'));
     }
 
-    public function create(ReservatioRrequest $request){
-        // $request->validate([
-        // 'shop_id' => 'required|integer',
-        // 'date' => 'required|date_format:Y-m-d',
-        // 'time' => 'required|date_format:H:i',
-        // 'guest_count' => 'required|integer|min:1',
-        // ]);
-
+    public function create(ReservationRequest $request){
         $user = Auth::user();
 
         $startAt = Carbon::createFromFormat('Y-m-d H:i', $request->date . ' ' . $request->time);
