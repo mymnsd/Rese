@@ -47,11 +47,6 @@ class Shop extends Model
         }
         return $query;
     }
-    // public function scopeArea($query,$area){
-    //     if(!empty($area)){
-    //         $query->where('name',$area);
-    //     }
-    // }
 
     public function scopeGenre(Builder $query,$genre){
         if($genre){
