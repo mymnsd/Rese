@@ -44,4 +44,6 @@ class ShopController extends Controller
     return view('shop_detail',compact('shop',));
   }
 
+  
+
 }
