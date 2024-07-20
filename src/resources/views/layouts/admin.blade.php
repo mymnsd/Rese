@@ -20,9 +20,6 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('admin.reservation') }}">予約管理</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('shop_manager.register.form') }}">店舗代表者登録</a>
-                </li>
             </ul>
         </div>
     </nav>

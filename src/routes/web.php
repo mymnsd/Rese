@@ -11,6 +11,7 @@ use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\Admin\AdminShopController;
 use App\Http\Controllers\Admin\AdminReservationController;
 use App\Http\Controllers\Auth\ShopManagerRegisterController;
+use App\Http\Admin\AdminHomeController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 
@@ -73,10 +74,6 @@ Route::middleware('auth')->group(function () {
 });
 
 
-// 店舗代表者の登録フォームと登録処理
-Route::get('register/shop_manager', [ShopManagerRegisterController::class, 'showRegistrationForm'])->name('shop_manager.register.form');
-Route::post('register/shop_manager', [ShopManagerRegisterController::class, 'register'])->name('shop_manager.register');
-
 // 店舗代表者のログイン・ログアウト
 Route::get('login/shop_manager', [Auth\LoginController::class, 'showLoginForm'])->name('shop_manager.login.form');
 Route::post('login/shop_manager', [Auth\LoginController::class, 'login'])->name('shop_manager.login');
@@ -86,5 +83,12 @@ Route::post('logout/shop_manager', [Auth\LoginController::class, 'logout'])->nam
 Route::prefix('admin')->middleware(['auth', 'role:shop_manager'])->group(function () {
     Route::resource('shops', AdminShopController::class);
     Route::get('admin_reservations', [AdminReservationController::class, 'index'])->name('admin.reservation');
+
+    Route::get('/', [AdminHomeController::class, 'index'])->name('admin.index');
+
+    // 店舗代表者の登録フォームと登録処理
+    Route::get('register/shop_manager', [ShopManagerRegisterController::class, 'showRegistrationForm'])->name('shop_manager.register.form');
+    Route::post('register/shop_manager', [ShopManagerRegisterController::class, 'register'])->name('shop_manager.register');
+
 });
   

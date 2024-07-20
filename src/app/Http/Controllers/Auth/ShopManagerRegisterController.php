@@ -43,9 +43,6 @@ class ShopManagerRegisterController extends Controller
 
         Auth::login($user);
 
-        \Log::info('User Role: ' . Auth::user()->role); 
-
-
         return redirect()->route('shops.index');
     }
 
