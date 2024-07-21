@@ -11,8 +11,8 @@ class QRCodeController extends Controller
 {
     public function generate($reservationId)
     {
-        $reservation = Reservation::findOrFail($reservationId);
-        $qrCode = QrCode::size(300)->generate(route('reservations.verify', $reservation->id));
+        // $reservation = Reservation::findOrFail($reservationId);
+        // $qrCode = QrCode::size(300)->generate(route('reservations.verify', $reservation->id));
         
         // $reservation = Reservation::with(['shop', 'user'])->findOrFail($reservationId);
         // $qrCodeData = json_encode([

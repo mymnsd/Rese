@@ -66,7 +66,7 @@ class ReservationController extends Controller
 
     public function verify($reservationId)
     {
-        $reservation = Reservation::with(['shop', 'user'])->findOrFail($reservationId);
+        // $reservation = Reservation::with(['shop', 'user'])->findOrFail($reservationId);
 
         // $qrCodeData = json_decode($request->input('data'), true);
 
