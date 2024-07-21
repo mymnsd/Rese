@@ -52,13 +52,14 @@ class SendReminder extends Command
             // 予約情報
             $messageContent = "ご予約当日になりました!\nご来店お待ちしております！\n\n";
             
-            $messageContent .= "予約店名: " . $shopName . "\n";
+            $messageContent .= "ご予約店名: " . $shopName . "\n";
+            $messageContent .= "ご予約店名: " . $shopName . "\n";
 
-            $messageContent .= "予約ID: " . $reservation->id . "\n";
+            予約ID: {{ $reservation->id }}
 
-            $messageContent .= "予約人数: " . $reservation->guest_count . "\n";
+            $messageContent .= "ご予約人数: " . $reservation->guest_count . "\n";
 
-            $messageContent .= "予約開始時刻: " . $reservation->start_at->format('Y-m-d H:i:s') . "\n";
+            $messageContent .= "ご予約開始時刻: " . $reservation->start_at->format('Y-m-d H:i:s') . "\n";
 
             // リマインダーメールを送信
             Mail::raw($messageContent, function ($message) use ($userEmail) {

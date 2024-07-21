@@ -66,19 +66,24 @@ class ReservationController extends Controller
 
     public function verify($reservationId)
     {
-        $reservation = Reservation::with(['shop', 'user'])->findOrFail($reservationId);
+        $reservation = Reservation::findOrFail($reservationId);
 
-        // $qrCodeData = json_decode($request->input('data'), true);
-
-        // if (!$qrCodeData || !isset($qrCodeData['reservation_id'])) {
-        //     return redirect()->back()->with('error', '無効なQRコードです。');
-        // }
-
-        // $reservation = Reservation::with(['shop', 'user'])->findOrFail($qrCodeData['reservation_id']);
-
-        return view('qrcode.verify', compact('reservation'));
+        // 予約確認処理
+        if ($reservation) {
+            return response()->json([
+                'status' => 'success',
+                'message' => '予約が確認されました。',
+                'reservation' => $reservation,
+            ]);
+        } else {
+            return response()->json([
+                'status' => 'fail',
+                'message' => '予約が見つかりません。',
+            ]);
+        }
     }
 
+    return view('reservations.verify', compact('reservation'));
 }
 
 

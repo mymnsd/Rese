@@ -9,6 +9,9 @@
         {!! $qrCode !!}
     </div>
     <p>予約ID: {{ $reservation->id }}</p>
+    <p>来店日時: {{ $reservation->start_at }}</p>
+
+    <p>予約ID: {{ $reservation->id }}</p>
     <p>店舗ID: {{ $reservation->shop_id }}</p>
     <p>店舗名: {{ $reservation->shop->name }}</p>
     <p>お客様ID: {{ $reservation->user_id }}</p>
