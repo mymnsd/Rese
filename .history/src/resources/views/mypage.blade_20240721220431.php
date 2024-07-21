@@ -6,11 +6,11 @@
 
 @section('content')
 <div class="mypage">
-  @if(session('error'))
-  <div class="alert">
-    {{ session('error') }}
+  {{-- @if(session('error'))
+  <div class="alert alert-success">
+    {{ session('message') }}
   </div>
-  @endif
+  @endif --}}
   <h2 class="user">{{ Auth::user()->name }}さん</h2>
   <div class="mypage__inner">
     <div class="content__group">

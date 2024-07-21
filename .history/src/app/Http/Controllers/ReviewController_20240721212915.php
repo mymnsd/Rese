@@ -13,18 +13,14 @@ class ReviewController extends Controller
         // $reservation = Reservation::findOrFail($reservationId);
         // return view('reviews.create', compact('reservation'));
         if (!$reservation->canReview()) {
-            return redirect('mypage')->with('error', 'レビューを投稿できるのは来店後のみです。');
+            return redirect()->route('reservations.index')->with('error', 'レビューを投稿できるのは来店後のみです。');
         }
 
         return view('reviews.create', compact('reservation'));
     }
 
-    public function store(Request $request,Reservation $reservation)
+    public function store(Request $request,)
     {
-        if (!$reservation->canReview()) {
-            return redirect('mypage')->with('error', 'レビューを投稿できるのは来店後のみです。');
-        }
-
         $request->validate([
             'reservation_id' => 'required|exists:reservations,id',
             'rating' => 'required|integer|between:1,5',
