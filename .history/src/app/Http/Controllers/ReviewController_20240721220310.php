@@ -13,7 +13,7 @@ class ReviewController extends Controller
         // $reservation = Reservation::findOrFail($reservationId);
         // return view('reviews.create', compact('reservation'));
         if (!$reservation->canReview()) {
-            return redirect('mypage')->with('error', 'レビューを投稿できるのは来店後のみです。');
+            return redirect()->route('reservations.index')->with('error', 'レビューを投稿できるのは来店後のみです。');
         }
 
         return view('reviews.create', compact('reservation'));

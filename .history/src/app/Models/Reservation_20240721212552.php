@@ -14,7 +14,6 @@ class Reservation extends Model
         'user_id',
         'guest_count',
         'start_at',
-        'status',
     ];
 
     protected $dates = [
@@ -24,12 +23,6 @@ class Reservation extends Model
     public function setStartAtAttribute($value)
     {
         $this->attributes['start_at'] = \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $value);
-    }
-
-    // 状態が 'completed' の場合のみレビューを許可する
-    public function canReview()
-    {
-        return $this->status === 'completed' && $this->start_at < now();
     }
 
     public function shop(){

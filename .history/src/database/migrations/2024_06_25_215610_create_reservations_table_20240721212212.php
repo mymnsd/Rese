@@ -19,7 +19,7 @@ class CreateReservationsTable extends Migration
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->integer('guest_count');
             $table->datetime('start_at');
-            $table->string('status')->default('pending');
+            
             $table->timestamps();
         });
     }
