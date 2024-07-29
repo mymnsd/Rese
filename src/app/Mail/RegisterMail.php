@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class TestMail extends Mailable
+class RegisterMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -29,9 +29,8 @@ class TestMail extends Mailable
      */
     public function build()
     {
-        // return $this
-        //     ->from('testmailsgrstr@gmail.com') // 送信元
-        //     ->subject('テスト送信') // メールタイトル
-        //     ->view('vendor.verify-email'); // メール本文のテンプレートとなるviewを設定
+        return $this->view('emails.register')
+                    ->with(['user' => $this->user]);
     }
+    
 }
