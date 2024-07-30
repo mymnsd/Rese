@@ -10,12 +10,9 @@ class ReviewController extends Controller
 {
     public function create(Reservation $reservation)
     {
-        // $reservation = Reservation::findOrFail($reservationId);
-        // return view('reviews.create', compact('reservation'));
         if (!$reservation->canReview()) {
             return redirect('mypage')->with('error', 'レビューを投稿できるのは来店後のみです。');
         }
-
         return view('reviews.create', compact('reservation'));
     }
 
@@ -38,7 +35,6 @@ class ReviewController extends Controller
             'comment' => $request->comment,
         ]);
 
-        // return view('reviews.thanks_review')->with('success', '評価が保存されました');
         return redirect()->route('reviews.thanks')->with('success', '評価が保存されました');
     }
 

@@ -4,6 +4,10 @@
 <link rel="stylesheet" href="{{ asset('css/mypage.css') }}">
 @endsection
 
+@section('reservations')
+  <a class="review-btn" href="{{ route('reservations.index') }}" >ショップレビュー投稿ページへ</a>
+@endsection
+
 @section('content')
 <div class="mypage">
   @if(session('error'))

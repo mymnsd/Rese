@@ -44,6 +44,9 @@ class ShopController extends Controller
     return view('shop_detail',compact('shop',));
   }
 
-  
+  public function show(Shop $shop){
+    $shop->load('reviews.user'); 
+    return view('show', compact('shop'));
+  }
 
 }

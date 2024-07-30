@@ -18,7 +18,22 @@
         <h2 class="card__ttl">{{ $shop->name }}</h2>
       </div>
       {{-- レビュー、コメント欄 --}}
-      @foreach($shop->reservations as $reservation)
+      <h3>{{ $shop->name }}</h3>
+    <p>{{ $shop->description }}</p>
+    <h2>レビュー</h2>
+    @if($shop->reviews->isEmpty())
+        <p>レビューはまだありません。</p>
+    @else
+        @foreach($shop->reviews as $review)
+            <div>
+                <p><strong>{{ $review->user->name }}</strong>さんの評価: {{ $review->rating }}/5</p>
+                <p>{{ $review->comment }}</p>
+                <p>投稿日時: {{ $review->created_at->format('Y-m-d H:i') }}</p>
+            </div>
+            <hr>
+        @endforeach
+    @endif
+      {{-- @foreach($shop->reservations as $reservation)
         @foreach($reservation->reviews as $review)
           <div class="review">
             <strong>{{ $review->user->name }}
@@ -26,7 +41,7 @@
             <p>{{ $review->comment }}</p>
           </div>
         @endforeach
-      @endforeach
+      @endforeach --}}
 
       <div class="card__img">
           <img src="{{ $shop->image_url}}" alt="店舗画像">

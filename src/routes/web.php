@@ -32,8 +32,9 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 // 一覧表示
 Route::get('/',[ShopController::class,'index']);
 
-// 店舗詳細
+// 店舗情報
 Route::get('/detail/{shop_id}',[ShopController::class,'detail'])->name('shops.detail');
+// Route::get('/detail/{shop_id}', [ShopController::class, 'show'])->name('shops.show');
 
 // QRコード
 Route::get('/reservations/{reservation}/qrcode', [QRCodeController::class, 'generate'])->name('reservations.qrcode');
@@ -75,6 +76,9 @@ Route::middleware('auth')->group(function () {
   Route::post('/reserve/confirm-cancel/{id}', [ReservationController::class,'confirmCancel'])->name('reserve.confirmCancel');
   Route::get('/reserve/{id}/edit',[ReservationController::class,'edit'])->name('reserve.edit_reserve');
   Route::put('/reserve/{id}',[ReservationController::class,'update'])->name('reserve.update');
+
+  // 予約一覧取得
+  Route::get('/reservations', [ReservationController::class, 'index'])->name('reservations.index');
 
   // マイページ
   Route::get('/mypage',[UserController::class,'mypage']);
