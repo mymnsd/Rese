@@ -13,12 +13,12 @@ use App\Http\Requests\ReservationRequest;
 
 class ReservationController extends Controller
 {
-    // public function index(){
-    //     $reservations = Reservation::where('user_id', auth()->id())->get();
-    //     return view('reserve.index', compact('reservations'));
-    //     $reservations = Reservation::all();
-    //     return view('reservations.index', compact('reservations'));
-    // }
+    public function index(){
+        $reservations = Reservation::where('user_id', auth()->id())->with('shop')->get();
+        
+        return view('reservations.index', compact('reservations'));
+
+    }
 
     public function create(ReservationRequest $request){
         $user = Auth::user();

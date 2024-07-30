@@ -26,10 +26,9 @@ class Reservation extends Model
         $this->attributes['start_at'] = \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $value);
     }
 
-    // 状態が 'completed' の場合のみレビューを許可する
     public function canReview()
     {
-        return $this->status === 'completed' && $this->start_at < now();
+        return $this->start_at < now();
     }
 
     public function shop(){

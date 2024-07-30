@@ -39,6 +39,11 @@ class Shop extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+
     public function isFavorite()
     {
         return $this->favorites()->where('user_id', auth()->id())->exists();
