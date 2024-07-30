@@ -23,14 +23,24 @@ class ReviewController extends Controller
         }
 
         $request->validate([
-            'reservation_id' => 'required|exists:reservations,id',
             'rating' => 'required|integer|between:1,5',
             'comment' => 'nullable|string|max:1000',
         ]);
 
+        // $request->validate([
+        //     'reservation_id' => 'required|exists:reservations,id',
+        //     'rating' => 'required|integer|between:1,5',
+        //     'comment' => 'nullable|string|max:1000',
+        // ]);
+
+        
+        $shopId = $reservation->shop->id; 
+
         Review::create([
-            'reservation_id' => $request->reservation_id,
+            // 'reservation_id' => $request->reservation_id,
+            'reservation_id' => $reservation->id,
             'user_id' => auth()->id(),
+            'shop_id' => $shopId, 
             'rating' => $request->rating,
             'comment' => $request->comment,
         ]);
