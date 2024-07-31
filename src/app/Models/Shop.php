@@ -44,6 +44,11 @@ class Shop extends Model
         return $this->hasMany(Review::class);
     }
 
+    public function managers()
+    {
+        return $this->hasMany(StoreManager::class);
+    }
+
     public function isFavorite()
     {
         return $this->favorites()->where('user_id', auth()->id())->exists();
