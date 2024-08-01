@@ -28,7 +28,10 @@ class LoginController extends Controller
             return redirect()->route('admin.create_store_manager');
         }
 
-    // 他の役割の場合のリダイレクト先
+        if ($user->role === 'store_manager') {
+        return redirect()->route('store_manager.index');
+    }
+
         return redirect()->route('home');
     }
 }

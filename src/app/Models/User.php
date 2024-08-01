@@ -22,8 +22,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'email',
         'password',
         'email_verified_at',
-        'role', // 役割を追加
-
+        'role', 
     ];
 
     /**

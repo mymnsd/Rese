@@ -9,11 +9,19 @@ class StoreManager extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'email', 'password', 'shop_id'];
+    protected $fillable = [
+        'name', 
+        'email', 
+        'password', 
+        'shop_id',
+        'role',
+    ];
 
     protected $hidden = ['password'];
     
-    public function shop(){
-        return $this->belongsTo(Shop::class);
+    public function shop()
+    {
+        // return $this->belongsTo(Shop::class);
+         return $this->hasOne(Shop::class);
     }
 }

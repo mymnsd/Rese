@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\StoreManager;
 use App\Models\Shop;
 use App\Models\Reservation;
@@ -11,10 +12,15 @@ class StoreManagerController extends Controller
 {
     public function index()
     {
-        $storeManager = auth()->user(); // 現在ログインしている店舗代表者
+        $storeManager = Auth::user(); // 現在ログインしている店舗代表者
+        
         $shop = $storeManager->shop;
 
-        // 店舗情報を表示
+        if (!$shop) {
+        return abort(404, '店舗情報が見つかりません');
+        
+    }
+
         return view('store_manager.index', compact('shop'));
     }
 
