@@ -46,7 +46,7 @@ class Shop extends Model
 
     public function managers()
     {
-        return $this->hasMany(StoreManager::class);
+        return $this->belongsTo(StoreManager::class);
     }
 
     public function isFavorite()

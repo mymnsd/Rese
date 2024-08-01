@@ -26,7 +26,7 @@
 
     <button type="submit">登録</button>
 </form>
-@if(session('success'))
+{{-- @if(session('success'))
     <p>{{ session('success') }}</p>
-@endif
+@endif --}}
 @endsection

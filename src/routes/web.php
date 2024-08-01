@@ -14,7 +14,8 @@ use App\Http\Controllers\QRCodeController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\StoreManagerController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
-
+use App\Http\Controllers\Auth\StoreManagerLoginController;
+use App\Http\Controllers\Auth\AdminLoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -80,6 +81,12 @@ Route::middleware('auth')->group(function () {
     Route::post('/favorite/delete',[FavoriteController::class,'delete'])->name('favorite.delete');
 });
 
+// 店舗代表者用ログインページ
+Route::prefix('store-manager')->group(function () {
+    Route::get('login', [StoreManagerLoginController::class, 'showLoginForm'])->name('store-manager.login');
+    Route::post('login', [StoreManagerLoginController::class, 'login']);
+});
+
 // 店舗代表者ルート
 Route::middleware(['auth', 'role:store_manager'])->group(function () {
     Route::get('store_manager', [StoreManagerController::class, 'index'])->name('store_manager.index');
@@ -103,22 +110,6 @@ Route::get('admin/registration_complete', function() {
     return view('admin.registration_complete');
 })->name('admin.registration_complete');
 
-
-// 店舗代表者のログイン・ログアウト
-// Route::get('login/shop_manager', [Auth\LoginController::class, 'showLoginForm'])->name('shop_manager.login.form');
-// Route::post('login/shop_manager', [Auth\LoginController::class, 'login'])->name('shop_manager.login');
-// Route::post('logout/shop_manager', [Auth\LoginController::class, 'logout'])->name('shop_manager.logout');
-
-// 店舗管理用のルートグループ
-// Route::prefix('admin')->middleware(['auth', 'role:shop_manager'])->group(function () {
-//     Route::resource('shops', AdminShopController::class);
-//     Route::get('admin_reservations', [AdminReservationController::class, 'index'])->name('admin.reservation');
-
-//     Route::get('/', [AdminHomeController::class, 'index'])->name('admin.index');
-
-    // 店舗代表者の登録フォームと登録処理
-//     Route::get('register/shop_manager', [ShopManagerRegisterController::class, 'showRegistrationForm'])->name('shop_manager.register.form');
-//     Route::post('register/shop_manager', [ShopManagerRegisterController::class, 'register'])->name('shop_manager.register');
-
-// });
-  
+// 管理者用ログイン
+  Route::get('admin/login',[AdminLoginController::class,'showLoginForm'])->name('admin.login');
+  Route::post('admin/login',[AdminLoginController::class,'login']);
