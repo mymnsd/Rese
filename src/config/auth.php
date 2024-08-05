@@ -45,6 +45,11 @@ return [
             'driver' => 'session',
             'provider' => 'admins',
         ],
+
+        'store_manager' => [
+            'driver' => 'session',
+            'provider' => 'store_managers',
+        ],
     ],
 
     /*
@@ -75,6 +80,10 @@ return [
             'model' => App\Models\Admin::class,
         ],
 
+        'store_managers' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\StoreManager::class,
+        ],
     ],
     
     'verification' => [

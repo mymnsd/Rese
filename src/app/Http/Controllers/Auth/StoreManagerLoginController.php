@@ -11,32 +11,32 @@ class StoreManagerLoginController extends Controller
 {
     public function showLoginForm()
     {
-        return view('store_manager.auth.login');
+        return view('store_manager.login');
     }
 
     public function login(Request $request)
     {
-        // バリデーション
         $request->validate([
             'email' => 'required|email',
             'password' => 'required',
         ]);
 
-        // ログイン試行
-        if (Auth::attempt($request->only('email', 'password'), $request->filled('remember'))) {
-            // 認証に成功した場合
-            if (Auth::user()->role === 'store_manager') {
+        $credentials = $request->only('email', 'password');
+
+        if (Auth::guard('store_manager')->attempt($credentials, $request->filled('remember'))) {
+            if (Auth::guard('store_manager')->user()->role === 'store_manager') {
                 return redirect()->route('store_manager.index');
             } else {
-                Auth::logout();
-                return redirect()->route('store-manager.login')->withErrors([
-                    'email' => '認証情報が無効です。'
+                Auth::guard('store_manager')->logout();
+                return redirect()->route('store_manager.login')->withErrors([
+                'email' => '権限がありません。',
                 ]);
             }
-            // 認証に失敗した場合
-            return back()->withErrors([
-                'email' => '認証情報が無効です。'
-            ])->withInput($request->only('email'));
-    }
         }
+
+        return back()->withErrors([
+            'email' => '認証情報が無効です。',
+        ])->withInput($request->only('email'));
+
+    }
 }

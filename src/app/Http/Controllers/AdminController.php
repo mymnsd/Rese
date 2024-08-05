@@ -71,8 +71,6 @@ class AdminController extends Controller
             'role' => 'admin', 
         ]);
 
-        // Auth::login($user);
-
         return redirect()->route('admin.registration_complete');
         
     }

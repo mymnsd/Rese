@@ -81,25 +81,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/favorite/delete',[FavoriteController::class,'delete'])->name('favorite.delete');
 });
 
-// 店舗代表者用ログインページ
-Route::prefix('store-manager')->group(function () {
-    Route::get('login', [StoreManagerLoginController::class, 'showLoginForm'])->name('store-manager.login');
-    Route::post('login', [StoreManagerLoginController::class, 'login']);
-});
 
-// 店舗代表者ルート
-Route::middleware(['auth', 'role:store_manager'])->group(function () {
-    Route::get('store_manager', [StoreManagerController::class, 'index'])->name('store_manager.index');
-    Route::put('store_manager/update', [StoreManagerController::class, 'update'])->name('store_manager.update');
-    Route::get('store_manager/reservations', [StoreManagerController::class, 'reservations'])->name('store_manager.reservations');
-});
-
-// 店舗代表者作成ルート（管理者のみアクセス）
-Route::middleware(['auth', 'role:admin'])->group(function () {
-    Route::get('admin/create_store_manager', [AdminController::class, 'createStoreManager'])->name('admin.create_store_manager');
-    Route::post('admin/store_store_manager', [AdminController::class, 'storeStoreManager'])->name('admin.store_store_manager');
-    
-});
 
 // 管理者登録
 Route::get('admin/create_admin', [AdminController::class, 'createAdmin'])->name('admin.create_admin');
@@ -111,5 +93,28 @@ Route::get('admin/registration_complete', function() {
 })->name('admin.registration_complete');
 
 // 管理者用ログイン
-  Route::get('admin/login',[AdminLoginController::class,'showLoginForm'])->name('admin.login');
-  Route::post('admin/login',[AdminLoginController::class,'login']);
+Route::prefix('admin')->group(function () {
+  Route::get('login',[AdminLoginController::class,'showLoginForm'])->name('admin.login');
+  Route::post('login',[AdminLoginController::class,'login']);
+});
+
+// 店舗代表者作成ルート（管理者のみアクセス）
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('admin/create_store_manager', [AdminController::class, 'createStoreManager'])->name('admin.create_store_manager');
+    Route::post('admin/store_store_manager', [AdminController::class, 'storeStoreManager'])->name('admin.store_store_manager');
+    
+});
+
+// 店舗代表者用ログインページ
+Route::get('store_manager/login', [StoreManagerLoginController::class, 'showLoginForm'])->name('store_manager.login');
+Route::post('store_manager/login', [StoreManagerLoginController::class, 'login']);
+
+// 店舗代表者ルート
+Route::middleware(['auth:store_manager', 'role:store_manager'])->group(function () {
+    Route::get('store_manager/index', [StoreManagerController::class, 'index'])->name('store_manager.index');
+    Route::get('store_manager/create', [StoreManagerController::class, 'create'])->name('store_manager.create');
+    Route::post('store_manager.store', [StoreManagerController::class, 'store'])->name('store_manager.store');
+    Route::get('store_manager.edit', [StoreManagerController::class, 'edit'])->name('store_manager.edit');
+    Route::put('store_manager/update', [StoreManagerController::class, 'update'])->name('store_manager.update');
+    Route::get('store_manager/reservations', [StoreManagerController::class, 'reservations'])->name('store_manager.reservations');
+});

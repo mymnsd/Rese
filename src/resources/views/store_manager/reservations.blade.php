@@ -1,17 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
-<h1>予約一覧</h1>
+<h2>予約一覧</h2>
 <table>
-    <thead>
         <tr>
             <th>予約ID</th>
             <th>予約人数</th>
             <th>開始日時</th>
             <th>作成日時</th>
         </tr>
-    </thead>
-    <tbody>
         @foreach($reservations as $reservation)
         <tr>
             <td>{{ $reservation->id }}</td>
@@ -20,6 +17,6 @@
             <td>{{ $reservation->created_at }}</td>
         </tr>
         @endforeach
-    </tbody>
 </table>
+<a href="{{ route('store_manager.index') }}" class="btn btn-primary">店舗代表者管理ページに戻る</a>
 @endsection
