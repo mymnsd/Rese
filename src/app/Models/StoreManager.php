@@ -4,8 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class StoreManager extends Model
+// class StoreManager extends Model
+class StoreManager extends Authenticatable
 {
     use HasFactory;
 
@@ -21,7 +23,7 @@ class StoreManager extends Model
     
     public function shop()
     {
-        // return $this->belongsTo(Shop::class);
-         return $this->hasOne(Shop::class);
+        return $this->belongsTo(Shop::class);
+        
     }
 }

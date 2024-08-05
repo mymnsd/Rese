@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<h1>店舗代表者作成</h1>
+<h2>店舗代表者作成</h2>
 <form action="{{ route('admin.store_store_manager') }}" method="POST">
     @csrf
 

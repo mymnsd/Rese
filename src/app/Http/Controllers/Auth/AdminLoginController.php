@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Admin;
+use App\Models\User;
 
 class AdminLoginController extends Controller
 {
@@ -21,13 +21,21 @@ class AdminLoginController extends Controller
 
         $credentials = $request->only('email', 'password');
 
-        if (Auth::guard('admin')->attempt($credentials)) {
-            return redirect()->intended('/admin/dashboard');
+        if (Auth::attempt($request->only('email', 'password'), $request->filled('remember'))) {
+            if (Auth::user()->role === 'admin') {
+                return redirect()->route('admin.create_store_manager');
+            } else {
+                Auth::logout();
+                
+                return redirect()->route('admin.login')->withErrors([
+                    'email' => '権限がありません。',
+                ]);
+            }
         }
 
-        return redirect()->back()->withErrors([
-            'email' => 'これらの資格情報ではログインできません。',
-        ]);
+        return back()->withErrors([
+            'email' => '認証情報が無効です。',
+        ])->withInput($request->only('email'));
     }
     
 }

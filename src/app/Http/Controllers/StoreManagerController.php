@@ -7,21 +7,52 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\StoreManager;
 use App\Models\Shop;
 use App\Models\Reservation;
+use Illuminate\Support\Facades\DB;
 
 class StoreManagerController extends Controller
 {
     public function index()
     {
-        $storeManager = Auth::user(); // 現在ログインしている店舗代表者
-        
-        $shop = $storeManager->shop;
-
-        if (!$shop) {
-        return abort(404, '店舗情報が見つかりません');
-        
-    }
+        $storeManagerId = auth()->user()->id; 
+        $shop = DB::table('shops')
+            ->join('store_managers', 'shops.id', '=', 'store_managers.shop_id')
+            ->where('store_managers.id', $storeManagerId)
+            ->select('shops.*', 'store_managers.name as manager_name')
+            ->first();
 
         return view('store_manager.index', compact('shop'));
+    }
+    
+
+    public function create(){
+        return view('store_manager.create');
+    }
+
+    public function store(Request $request)
+    {
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'area_id' => 'required|integer',
+            'genre_id' => 'required|integer',
+            'description' => 'nullable|string',
+            'image_url' => 'nullable|url',
+        ]);
+
+        // 新店舗の作成
+        $shop = new Shop($validatedData);
+        $shop->user_id = auth()->id();
+        $shop->save();
+
+        // リダイレクト
+        return redirect()->route('store_manager.index')->with('success', '新店舗が追加されました。');
+    }
+
+    public function edit()
+    {
+        $storeManager = auth()->user();
+        $shop = $storeManager->shop;
+
+        return view('store_manager.edit', compact('shop'));
     }
 
     public function update(Request $request)
