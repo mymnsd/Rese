@@ -2,6 +2,11 @@
 
 @section('content')
 <div class="login-container">
+    @if(session('status'))
+    <div class="alert alert-success">
+        {{ session('status') }}
+    </div>
+    @endif
         <h2>店舗代表者ログイン</h2>
         <form method="POST" action="{{ route('store_manager.login') }}">
             @csrf

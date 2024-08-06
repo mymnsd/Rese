@@ -3,6 +3,11 @@
 @section('content')
 <div class="container">
         <h2>管理者ログイン</h2>
+
+        @if(session('message'))
+        <p>{{ session('message') }}</p>
+    @endif
+    
         <form method="POST" action="{{ route('admin.login') }}">
             @csrf
             <div>

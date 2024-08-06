@@ -29,4 +29,10 @@
 @if(session('success'))
     <p>{{ session('success') }}</p>
 @endif
+
+<form action="{{ route('admin.logout') }}" method="POST" style="display: inline;">
+    @csrf
+    <button type="submit">ログアウト</button>
+</form>
+
 @endsection

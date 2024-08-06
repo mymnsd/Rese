@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
+
 class Shop extends Model
 {
     use HasFactory;
@@ -15,7 +16,8 @@ class Shop extends Model
         'area_id',
         'genre_id',
         'description',
-        'image_url'
+        'image_url',
+        'user_id',
     ];
 
     public function area(){

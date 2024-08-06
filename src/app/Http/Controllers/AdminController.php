@@ -78,4 +78,15 @@ class AdminController extends Controller
     public function comprete(){
         return view('admin.registration_complete');
     }
+
+    public function logout(Request $request)
+    {
+        Auth::guard('admin')->logout(); // 'admin' ガードを使用する場合
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        $request->session()->flash('message', 'ログアウトしました');
+
+        return redirect()->route('admin.login'); // 管理者のログインページへリダイレクト
+    }
 }

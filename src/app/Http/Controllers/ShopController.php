@@ -6,6 +6,7 @@ use App\Models\Shop;
 use App\Models\Area;
 use App\Models\Genre;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ShopController extends Controller
 {
@@ -49,4 +50,21 @@ class ShopController extends Controller
     return view('show', compact('shop'));
   }
 
+  public function destroy($shopId)
+  {
+    if (!auth()->check()) {
+        return redirect()->route('login')->with('error', 'ログインしてください。');
+    }
+        $shop = Shop::findOrFail($shopId);
+
+        // 現在のユーザーがこの店舗のオーナーであるか確認
+        if (auth()->id() !== $shop->user_id) {
+        return redirect()->route('store_manager.index')->with('error', '削除権限がありません。');
+    }
+
+    $shop->delete();
+
+    return redirect()->route('store_manager.index')->with('success', '店舗が削除されました。');
+
+  }
 }

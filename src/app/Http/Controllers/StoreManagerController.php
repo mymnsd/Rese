@@ -7,25 +7,43 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\StoreManager;
 use App\Models\Shop;
 use App\Models\Reservation;
+use App\Models\Area;
+use App\Models\Genre;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class StoreManagerController extends Controller
 {
     public function index()
     {
-        $storeManagerId = auth()->user()->id; 
-        $shop = DB::table('shops')
-            ->join('store_managers', 'shops.id', '=', 'store_managers.shop_id')
-            ->where('store_managers.id', $storeManagerId)
-            ->select('shops.*', 'store_managers.name as manager_name')
-            ->first();
+        $storeManagerId = auth()->id();
+        // $addedShops = Shop::where('user_id', $storeManagerId)->get();
 
-        return view('store_manager.index', compact('shop'));
+        $addedShops = Shop::with(['area', 'genre'])
+                      ->where('user_id', $storeManagerId)
+                      ->get();
+
+        
+        // $managedShops = DB::table('shops')
+        // ->join('store_managers', 'shops.id', '=', 'store_managers.shop_id')
+        // ->where('store_managers.id', $storeManagerId)
+        // ->select('shops.*', 'store_managers.name as manager_name')
+        // ->get();
+        $managedShops = Shop::join('store_managers', 'shops.id', '=', 'store_managers.shop_id')
+                        ->where('store_managers.id', $storeManagerId)
+                        ->select('shops.*', 'store_managers.name as manager_name')
+                        ->with('area', 'genre') // リレーションを含める
+                        ->get();
+
+        return view('store_manager.index', compact('addedShops', 'managedShops'));
     }
     
 
     public function create(){
-        return view('store_manager.create');
+        $areas = Area::all();
+        $genres = Genre::all();
+
+        return view('store_manager.create', compact('areas', 'genres'));
     }
 
     public function store(Request $request)
@@ -38,35 +56,50 @@ class StoreManagerController extends Controller
             'image_url' => 'nullable|url',
         ]);
 
-        // 新店舗の作成
         $shop = new Shop($validatedData);
         $shop->user_id = auth()->id();
-        $shop->save();
 
-        // リダイレクト
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('public/images');
+            $shop->image_url = Storage::url($imagePath); 
+        }
+            $shop->save();
+
         return redirect()->route('store_manager.index')->with('success', '新店舗が追加されました。');
     }
 
-    public function edit()
+    public function edit($shopId)
     {
         $storeManager = auth()->user();
         $shop = $storeManager->shop;
+        $shop = Shop::with(['area', 'genre'])->findOrFail($shopId);
 
         return view('store_manager.edit', compact('shop'));
     }
 
-    public function update(Request $request)
+    public function update(Request $request,$shopId)
     {
         $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'nullable|string|max:1000',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        $storeManager = auth()->user();
-        $shop = $storeManager->shop;
+        $shop = Shop::findOrFail($shopId);
+
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+        
+            if ($shop->image_url) {
+                $existingImagePath = str_replace('/storage/', 'public/', $shop->image_url);
+                Storage::delete($existingImagePath);
+            }
+
+            $imagePath = $request->file('image')->store('public/images');
+            $shop->image_url = Storage::url($imagePath);
+        }
 
         $shop->update($request->only('name', 'description'));
-
+    
         return redirect()->route('store_manager.index')->with('success', '店舗情報が更新されました。');
     }
 
@@ -75,9 +108,20 @@ class StoreManagerController extends Controller
         $storeManager = auth()->user();
         $shop = $storeManager->shop;
 
-        // 店舗の予約情報を表示
         $reservations = Reservation::where('shop_id', $shop->id)->get();
 
         return view('store_manager.reservations', compact('reservations'));
     }
+
+    public function destroy(Request $request)
+    {
+        Auth::guard('store_manager')->logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect()->route('store_manager.login')->with('status', 'ログアウトしました。');
+    }
 }
+
