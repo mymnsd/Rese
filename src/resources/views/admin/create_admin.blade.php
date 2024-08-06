@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<h1>管理者登録</h1>
+<h2>管理者登録</h2>
 <form action="{{ route('admin.store_admin') }}" method="POST">
     @csrf
 
@@ -17,16 +17,9 @@
     <label for="password_confirmation">パスワード確認:</label>
     <input type="password" name="password_confirmation" required>
 
-    {{-- <label for="shop_id">店舗:</label>
-    <select name="shop_id" required>
-        @foreach($shops as $shop)
-        <option value="{{ $shop->id }}">{{ $shop->name }}</option>
-        @endforeach
-    </select> --}}
-
     <button type="submit">登録</button>
 </form>
-{{-- @if(session('success'))
-    <p>{{ session('success') }}</p>
-@endif --}}
+
+<p>登録済みの方は、<a href="{{ route('admin.login') }}">こちら</a>からログインしてください。</p>
+
 @endsection

@@ -34,6 +34,7 @@ Route::get('/',[ShopController::class,'index']);
 // 店舗情報
 Route::get('/detail/{shop_id}',[ShopController::class,'detail'])->name('shops.detail');
 
+
 // QRコード
 Route::get('/reservations/{reservation}/qrcode', [QRCodeController::class, 'generate'])->name('reservations.qrcode');
 Route::get('/reservations/{reservation}/verify', [ReservationController::class, 'verify'])->name('reservations.verify');
@@ -102,7 +103,7 @@ Route::prefix('admin')->group(function () {
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('admin/create_store_manager', [AdminController::class, 'createStoreManager'])->name('admin.create_store_manager');
     Route::post('admin/store_store_manager', [AdminController::class, 'storeStoreManager'])->name('admin.store_store_manager');
-    
+    Route::post('admin/logout', [AdminController::class, 'logout'])->name('admin.logout');
 });
 
 // 店舗代表者用ログインページ
@@ -111,10 +112,12 @@ Route::post('store_manager/login', [StoreManagerLoginController::class, 'login']
 
 // 店舗代表者ルート
 Route::middleware(['auth:store_manager', 'role:store_manager'])->group(function () {
-    Route::get('store_manager/index', [StoreManagerController::class, 'index'])->name('store_manager.index');
+    Route::get('store-manager/index', [StoreManagerController::class, 'index'])->name('store_manager.index');
     Route::get('store_manager/create', [StoreManagerController::class, 'create'])->name('store_manager.create');
-    Route::post('store_manager.store', [StoreManagerController::class, 'store'])->name('store_manager.store');
-    Route::get('store_manager.edit', [StoreManagerController::class, 'edit'])->name('store_manager.edit');
-    Route::put('store_manager/update', [StoreManagerController::class, 'update'])->name('store_manager.update');
+    Route::post('store_manager/store', [StoreManagerController::class, 'store'])->name('store_manager.store');
+    Route::get('store_manager/edit/{shopId}', [StoreManagerController::class, 'edit'])->name('store_manager.edit');
+    Route::put('store_manager/update/{shopId}', [StoreManagerController::class, 'update'])->name('store_manager.update');
     Route::get('store_manager/reservations', [StoreManagerController::class, 'reservations'])->name('store_manager.reservations');
+    Route::post('store_manager/logout', [StoreManagerController::class, 'destroy'])->name('store_manager.logout');
+    Route::delete('/shops/{shop}', [ShopController::class, 'destroy'])->name('shops.destroy');
 });
