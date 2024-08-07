@@ -9,14 +9,19 @@
   width: 100%;
 }
 
+.review-btn{
+  color: blue;
+  font-weight: bold;
+}
+
+.review-btn:hover{
+  opacity: 0.7;
+}
+
 
 /* 予約状況 */
 .content__group{
   width: 48%;
-}
-
-.content__ttl{
-
 }
 
 .status-area{
@@ -74,18 +79,10 @@
   width: 100%;
 }
 
-.reservation-table__row{
-  
-}
-
 .reservation-table__ttl{
   padding: 8px 20px;
   text-align: left;
   width: 45%;
-}
-
-.reservation-table__item{
-
 }
 
 .edit-btn{
@@ -124,16 +121,6 @@
   text-align: center;
 }
 
-.content__ttl{
-
-}
-
-.card__area{
-  /* display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap; */
-}
-
 .card__group{
   background-color: #fff;
   box-shadow: 3px 3px 5px #888;
@@ -159,18 +146,10 @@
   margin-bottom: 0;
 }
 
-.card__tag{
-
-}
-
 .card__flex{
   display: flex;
   justify-content: space-between;
   padding: 15px 0;
-}
-
-.card-link{
-
 }
 
 .card-link--button{
@@ -182,14 +161,6 @@
 
 .card-link--button:hover {
   opacity: 0.8;
-}
-
-.favorite-form{
-
-}
-
-.favorite-input{
-
 }
 
 .heart input[type="checkbox"] {
@@ -208,18 +179,14 @@
   .favorite__group {
       padding-left: 5%;
       width: 60%;
-    }
+  }
   .card__area {
       display: flex;
       justify-content: space-between;
       flex-wrap: wrap;
-    }
+  }
 
-        .card__group {
-          /* background-color: #fff;
-          box-shadow: 3px 3px 5px #888;
-          border-radius: 5px;
-          margin-bottom: 25px; */
-          width: 45%;
-        }
+  .card__group {
+    width: 45%;
+  }
 }

@@ -1,0 +1,36 @@
+.form-group {
+  margin-bottom: 8px;
+}
+
+.rating {
+  font-size: 1.1em;
+  padding: 5px 20px;
+  width: 30%;
+}
+
+.form-control {
+  font-size: 1.5em;
+  height: 100px;
+  width: 100%;
+}
+
+.btn {
+  border-radius: 5px;
+  background: #2b43f8;
+  color: #fff;
+  margin: 0 auto 10px;
+  padding: 8px 5px;
+  width: 100%;
+}
+
+.back-link{
+  text-align: center;
+}
+
+.link{
+  color: blue;
+}
+
+.link:hover {
+  opacity: 0.7;
+}

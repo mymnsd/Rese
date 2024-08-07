@@ -1,0 +1,15 @@
+.thanks-review__content {
+  text-align: center;
+}
+
+.success{
+  text-align: center;
+}
+
+.login-link {
+  color: blue;
+}
+
+.login-link:hover {
+  opacity: 0.7;
+}
