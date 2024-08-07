@@ -8,7 +8,7 @@
 <div class="thanks-page">
   <div class="thanks-page__inner">
     @if (session('message'))
-      <div class="alert alert-success">
+      <div class="success">
           {{ session('message') }}
       </div>
     @endif

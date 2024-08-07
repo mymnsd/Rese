@@ -1,43 +1,50 @@
 @extends('layouts.app')
 
+@section('css')
+<link rel="stylesheet" href="{{ asset('css/store_manager/edit_store_manager.css') }}">
+@endsection
+
 @section('content')
 <div class="container">
+  <div class="edit__inner">
   @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
+    <div class="error">
+      <ul>
+      @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+      @endforeach
+      </ul>
     </div>
   @endif
-    <h2>店舗情報の編集</h2>
-    <form action="{{ route('store_manager.update', ['shopId' => $shop->id]) }}" method="POST" enctype="multipart/form-data">
-        @csrf
-        @method('PUT')
-        <div class="form-group">
-            <label for="name">店舗名</label>
-            <input type="text" name="name" id="name" class="form-control" value="{{ old('name', $shop->name) }}" required>
-        </div>
+    <h2 class="content__ttl">店舗情報の編集</h2>
+    <form class="form" action="{{ route('store_manager.update', ['shopId' => $shop->id]) }}" method="POST" enctype="multipart/form-data">
+    @csrf
+    @method('PUT')
+      <div class="form-group">
+        <label class="form__label" for="name">店舗名</label>
+        <input class="form__input" type="text" name="name" id="name" class="form-control" value="{{ old('name', $shop->name) }}" required>
+      </div>
 
-        <div class="form-group">
-            <label for="description">説明</label>
-            <textarea name="description" id="description" class="form-control">{{ old('description', $shop->description) }}</textarea>
-        </div>
+      <div class="form-group">
+        <label class="form__label" for="description">説明</label>
+        <textarea class="form-control" name="description" id="description">{{ old('description', $shop->description) }}</textarea>
+      </div>
 
-        <div class="form-group">
-          <label for="image">画像</label>
-          <input type="file" name="image" id="image" class="form-control">
-          <img id="imagePreview" src="{{ $shop->image_url }}" alt="店舗画像" style="display: {{ $shop->image_url ? 'block' : 'none' }}; max-width: 100%; height: auto; margin-top: 10px;">
-        </div>
+      <div class="form-group">
+        <label class="form__label" for="image">画像</label>
+        <input class="form__input" type="file" name="image" id="image" class="form-control">
+      </div>
+      <div class="edit-img">
+      <img class="img" id="imagePreview" src="{{ $shop->image_url }}" alt="店舗画像" style="display: {{ $shop->image_url ? 'block' : 'none' }}">
+      </div>
 
-        <button type="submit" class="btn btn-primary">更新する</button>
+      <button class="btn" type="submit">更新する</button>
     </form>
 
-    
-
-    <a href="{{ route('store_manager.index') }}" class="btn btn-secondary mt-3">店舗情報ページに戻る</a>
-
+    <div class="back-link">
+      <a class="link" href="{{ route('store_manager.index') }}" class="btn btn-secondary mt-3">店舗情報ページに戻る</a>
+    </div>
+  </div>
 </div>
 
 <script>

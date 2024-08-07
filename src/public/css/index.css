@@ -106,13 +106,6 @@
   width: 100%;
 }
 
-@media screen and (min-width: 768px) {
-  .header__nav {
-    
-      
-  }
-}
-
 /* 店舗パネル */
 .card__area{
   max-width: 1500px;
@@ -162,10 +155,6 @@
   padding: 15px 0;
 }
 
-.card-link{
-
-}
-
 .card-link--button{
   border-radius: 5px;
   background-color: blue;
@@ -175,10 +164,6 @@
 
 .card-link--button:hover{
   opacity: 0.8;
-}
-
-.card-link--submit{
-
 }
 
 .heart input[type="checkbox"] {
@@ -198,19 +183,7 @@
 }
 
 @media screen and (min-width: 768px) {
-  .card__area-inner {
-    /* display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    padding: 0 5%;
-    width: 100%; */
-  }
-
   .card__group {
-    /* background-color: #fff;
-    box-shadow: 3px 3px 5px #888;
-    border-radius: 5px;
-    margin-bottom: 20px; */
     width: 24%;
   }
 }
@@ -260,16 +233,6 @@
 
 .modal-form__group {
   text-align: center;
-}
-
-
-    
-.modal-form__group a{
-  
-}
-
-.modal__content-button{
-
 }
 
 .modal-form__btn{
@@ -336,3 +299,16 @@
   font-weight: bold;
 }
 
+.footer-links{
+  max-width: 1500px;
+  padding: 0 5%;
+}
+
+.link {
+  color: blue;
+  font-weight: bold;
+}
+
+.link:hover {
+  opacity: 0.7;
+}

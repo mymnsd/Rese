@@ -1,5 +1,3 @@
-
-
 body {
   background-color: #ddd;
 }
@@ -7,6 +5,28 @@ body {
 a {
   text-decoration: none;
 }
+
+.container{
+  max-width: 1500px;
+}
+
+.inner{
+  background-color: #fff;
+  border-radius: 5px;
+  box-sizing: border-box;
+  box-shadow: 3px 3px 5px #888;
+  margin: 40px auto 0;
+  padding: 15px;
+  width: 40%;
+}
+
+/* .content-ttl {
+  text-align: center;
+} */
+
+/* .btn:hover {
+  opacity: 0.8;
+} */
 
 .register-form__error-message,
 .login-form__error-message,
@@ -33,10 +53,6 @@ a {
   display: flex;
   align-items: center;
   width: 200px;
-}
-
-.header__inner-button{
-  
 }
 
 .header__inner-button--icon {
@@ -95,10 +111,5 @@ a {
     height: 100px;
     max-width: 1500px;
   }
-
-  .header__inner {
-    
-  }
-  
 }
 

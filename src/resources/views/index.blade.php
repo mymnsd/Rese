@@ -159,12 +159,12 @@
 </div>
 
 <div class="footer-links">
-    <p>
-        <a href="{{ route('admin.create_admin') }}">管理者の方はこちら</a>
-    </p>
-    <p>
-        <a href="{{ route('store_manager.login') }}">店舗代表者の方はこちら</a>
-    </p>
+  <p class="admin-link">
+    <a class="link" href="{{ route('admin.create_admin') }}">管理者の方はこちら</a>
+  </p>
+  <p class="store_manager-link">
+    <a class="link" href="{{ route('store_manager.login') }}">店舗代表者の方はこちら</a>
+  </p>
 </div>
 
 @endsection

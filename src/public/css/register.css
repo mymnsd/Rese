@@ -32,10 +32,6 @@
   margin-bottom: 20px;
 }
 
-.register-form__label {
-
-}
-
 .register-form__input {
   border-style: none;
   border-bottom: 2px solid #000;
@@ -45,9 +41,6 @@
 
 .register-form__input:focus{
   outline: none;
-}
-
-.register-form__error-message {
 }
 
 .register-form__btn {
@@ -61,10 +54,6 @@
   border-radius: 5px;
   color: #fff;
   padding: 10px 20px;
-}
-
-.fa-solid{
-  
 }
 
 @media screen and (min-width: 768px) {

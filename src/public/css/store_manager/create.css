@@ -1,0 +1,75 @@
+.store-manager__inner {
+  background-color: #fff;
+  border-radius: 5px;
+  box-sizing: border-box;
+  box-shadow: 3px 3px 5px #888;
+  margin: 40px auto 0;
+  width: 40%;
+}
+
+.content__ttl {
+  border-radius: 5px 5px 0 0;
+  padding: 10px 15px;
+  text-align: center;
+}
+
+.form {
+  padding: 20px;
+}
+
+.form-group {
+  display: flex;
+  justify-content: left;
+  margin-bottom: 20px;
+}
+
+.form__label{
+  width: 20%;
+}
+
+.form__input {
+  font-size: 1em;
+  margin-left: 10px;
+  padding: 5px;
+  width: 100%;
+}
+
+.form__input:focus,
+.form-select:focus,
+.form-control:focus {
+  outline: none;
+}
+
+.form-select {
+  font-size: 1em;
+  margin-left: 10px;
+  padding: 5px;
+  width: 100%;
+}
+
+.form-control {
+  font-size: 1.3em;
+  height: 100px;
+  width: 90%;
+}
+
+.btn--blue {
+  border-radius: 5px;
+  background: blue;
+  color: #fff;
+  padding: 10px 20px;
+  width: 100%;
+}
+
+.back-link {
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+.link {
+  color: blue;
+}
+
+.link:hover {
+  opacity: 0.7;
+}

@@ -1,0 +1,36 @@
+.reservation__inner {
+  background-color: #fff;
+  border-radius: 5px;
+  box-sizing: border-box;
+  box-shadow: 3px 3px 5px #888;
+  margin: 40px auto 0;
+  width: 50%;
+}
+
+.content__ttl {
+  border-radius: 5px 5px 0 0;
+  font-weight: normal;
+  text-align: center;
+  padding: 10px 15px;
+}
+
+.reservation-table{
+  margin: 0 auto 30px;
+  text-align: center;
+  width: 95%;
+}
+
+.reservation-table__row{
+  border-bottom: 1px solid #ddd;
+  padding: 10px 0;
+
+}
+
+.back-link{
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+.link{
+  color: blue;
+}

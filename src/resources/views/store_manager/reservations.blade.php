@@ -1,22 +1,33 @@
 @extends('layouts.app')
 
+@section('css')
+<link rel="stylesheet" href="{{ asset('css/store_manager/reservations.css') }}">
+@endsection
+
 @section('content')
-<h2>予約一覧</h2>
-<table>
-        <tr>
-            <th>予約ID</th>
-            <th>予約人数</th>
-            <th>開始日時</th>
-            <th>作成日時</th>
-        </tr>
-        @foreach($reservations as $reservation)
-        <tr>
-            <td>{{ $reservation->id }}</td>
-            <td>{{ $reservation->guest_count }}</td>
-            <td>{{ $reservation->start_at }}</td>
-            <td>{{ $reservation->created_at }}</td>
-        </tr>
-        @endforeach
-</table>
-<a href="{{ route('store_manager.index') }}" class="btn btn-primary">店舗代表者管理ページに戻る</a>
+<div class="container">
+  <div class="reservation__inner">
+    <h2 class="content__ttl">予約一覧</h2>
+    <table class="reservation-table">
+      <tr class="reservation-table__row">
+        <th class="reservation-table__header">予約ID</th>
+        <th class="reservation-table__header">予約人数</th>
+        <th class="reservation-table__header">予約開始日時</th>
+        <th class="reservation-table__header">予約作成日時</th>
+      </tr>
+      @foreach($reservations as $reservation)
+      <tr class="reservation-table__row">
+        <td class="reservation-table__item">{{ $reservation->id }}</td>
+        <td class="reservation-table__item">{{ $reservation->guest_count }}</td>
+        <td class="reservation-table__item">{{ $reservation->start_at }}</td>
+        <td class="reservation-table__item">{{ $reservation->created_at }}</td>
+      </tr>
+      @endforeach
+    </table>
+
+    <div class="back-link">
+      <a class="link" href="{{ route('store_manager.index') }}">店舗代表者管理ページに戻る</a>
+    </div>
+  </div>
+</div>
 @endsection
