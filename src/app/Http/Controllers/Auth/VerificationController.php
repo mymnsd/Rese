@@ -44,45 +44,13 @@ class VerificationController extends Controller
         return view('thanks');
     }
 
-
-    // メール認証の確認
-    // public function verify(EmailVerificationRequest $request)
-    // {
-    //     $user = $request->user();
-
-    // if ($user->hasVerifiedEmail()) {
-    //     return redirect('/')->with('message', 'Email already verified.');
-    // }
-
-    // if ($user->markEmailAsVerified()) {
-    //     event(new Verified($user));
-    // }
-
-    // return redirect('/')->with('message', 'Email verified successfully!');
-        // $user = $request->user();
-
-        // if ($user === null) {
-        //     return redirect('/login'); // ユーザーが認証されていない場合、ログインページにリダイレクト
-        // }
-
-        // if ($user->hasVerifiedEmail()) {
-        //     return redirect('/');
-        // }
-
-        // if ($user->markEmailAsVerified()) {
-        //     event(new Verified($user));
-        // }
-
-        // return redirect('/')->with('message', 'Email verified successfully!');
-    // }
-
     // メール認証の再送信
     public function resend(Request $request)
     {
         $user = $request->user();
 
         if ($user === null) {
-            return redirect('/login'); // ユーザーが認証されていない場合、ログインページにリダイレクト
+            return redirect('/login');
         }
 
         if ($user->hasVerifiedEmail()) {

@@ -16,6 +16,7 @@ use App\Http\Controllers\StoreManagerController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Http\Controllers\Auth\StoreManagerLoginController;
 use App\Http\Controllers\Auth\AdminLoginController;
+use App\Http\Controllers\StoreManagerNotificationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -113,11 +114,25 @@ Route::post('store_manager/login', [StoreManagerLoginController::class, 'login']
 // 店舗代表者ルート
 Route::middleware(['auth:store_manager', 'role:store_manager'])->group(function () {
     Route::get('store-manager/index', [StoreManagerController::class, 'index'])->name('store_manager.index');
+
+    // 店舗作成
     Route::get('store_manager/create', [StoreManagerController::class, 'create'])->name('store_manager.create');
     Route::post('store_manager/store', [StoreManagerController::class, 'store'])->name('store_manager.store');
+
+    // 編集、更新
     Route::get('store_manager/edit/{shopId}', [StoreManagerController::class, 'edit'])->name('store_manager.edit');
     Route::put('store_manager/update/{shopId}', [StoreManagerController::class, 'update'])->name('store_manager.update');
+
+    // 予約一覧
     Route::get('store_manager/reservations', [StoreManagerController::class, 'reservations'])->name('store_manager.reservations');
+
+    // ログアウト
     Route::post('store_manager/logout', [StoreManagerController::class, 'destroy'])->name('store_manager.logout');
+
+    // 削除
     Route::delete('/shops/{shop}', [ShopController::class, 'destroy'])->name('shops.destroy');
+
+    // お知らせメール送信
+    Route::get('/store_manager/notification', [StoreManagerNotificationController::class, 'create'])->name('store_manager.notification');
+    Route::post('/store_manager/notification', [StoreManagerNotificationController::class, 'send'])->name('store_manager.sendNotification');
 });
