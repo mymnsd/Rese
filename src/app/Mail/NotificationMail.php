@@ -7,18 +7,23 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class TestMail extends Mailable
+class NotificationMail extends Mailable
 {
     use Queueable, SerializesModels;
+
+    public $mailSubject;
+    public $mailMessage;
+
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($subject, $message)
     {
-        //
+        $this->mailSubject = $subject;
+        $this->mailMessage = $message;
     }
 
     /**
@@ -27,12 +32,8 @@ class TestMail extends Mailable
      * @return $this
      */
     public function build()
-    {
-        // return $this
-        //     ->view('view.name');
-        return $this->to('testmailsgrstr@gmail.com')  // 送信先アドレス
-        ->subject('登録完了しました。')// 件名
-        ->view('registers.register_mail')// 本文
-        ->with(['name' => $this->name]);// 本文に送る値
-    }
+{
+    return $this->view('emails.notification')
+                    ->subject($this->mailSubject);
+}
 }

@@ -3,9 +3,12 @@
 }
 
 .content__ttl {
+  background-color: #fff;
+  border-radius: 5px;
   font-size: 24px;
   font-weight: bold;
   margin-bottom: 20px;
+  padding: 5px;
 }
 
 .success {
@@ -34,7 +37,7 @@
 }
 
 .shop {
-  flex: 1 1 calc(33.333% - 20px);
+  flex: 1 1 calc(50% - 20px);
   box-shadow: 3px 3px 5px #888;
   box-sizing: border-box;
   border: 1px solid #ddd;
@@ -91,7 +94,8 @@
 }
 
 .logout {
-  margin-top: 20px;
+  margin-top: 80px;
+  text-align: right;
 }
 
 .logout .btn {
@@ -100,4 +104,10 @@
 
 .logout .btn:hover {
   opacity: 0.8;
+}
+
+@media screen and (min-width: 768px) {
+  .shop {
+      flex: 1 1 calc(33.333% - 20px);
+  }
 }

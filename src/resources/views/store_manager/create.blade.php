@@ -12,12 +12,12 @@
     <form class="form" action="{{ route('store_manager.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
       <div class="form-group">
-        <label class="form__label" for="name">店舗名</label>
-        <input class="form__input" type="text" name="name" id="name" class="form-control" required>
+        <label class="form-label" for="name">店舗名</label>
+        <input class="form-input" type="text" name="name" id="name" class="form-control" required>
       </div>
 
       <div class="form-group">
-        <label class="form__label" for="area_id">エリア</label>
+        <label class="form-label" for="area_id">エリア</label>
         <select class="form-select" name="area_id" id="area_id" class="form-control" required>
           <option value="">選択してください</option>
           @foreach ($areas as $area)
@@ -27,7 +27,7 @@
       </div>
 
       <div class="form-group">
-        <label class="form__label" for="genre_id">ジャンル</label>
+        <label class="form-label" for="genre_id">ジャンル</label>
         <select class="form-select" name="genre_id" id="genre_id" class="form-control" required>
           <option value="">選択してください</option>
           @foreach ($genres as $genre)
@@ -37,14 +37,14 @@
       </div>
 
       <div class="form-group">
-        <label class="form__label" for="description">説明</label>
+        <label class="form-label" for="description">説明</label>
         <textarea class="form-control" name="description" id="description">
         </textarea>
       </div>
 
       <div class="form-group">
-        <label class="form__label" for="image">画像</label>
-        <input  class="form__input" type="file" name="image" id="image" class="form-control">
+        <label class="form-label" for="image">画像</label>
+        <input  class="form-input" type="file" name="image" id="image" class="form-control">
         <!-- 画像プレビュー -->
           <img id="imagePreview" src="#" alt="Image Preview" style="display: none; max-width: 200px; margin-top: 10px;">
       </div>

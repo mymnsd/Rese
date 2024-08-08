@@ -81,6 +81,14 @@
       </div>
     </div>
 
+    <!-- お知らせメール送信リンクの追加 -->
+    <div class="notification-area">
+      <h2 class="content__ttl">お知らせメール</h2>
+      <div class="notification-link">
+        <a class="link" href="{{ route('store_manager.notification') }}">お知らせメールを送信</a>
+      </div>
+    </div>
+
     <div class="logout">
       <form class="form" action="{{ route('store_manager.logout') }}" method="POST" style="display: inline;">
       @csrf

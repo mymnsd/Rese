@@ -13,7 +13,6 @@ class SendReminder extends Command
      *
      * @var string
      */
-    // protected $signature = 'command:name';
     protected $signature = 'reminder:send';
 
     /**
@@ -21,7 +20,6 @@ class SendReminder extends Command
      *
      * @var string
      */
-    // protected $description = 'Command description';
     protected $description = 'Send a reminder for reservations on the day of the reservation';
         /**
      * Create a new command instance.
