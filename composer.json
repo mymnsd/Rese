@@ -1,5 +1,6 @@
 {
     "require": {
-        "simplesoftwareio/simple-qrcode": "^4.2"
+        "simplesoftwareio/simple-qrcode": "^4.2",
+        "stripe/stripe-php": "^15.6"
     }
 }

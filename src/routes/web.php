@@ -17,6 +17,7 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Http\Controllers\Auth\StoreManagerLoginController;
 use App\Http\Controllers\Auth\AdminLoginController;
 use App\Http\Controllers\StoreManagerNotificationController;
+use App\Http\Controllers\PaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -81,6 +82,12 @@ Route::middleware('auth')->group(function () {
   // お気に入り登録、解除
     Route::post('/favorite',[FavoriteController::class,'create'])->name('favorite.create');
     Route::post('/favorite/delete',[FavoriteController::class,'delete'])->name('favorite.delete');
+
+  //決済ルート 
+    Route::prefix('payment')->name('payment.')->group(function () {
+        Route::get('/create', [PaymentController::class, 'create'])->name('create');
+        Route::post('/store', [PaymentController::class, 'store'])->name('store');
+    });
 });
 
 
