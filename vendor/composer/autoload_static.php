@@ -9,6 +9,7 @@ class ComposerStaticInitf9ebed139cb97b85b0aa69a1d2be67c5
     public static $prefixLengthsPsr4 = array (
         'S' => 
         array (
+            'Stripe\\' => 7,
             'SimpleSoftwareIO\\QrCode\\' => 24,
         ),
         'D' => 
@@ -22,6 +23,10 @@ class ComposerStaticInitf9ebed139cb97b85b0aa69a1d2be67c5
     );
 
     public static $prefixDirsPsr4 = array (
+        'Stripe\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/stripe/stripe-php/lib',
+        ),
         'SimpleSoftwareIO\\QrCode\\' => 
         array (
             0 => __DIR__ . '/..' . '/simplesoftwareio/simple-qrcode/src',

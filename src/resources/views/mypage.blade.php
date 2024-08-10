@@ -8,6 +8,10 @@
   <a class="review-btn" href="{{ route('reservations.index') }}" >ショップレビュー投稿ページへ</a>
 @endsection
 
+@section('payment')
+  <a class="payment-btn" href="{{ route('payment.create') }}" >決済ページへ</a>
+@endsection
+
 @section('content')
 <div class="mypage">
   @if(session('error'))
