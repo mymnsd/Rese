@@ -18,6 +18,7 @@ class Shop extends Model
         'description',
         'image_url',
         'user_id',
+        'price',
     ];
 
     public function area(){
