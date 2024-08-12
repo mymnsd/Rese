@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Auth\Events\Verified;
 use Illuminate\Support\Facades\URL;
+use App\Models\User;
 
 class VerificationController extends Controller
 {
@@ -22,8 +23,8 @@ class VerificationController extends Controller
     {
         $user = \App\Models\User::findOrFail($id);
 
-        if (! hash_equals((string) $hash, sha1($user->getEmailForVerification()))) {
-            abort(403);
+        if (! hash_equals($hash, sha1($user->getEmailForVerification()))) {
+        abort(403);
         }
 
         if ($user->hasVerifiedEmail()) {

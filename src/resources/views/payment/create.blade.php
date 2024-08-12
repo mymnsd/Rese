@@ -16,6 +16,14 @@
                 <div class="card-body">
                     <form id="card-form" action="{{ route('payment.store') }}" method="POST">
                         @csrf
+
+                        <div>
+                        <label>合計金額: ¥{{ $store->price }} 円</label>
+                        </div>
+
+                        <!-- amount の hidden input フィールドを追加 -->
+                    <input type="hidden" name="amount" value="{{ $store->price * 100 }}">
+
                         <div>
                             <label for="card_number">カード番号</label>
                             <div id="card-number" class="form-control"></div>
