@@ -72,7 +72,8 @@
             <select class="reservation__form--people" name="guest_count" id="guest_count">
               <option value="" selected="">選択してください</option>
               @for($i = 1; $i <=20; $i++)
-                <option value="{{ $i }}" @if(request('guest_count') == $i) selected @endif>
+                <option value="{{ $i }}" 
+                @if(request('guest_count') == $i) selected @endif>
                 {{ $i }}人
                 </option>
               @endfor

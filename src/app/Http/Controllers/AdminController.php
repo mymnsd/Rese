@@ -21,7 +21,7 @@ class AdminController extends Controller
         return view('admin.create_store_manager', compact('shops'));
     }
 
-    public function storeStoreManager(Request $request)
+    public function storeStoreManager(RegisterRequest $request)
     {
         $validator = Validator::make($request->all(),[
             'name' => 'required|string|max:255',

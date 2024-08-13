@@ -52,7 +52,7 @@
 .form-control {
   font-size: 1.3em;
   height: 100px;
-    width: 90%;
+  width: 90%;
 }
 
 .edit-img{
@@ -66,10 +66,10 @@
 
 .btn {
   border-radius: 5px;
-    background: blue;
-    color: #fff;
-    padding: 10px 20px;
-    width: 100%;
+  background: blue;
+  color: #fff;
+  padding: 10px 20px;
+  width: 100%;
 }
 
 .btn:hover{

@@ -85,9 +85,9 @@ Route::middleware('auth')->group(function () {
 
   //決済ルート 
     Route::prefix('payment')->name('payment.')->group(function () {
-        // Route::get('/create', [PaymentController::class, 'create'])->name('create');
         Route::get('/create/{shopId}', [PaymentController::class, 'create'])->name('create');
-      Route::post('/store', [PaymentController::class, 'store'])->name('store');
+        Route::post('/store', [PaymentController::class, 'store'])->name('store');
+        Route::get('/return', [PaymentController::class, 'return'])->name('return');
     });
 });
 
