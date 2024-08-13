@@ -12,17 +12,18 @@
         @endif
         <div class="p-5">
             <div class="col-6 card">
-                <div class="card-header">Stripe決済</div>
+                {{-- <div class="card-header">Stripe決済</div> --}}
+                <h2>Payment for {{ $shop->name }}</h2>
                 <div class="card-body">
                     <form id="card-form" action="{{ route('payment.store') }}" method="POST">
                         @csrf
 
                         <div>
-                        <label>合計金額: ¥{{ $store->price }} 円</label>
+                        <label>合計金額: ¥{{ $shop->price }} 円</label>
                         </div>
 
                         <!-- amount の hidden input フィールドを追加 -->
-                    <input type="hidden" name="amount" value="{{ $store->price * 100 }}">
+                    <input type="hidden" name="amount" value="{{ $shop->price * 100 }}">
 
                         <div>
                             <label for="card_number">カード番号</label>

@@ -6,15 +6,16 @@ use Illuminate\Http\Request;
 use Stripe\Stripe;
 use Stripe\Charge;
 use Exception;
-use App\Http\Shop;
+use App\Models\Shop;
 
 
 class PaymentController extends Controller
 {
 
-    public function create()
-    {
-        return view('payment.create');
+    public function create($shopId)
+    { 
+        $shop = Shop::find($shopId);
+        return view('payment.create', compact('shop'));
     }
 
     /**
@@ -23,15 +24,15 @@ class PaymentController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'store_id' => 'required|exists:stores,id', // 店舗IDのバリデーション
+            'shop_id' => 'required|exists:stores,id', // 店舗IDのバリデーション
             'stripeToken' => 'required', // Stripeトークンのバリデーション
         ]);
 
         // 店舗情報を取得
-        $store = Store::findOrFail($request->store_id);
+        $shop = Shop::findOrFail($request->store_id);
 
         // 店舗の料金を取得
-        $amount = $store->price * 100; // Stripeの金額はセント単位
+        $amount = $shop->price * 100; 
 
         Stripe::setApiKey(config('stripe.stripe_secret_key'));
 
@@ -42,13 +43,15 @@ class PaymentController extends Controller
             // 'source' => 'tok_visa',
             // 'description' => 'Test charge',
             // ]);
-            $amount = $request->input('amount'); // フォームから送信された金額を取得
+            // $amount = $request->input('amount');
+
+             // フォームから送信された金額を取得
             $charge = Charge::create([
                 'amount' => $amount,
                 'currency' => 'jpy',
                 'source' => $request->stripeToken, // 実際のトークンを使用
                 // 'description' => $store->name . ' の支払い',
-                'description' => 'Charge for ' . $store->name,
+                'description' => 'Charge for ' . $shop->name,
             ]);
         //     echo 'Charge created successfully!';
         // } catch (\Stripe\Exception\ApiErrorException $e) {
