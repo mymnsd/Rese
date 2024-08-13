@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Stripe\Stripe;
+use Stripe\PaymentIntent;
 use Stripe\Charge;
 use Exception;
 use App\Models\Shop;
@@ -12,10 +13,15 @@ use App\Models\Shop;
 class PaymentController extends Controller
 {
 
-    public function create($shopId)
+    public function create(Request $request,$shopId)
     { 
         $shop = Shop::find($shopId);
-        return view('payment.create', compact('shop'));
+        $guest_count = $request->input('guest_count',1);
+        
+        $price = $shop->price * $guest_count;
+
+        return view('payment.create', compact('shop', 'guest_count','price'));
+        
     }
 
     /**
@@ -24,43 +30,46 @@ class PaymentController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'shop_id' => 'required|exists:stores,id', // 店舗IDのバリデーション
-            'stripeToken' => 'required', // Stripeトークンのバリデーション
+            'shop_id' => 'required|exists:shops,id', 
+            'payment_method_id' => 'required',
+            'guest_count' => 'required|integer|min:1'
         ]);
 
-        // 店舗情報を取得
-        $shop = Shop::findOrFail($request->store_id);
+        $shop = Shop::findOrFail($request->shop_id);
 
-        // 店舗の料金を取得
-        $amount = $shop->price * 100; 
+        // $guestCount = $request->guest_count;
+        $guestCount = intval($request->guest_count); 
+
+        $totalAmount = $shop->price * $guestCount * 100;
+        $minimumAmount = 100;
+        $totalAmount = max($totalAmount, $minimumAmount);
+
 
         Stripe::setApiKey(config('stripe.stripe_secret_key'));
 
         try {
-            // $charge = \Stripe\Charge::create([
-            // 'amount' => 1000,
-            // 'currency' => 'jpy',
-            // 'source' => 'tok_visa',
-            // 'description' => 'Test charge',
-            // ]);
-            // $amount = $request->input('amount');
-
-             // フォームから送信された金額を取得
-            $charge = Charge::create([
-                'amount' => $amount,
+            $paymentIntent = \Stripe\PaymentIntent::create([
+                'amount' =>  $totalAmount, 
                 'currency' => 'jpy',
-                'source' => $request->stripeToken, // 実際のトークンを使用
-                // 'description' => $store->name . ' の支払い',
+                'payment_method' => $request->payment_method_id,
+                'confirmation_method' => 'manual', 
+                'confirm' => true,
                 'description' => 'Charge for ' . $shop->name,
+                'return_url' => route('payment.return', ['shop_id' => $shop->id])
             ]);
-        //     echo 'Charge created successfully!';
-        // } catch (\Stripe\Exception\ApiErrorException $e) {
-        //     echo 'Error: ' . $e->getMessage();
-        // }
-         return redirect()->route('payment.success')->with('status', '決済が完了しました！');
+
+            if ($paymentIntent->status === 'requires_action') {
+            return redirect($paymentIntent->next_action->redirect_to_url->url);
+        }
+            return redirect()->route('payment.return')->with('status', '決済が完了しました！');
         } catch (\Stripe\Exception\ApiErrorException $e) {
             return back()->with('flash_alert', '決済に失敗しました！('. $e->getMessage() . ')');
-        }
+            }
+    }        
+
+    public function return()
+    {
+        return view('payment.return'); 
     }
 }
 

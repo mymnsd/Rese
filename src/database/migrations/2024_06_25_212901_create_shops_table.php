@@ -21,7 +21,7 @@ class CreateShopsTable extends Migration
             $table->foreignId('genre_id')->constrained()->cascadeOnDelete();
             $table->string('description')->nullable();
             $table->string('image_url')->nullable();
-            $table->integer('price')->nullable();
+            $table->integer('price');
             $table->timestamps();
         });
     }

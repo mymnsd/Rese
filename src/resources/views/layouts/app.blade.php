@@ -38,7 +38,6 @@
         </div>
         @yield('nav')
         @yield('reservations')
-        @yield('payment')
       </div>
     </header>
 

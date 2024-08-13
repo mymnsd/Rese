@@ -8,10 +8,6 @@
   <a class="review-btn" href="{{ route('reservations.index') }}" >ショップレビュー投稿ページへ</a>
 @endsection
 
-@section('payment')
-  <a class="payment-btn" href="{{ route('payment.create') }}" >決済ページへ</a>
-@endsection
-
 @section('content')
 <div class="mypage">
   @if(session('error'))
@@ -19,6 +15,7 @@
     {{ session('error') }}
   </div>
   @endif
+
   <h2 class="user">{{ Auth::user()->name }}さん</h2>
   <div class="mypage__inner">
     <div class="content__group">
@@ -27,6 +24,7 @@
       <p>現在、予約はありません。</p>
       @else
       @foreach($reservations as $index => $reservation)
+
       <div class="status-area">
         <i class="fa-regular fa-clock fa-2x"></i>
         <h3 class="reservation-num">予約{{ $index + 1 }}</h3>
@@ -37,6 +35,7 @@
             <span class="close-btn--border"></span>
           </button>
         </form>
+
         <table class="reservation-table">
         <tr class="reservation-table__row">
           <th class="reservation-table__ttl">Shop</th>
@@ -54,27 +53,20 @@
           <th class="reservation-table__ttl">Number</th>
           <td class="reservation-table__item">{{ $reservation->guest_count }}人</td>
         </tr>
-        {{-- <p>Shop: {{ $reservation->shop->name }}</p> --}}
-        {{-- <p>Date: {{ $reservation->start_at->format('Y-m-d') }}</p>
-        <p>Time: {{ $reservation->start_at->format('H:i') }}</p>
-        <p>Number: {{ $reservation->guest_count }}人</p> --}}
-      </table>
-        {{-- <p class="status-ttl">Shop</p>
-        <span class="status__item">{{ $reservation->shop->name }}</span>
-          <p class="status-ttl">Date</p>
-          <span class="status__item">{{ $reservation->start_at->format('Y-m-d') }}</span></p>
-          <p class="status-ttl">Time
-          <span class="status__item">{{ $reservation->start_at->format('H:i') }}</span>
-          <p class="status-ttl">Number</p>
-          <span class="status__item">{{ $reservation->guest_count }}人</span> --}}
+        </table>
+
           <div class="edit__btn">
             <a class="edit-btn--link" href="{{ route('reserve.edit_reserve', $reservation->id) }}">予約変更</a>
           </div>
-        </div>
-    @endforeach
-    @endif
-    </div>
 
+          <div class="payment__btn">
+            <a class="payment-btn--link" href="{{ route('payment.create', ['shopId' => $reservation->shop_id, 'guest_count' => $reservation->guest_count]) }}">決済へ進む</a>
+          </div>
+
+        </div>
+      @endforeach
+      @endif
+    </div>
     
     <div class="favorite__group">
       <h3 class="content__ttl">お気に入り店舗</h3>

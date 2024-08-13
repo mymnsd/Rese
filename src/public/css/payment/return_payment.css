@@ -1,0 +1,32 @@
+.return__inner{
+  background-color: #fff;
+  border-radius: 5px;
+  box-sizing: border-box;
+  box-shadow: 3px 3px 5px #888;
+  margin: 40px auto 0;
+  width: 40%;
+}
+
+.content__ttl{
+  border-radius: 5px 5px 0 0;
+  text-align: center;
+  padding: 10px 15px;
+}
+
+.message{
+  text-align: center;
+  padding: 20px;
+}
+
+.link{
+padding: 20px;
+text-align: center;
+}
+
+.back-link{
+  color: blue;
+}
+
+.back-link:hover {
+  opacity: 0.7;
+}
