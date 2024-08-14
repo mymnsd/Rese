@@ -74,6 +74,7 @@
       <a class="link" href="{{ route('store_manager.create') }}" class="btn btn-success">店舗を追加</a>
     </div>
 
+    {{-- 予約一覧リンク --}}
     <div class="reservation-area">
       <h2 class="content__ttl">予約一覧</h2>
       <div class="reservation-link">
@@ -81,7 +82,7 @@
       </div>
     </div>
 
-    <!-- お知らせメール送信リンクの追加 -->
+    <!-- お知らせメール送信リンク -->
     <div class="notification-area">
       <h2 class="content__ttl">お知らせメール</h2>
       <div class="notification-link">

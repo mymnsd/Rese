@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Http\Requests\LoginRequest;
 
 class AdminLoginController extends Controller
 {
@@ -13,7 +14,7 @@ class AdminLoginController extends Controller
         return view('admin.login');
     }
 
-    public function login(Request $request){
+    public function login(LoginRequest $request){
         $request->validate([
             'email' => 'required|email',
             'password' => 'required',

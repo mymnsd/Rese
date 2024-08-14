@@ -86,12 +86,14 @@
 }
 
 .edit-btn,
-.payment__btn{
+.payment__btn,
+.qrcode__btn{
   width: 100%;
 }
 
-.edit-btn--link,
-.payment-btn--link{
+.edit__btn--link,
+.payment__btn--link,
+.qrcode__btn--link{
   border-radius: 0 0 5px 5px;
   background-color: blue;
   color: #fff;
@@ -102,8 +104,9 @@
   width: 100%;
 }
 
-.edit-btn--link:hover,
-.payment-btn--link:hover {
+.edit__btn--link:hover,
+.payment__btn--link:hover,
+.qrcode__btn--link:hover {
   opacity: 0.7;
 }
 

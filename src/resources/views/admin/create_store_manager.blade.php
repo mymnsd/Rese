@@ -18,25 +18,50 @@
         <i class="fa-solid fa-user fa-2x"></i>
         <input class="form__input" type="text" name="name" value="{{ old('name') }}" placeholder="name">
       </div>
+      <p class="register-form__error-message">
+          @error('name')
+          {{ $message }}
+          @enderror
+      </p>
+
       <div class="form__group">
         <label class="form__label" for="email"></label>
         <i class="fa-solid fa-envelope fa-2x"></i>
         <input class="form__input" type="email" name="email" value="{{ old('email') }}" placeholder="Email">
       </div>
+      <p class="register-form__error-message">
+          @error('email')
+          {{ $message }}
+          @enderror
+      </p>
+
       <div class="form__group">
         <label class="form__label" for="password"></label>
         <i class="fa-solid fa-lock fa-2x"></i>
         <input class="form__input" type="password" name="password" value="{{ old('password') }}" placeholder="Password">
       </div>
+      <p class="register-form__error-message">
+          @error('password')
+          {{ $message }}
+          @enderror
+      </p>
+
       <div class="form__group">
         <label class="form__label" for="password_confirmation"></label>
         <i class="fa-solid fa-lock fa-2x"></i>
         <input class="form__input" type="password" name="password_confirmation" value="{{ old('confirmpassword') }}" placeholder="Confirmpassword(確認パスワード)">
       </div>
+      <p class="register-form__error-message">
+          @error('password_confirmation')
+          {{ $message }}
+          @enderror
+      </p>
+
       <div class="form__group">
         <label class="form__label" for="shop_id"></label>
         <i class="fa-solid fa-shop fa-2x"></i>
         <select class="form__select" name="shop_id" required>
+          <option value="" disabled selected>選択してください</option>
         @foreach($shops as $shop)
           <option class="shops" value="{{ $shop->id }}">{{ $shop->name }}</option>
         @endforeach

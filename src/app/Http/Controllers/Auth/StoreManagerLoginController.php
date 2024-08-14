@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\LoginRequest;
 
 
 class StoreManagerLoginController extends Controller
@@ -14,12 +15,12 @@ class StoreManagerLoginController extends Controller
         return view('store_manager.login');
     }
 
-    public function login(Request $request)
+    public function login(LoginRequest $request)
     {
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
+        // $request->validate([
+        //     'email' => 'required|email',
+        //     'password' => 'required',
+        // ]);
 
         $credentials = $request->only('email', 'password');
 

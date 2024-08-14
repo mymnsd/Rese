@@ -56,11 +56,15 @@
         </table>
 
           <div class="edit__btn">
-            <a class="edit-btn--link" href="{{ route('reserve.edit_reserve', $reservation->id) }}">予約変更</a>
+            <a class="edit__btn--link" href="{{ route('reserve.edit_reserve', $reservation->id) }}">予約変更</a>
           </div>
 
           <div class="payment__btn">
-            <a class="payment-btn--link" href="{{ route('payment.create', ['shopId' => $reservation->shop_id, 'guest_count' => $reservation->guest_count]) }}">決済へ進む</a>
+            <a class="payment__btn--link" href="{{ route('payment.create', ['shopId' => $reservation->shop_id, 'guest_count' => $reservation->guest_count]) }}">決済へ進む</a>
+          </div>
+
+          <div class="qrcode__btn">
+            <a class="qrcode__btn--link" href="{{ route('reservations.qrcode', $reservation->id) }}">QRコードを表示する</a>
           </div>
 
         </div>

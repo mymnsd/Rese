@@ -25,6 +25,10 @@
       @endforeach
     </table>
 
+    <div class="verification-link">
+      <a class="link--blue" href="{{ route('qrcode.verify') }}">QRコード照合ページへ</a>
+    </div>
+
     <div class="back-link">
       <a class="link" href="{{ route('store_manager.index') }}">店舗代表者管理ページに戻る</a>
     </div>

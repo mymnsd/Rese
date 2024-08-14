@@ -20,11 +20,23 @@
         <i class="fa-solid fa-envelope fa-2x"></i>
         <input class="form__input" type="email" name="email" id="email" value="{{ old('email') }}" placeholder="Email" autofocus>
       </div>
+      <p class="register-form__error-message">
+          @error('email')
+          {{ $message }}
+          @enderror
+      </p>
+
       <div class="form__group">
         <label class="form__label" for="password"></label>
         <i class="fa-solid fa-lock fa-2x"></i>
         <input class="form__input" type="password" name="password" id="password" value="{{ old('password') }}" placeholder="Password">
       </div>
+      <p class="register-form__error-message">
+          @error('password')
+          {{ $message }}
+          @enderror
+      </p>
+      
       <div class="btn">
         <button class="btn--blue" type="submit">ログイン</button>
       </div>

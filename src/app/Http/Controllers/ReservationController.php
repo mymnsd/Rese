@@ -66,14 +66,34 @@ class ReservationController extends Controller
         return view('reserve.edit');
     }
 
+    public function show($reservationId)
+{
+    $reservation = Reservation::with('shop', 'user')->findOrFail($reservationId);
+    return view('reservations.show', compact('reservation'));
+}
+
     public function verify($reservationId)
     {
-        $reservation = Reservation::with(['shop', 'user'])->findOrFail($reservationId);
+        $reservation = Reservation::with('shop', 'user')->find($reservationId);
 
-        return view('qrcode.verify', compact('reservation'));
+        if ($reservation) {
+            return response()->json([
+                'status' => 'success',
+                'reservation' => [
+                    'id' => $reservation->id,
+                    'shop_name' => $reservation->shop->name,
+                    'user_name' => $reservation->user->name,
+                    'guest_count' => $reservation->guest_count,
+                    'start_at' => $reservation->start_at,
+                ]
+            ]);
+        } else {
+            return response()->json(['status' => 'fail']);
+            }
     }
-
 }
+
+
 
 
     
