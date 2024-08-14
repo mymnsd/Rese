@@ -25,8 +25,8 @@
           <input type="hidden" name="price" value="{{ $price }}">
 
           <div class="card-item">
-            <label class="form__label">人数: {{ $guest_count }}人</label>
-            <label class="form__label">合計金額: ¥{{ number_format($price) }} 円</label>
+            <label class="form__label">人数:{{ $guest_count }}人</label>
+            <label class="form__label">合計金額:{{ number_format($price) }} 円</label>
           </div>
 
           <div class="card-item">

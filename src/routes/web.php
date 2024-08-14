@@ -39,6 +39,9 @@ Route::get('/detail/{shop_id}',[ShopController::class,'detail'])->name('shops.de
 
 // QRコード
 Route::get('/reservations/{reservation}/qrcode', [QRCodeController::class, 'generate'])->name('reservations.qrcode');
+Route::get('/qrcode/verify', function () {
+    return view('qrcode.verify');
+})->name('qrcode.verify');
 Route::get('/reservations/{reservation}/verify', [ReservationController::class, 'verify'])->name('reservations.verify');
 
 // ユーザー登録

@@ -19,7 +19,7 @@
           @error('name')
           {{ $message }}
           @enderror
-        </p>
+      </p>
 
       <div class="form__group">
         <label class="form__label" for="email"></label>
@@ -30,7 +30,7 @@
           @error('email')
           {{ $message }}
           @enderror
-        </p>
+      </p>
 
       <div class="form__group">
         <label class="form__label" for="password"></label>
@@ -41,18 +41,18 @@
           @error('password')
           {{ $message }}
           @enderror
-        </p>
+      </p>
 
       <div class="form__group">
         <label class="form__label" for="password_confirmation"></label>
         <i class="fa-solid fa-lock fa-2x"></i>
-        <input class="form__input" type="password" name="password_confirmation" value="{{ old('confirmpassword') }}" placeholder="Confirmpassword(確認パスワード)">
+        <input class="form__input" type="password" name="password_confirmation" value="{{ old('password_confirmation') }}" placeholder="Confirmpassword(確認パスワード)">
       </div>
       <p class="register-form__error-message">
           @error('password_confirmation')
           {{ $message }}
           @enderror
-        </p>
+      </p>
 
       <div class="btn">
         <button class="btn--blue" type="submit">登録</button>

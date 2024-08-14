@@ -20,8 +20,8 @@ class StoreManagerController extends Controller
         // $addedShops = Shop::where('user_id', $storeManagerId)->get();
 
         $addedShops = Shop::with(['area', 'genre'])
-                      ->where('user_id', $storeManagerId)
-                      ->get();
+                    ->where('user_id', $storeManagerId)
+                    ->get();
 
         
         // $managedShops = DB::table('shops')
@@ -30,9 +30,8 @@ class StoreManagerController extends Controller
         // ->select('shops.*', 'store_managers.name as manager_name')
         // ->get();
         $managedShops = Shop::join('store_managers', 'shops.id', '=', 'store_managers.shop_id')
-                        ->where('store_managers.id', $storeManagerId)
+                        ->where('store_managers.id', $storeManagerId) 
                         ->select('shops.*', 'store_managers.name as manager_name')
-                        ->with('area', 'genre') // リレーションを含める
                         ->get();
 
         return view('store_manager.index', compact('addedShops', 'managedShops'));
