@@ -23,6 +23,10 @@
   width: 100%;
 }
 
+.btn:hover{
+  opacity: 0.8;
+}
+
 .back-link{
   text-align: center;
 }

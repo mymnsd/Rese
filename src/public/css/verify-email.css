@@ -1,4 +1,5 @@
-.email__inner {
+.email__inner,
+.sent__inner {
   background-color: #fff;
   border-radius: 5px;
   box-sizing: border-box;
@@ -7,6 +8,11 @@
   padding: 15px;
   width: 40%;
 }
+
+.content__ttl{
+  text-align: center;
+}
+
 .card-header {
     padding: 15px;
     font-size: 1.25em;
@@ -23,8 +29,10 @@
   background-color: #d4edda;
   border: 1px solid #c3e6cb;
   padding: 10px;
-  margin-bottom: 15px;
   border-radius: 5px;
+  width: 40%;
+  text-align: center;
+  margin: 0 auto;
 }
 
 .card-item {
@@ -49,4 +57,20 @@
 
 .btn:hover {
   opacity: 0.8;
+}
+
+.sent-message{
+  text-align: center;
+}
+
+.back-link{
+  text-align: center;
+}
+
+.link{
+  color: blue;
+}
+
+.link:hover {
+  opacity: 0.7;
 }

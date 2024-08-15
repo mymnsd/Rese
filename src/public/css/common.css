@@ -20,14 +20,6 @@ a {
   width: 40%;
 }
 
-/* .content-ttl {
-  text-align: center;
-} */
-
-/* .btn:hover {
-  opacity: 0.8;
-} */
-
 .register-form__error-message,
 .login-form__error-message,
 .reservation-error-message{

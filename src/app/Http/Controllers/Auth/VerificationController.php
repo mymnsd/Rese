@@ -12,8 +12,6 @@ use App\Models\User;
 
 class VerificationController extends Controller
 {
-
-    // メール認証ページの表示
     public function show()
     {
         return view('auth.verify-email');
@@ -45,7 +43,6 @@ class VerificationController extends Controller
         return view('thanks');
     }
 
-    // メール認証の再送信
     public function resend(Request $request)
     {
         $user = $request->user();
@@ -60,7 +57,12 @@ class VerificationController extends Controller
 
         $user->sendEmailVerificationNotification();
 
-        return back()->with('message', 'Verification link sent!');
+        return redirect()->route('verification.sent')->with('message', '再送信に成功しました!');
+
+    }
+
+    public function verificationSent(){
+        return view('verification.sent');
     }
 }
     

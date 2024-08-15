@@ -32,18 +32,10 @@
   width: 95%;
 }
 
-.confirm-table__row{
-
-}
-
 .confirm-table__ttl{
   padding: 8px 20px;
   text-align: left;
   width: 45%;
-}
-
-.confirm-table__item{
-
 }
 
 .cancel-form{
@@ -51,7 +43,6 @@
   justify-content: space-around;
   border-radius: 0 0 5px 5px;
   background-color: blue;
-  /* gap: 100px; */
   margin-top: 50px;
   padding: 20px;
 }
@@ -62,10 +53,6 @@
   color: #fff;
   cursor: pointer;
   font-size: 1rem;
-}
-
-.cancel-btn-2{
-
 }
 
 .cancel-btn-2--link{
@@ -80,7 +67,5 @@
 @media screen and(min-width:768px) {
   .cancel-page__content {
     width: 40%;
-  }
-
-    
+  } 
 }

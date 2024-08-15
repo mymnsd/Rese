@@ -27,11 +27,8 @@
           <th class="confirm-table__ttl">Number</th>
           <td class="confirm-table__item">{{ $reservation->guest_count }}人</td>
         </tr>
-        {{-- <p>Shop: {{ $reservation->shop->name }}</p> --}}
-        {{-- <p>Date: {{ $reservation->start_at->format('Y-m-d') }}</p>
-        <p>Time: {{ $reservation->start_at->format('H:i') }}</p>
-        <p>Number: {{ $reservation->guest_count }}人</p> --}}
       </table>
+      
       <form class="cancel-form" action="{{ route('reserve.confirmCancel', ['id' => $reservation->id]) }}" method="POST">
       @csrf
         <button type="submit" class="cancel-btn-1">OK</button>

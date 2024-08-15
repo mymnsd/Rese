@@ -19,24 +19,23 @@
       </div>
 
       {{-- レビュー、コメント欄 --}}
-    <h3>レビュー</h3>
-    @if($shop->reviews->isEmpty())
-      <p>レビューはまだありません。</p>
-    @else
-      @foreach($shop->reviews as $review)
-        <div>
-          <p><strong>{{ $review->user->name }}</strong>さんの満足度（５段階）: {{ $review->rating }}</p>
-          <p>{{ $review->comment }}</p>
-          <p>投稿日時: {{ $review->created_at->format('Y-m-d H:i') }}</p>
-        </div>    
-      @endforeach
-    @endif
+      <h3>レビュー</h3>
+        @if($shop->reviews->isEmpty())
+          <p>レビューはまだありません。</p>
+        @else
+        @foreach($shop->reviews as $review)
+          <div>
+            <p><strong>{{ $review->user->name }}</strong>さんの満足度（５段階）: {{ $review->rating }}</p>
+            <p>{{ $review->comment }}</p>
+            <p>投稿日時: {{ $review->created_at->format('Y-m-d H:i') }}</p>
+          </div>    
+        @endforeach
+        @endif
       
       <div class="card__img">
           <img src="{{ $shop->image_url}}" alt="店舗画像">
       </div>
       <div class="card__content">
-          
         <span class="card__tag">#{{ $shop->area->name }}</span>
         <span class="card__tag">#{{ $shop->genre->name }}</span>
       </div>

@@ -13,7 +13,7 @@ class EmailVerificationRequest extends FormRequest
      */
     public function authorize()
     {
-       return $this->user() !== null; // 認証されたユーザーのみ許可
+        return $this->user() !== null;
     }
 
     /**
