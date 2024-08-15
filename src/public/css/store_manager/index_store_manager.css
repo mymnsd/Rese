@@ -14,10 +14,12 @@
 .success {
   background-color: #d4edda;
   border: 1px solid #c3e6cb;
-  color: #155724;
-  padding: 10px;
   border-radius: 4px;
-  margin-bottom: 15px;
+  color: #155724;
+  margin: 0 auto;
+  padding: 10px;
+  text-align: center;
+  width: 40%;
 }
 
 .error {
@@ -47,8 +49,13 @@
 }
 
 .shop-item {
+  flex: 1 1 calc(50% - 20px);
+  background-color: #fff;
+  border-radius: 0 0 5px 5px;
+  box-shadow: 3px 3px 5px #888;
   font-size: 16px;
   margin: 5px 0;
+  padding: 20px;
 }
 
 .shop-img{
@@ -107,7 +114,7 @@
 }
 
 @media screen and (min-width: 768px) {
-  .shop {
-      flex: 1 1 calc(33.333% - 20px);
+  .shop-item {
+      flex: 1 1 calc(25% - 20px);
   }
 }

@@ -11,24 +11,22 @@ use Illuminate\Support\Facades\Auth;
 class ShopController extends Controller
 {
   public function index(Request $request){
-    $shops = Shop::with('area','genre')->get();
-
     $area = $request->input('area');
     $genre = $request->input('genre');
     $keyword = $request->input('keyword');
 
-    $query = Shop::query();
+    $query = Shop::query()->with('area', 'genre');
 
-    if($area && $area != 'All area'){
-      $query = $query->area($area);
+    if ($area && $area != 'All area') {
+        $query->area($area);
     }
 
     if ($genre && $genre != 'All genre') {
-      $query = $query->genre($genre);
+        $query->genre($genre);
     }
 
     if ($keyword) {
-      $query = $query->keyword($keyword);
+        $query->keyword($keyword);
     }
 
     $shops = $query->get();
@@ -36,7 +34,8 @@ class ShopController extends Controller
     $areas = Area::all();
     $genres = Genre::all();
 
-    return view('index', compact('shops', 'areas', 'genres', ));
+    return view('index', compact('shops', 'areas', 'genres'));
+
   }
 
   public function detail($id){

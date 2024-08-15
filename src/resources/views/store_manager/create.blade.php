@@ -43,6 +43,11 @@
       </div>
 
       <div class="form-group">
+        <label class="form-label" for="price">価格</label>
+        <input class="form-input" type="text" name="price" id="price" class="form-control" required>円
+      </div>
+
+      <div class="form-group">
         <label class="form-label" for="image">画像</label>
         <input  class="form-input" type="file" name="image" id="image" class="form-control">
         <!-- 画像プレビュー -->
