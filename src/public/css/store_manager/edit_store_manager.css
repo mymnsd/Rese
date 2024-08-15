@@ -17,8 +17,6 @@
 }
 
 .content__ttl {
-  border-radius: 5px 5px 0 0;
-  font-weight: normal;
   text-align: center;
   padding: 10px 15px;
 }
@@ -39,9 +37,9 @@
 
 .form__input {
   font-size: 1em;
-  margin-left: 10px;
+  margin-right: 20px;
   padding: 5px;
-  width: 100%;
+  width: 60%;
 }
 
 .form__input:focus,

@@ -16,6 +16,7 @@
         <a class="back-link" href="/"></a>
         @endif
         <h2 class="card__ttl">{{ $shop->name }}</h2>
+        <p class="card__price">価格：{{ $shop->price }}円</p>
       </div>
 
       {{-- レビュー、コメント欄 --}}

@@ -5,9 +5,14 @@
 @endsection
 
 @section('content')
-<div class="container">
+{{-- <div class="container">
+  @if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif --}}
   <div class="edit__inner">
-  @if ($errors->any())
+  {{-- @if ($errors->any())
     <div class="error">
       <ul>
       @foreach ($errors->all() as $error)
@@ -15,7 +20,7 @@
       @endforeach
       </ul>
     </div>
-  @endif
+  @endif --}}
     <h2 class="content__ttl">店舗情報の編集</h2>
     <form class="form" action="{{ route('store_manager.update', ['shopId' => $shop->id]) }}" method="POST" enctype="multipart/form-data">
     @csrf
@@ -26,9 +31,15 @@
       </div>
 
       <div class="form-group">
+        <label class="form__label" for="price">価格</label>
+        <input class="form__input" type="number" name="price" id="price" value="{{ old('price', $shop->price) }}" required>円
+      </div>
+
+      <div class="form-group">
         <label class="form__label" for="description">説明</label>
         <textarea class="form-control" name="description" id="description">{{ old('description', $shop->description) }}</textarea>
       </div>
+
 
       <div class="form-group">
         <label class="form__label" for="image">画像</label>

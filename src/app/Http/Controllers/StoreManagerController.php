@@ -16,18 +16,23 @@ class StoreManagerController extends Controller
 {
     public function index()
     {
-        $storeManagerId = auth()->id();
-
-        $addedShops = Shop::with(['area', 'genre'])
-                    ->where('user_id', $storeManagerId)
-                    ->get();
+        $storeManagerEmail = auth()->user()->email;
+        $storeManagerId = auth()->user()->id;
+        
 
         $managedShops = Shop::join('store_managers', 'shops.id', '=', 'store_managers.shop_id')
-                        ->where('store_managers.id', $storeManagerId) 
+                        ->where('store_managers.email', $storeManagerEmail)
                         ->select('shops.*', 'store_managers.name as manager_name')
                         ->get();
 
-        return view('store_manager.index', compact('addedShops', 'managedShops'));
+        $createdShops = Shop::where('user_id', $storeManagerId)
+        ->select('shops.*')
+        ->get();
+
+        $allShops = $managedShops->merge($createdShops)->unique('id');
+
+        return view('store_manager.index', compact('allShops'));
+
     }
     
 
@@ -46,6 +51,7 @@ class StoreManagerController extends Controller
             'genre_id' => 'required|integer',
             'description' => 'nullable|string',
             'image_url' => 'nullable|url',
+            'price' => 'nullable|numeric|min:0',
         ]);
 
         $shop = new Shop($validatedData);
@@ -55,6 +61,8 @@ class StoreManagerController extends Controller
             $imagePath = $request->file('image')->store('public/images');
             $shop->image_url = Storage::url($imagePath); 
         }
+
+            $shop->price = $validatedData['price'] ?? 0;
             $shop->save();
 
         return redirect()->route('store_manager.index')->with('success', '新店舗が追加されました。');
@@ -75,6 +83,7 @@ class StoreManagerController extends Controller
             'name' => 'required|string|max:255',
             'description' => 'nullable|string|max:1000',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'price' => 'required|integer|min:0',
         ]);
 
         $shop = Shop::findOrFail($shopId);
@@ -90,7 +99,7 @@ class StoreManagerController extends Controller
             $shop->image_url = Storage::url($imagePath);
         }
 
-        $shop->update($request->only('name', 'description'));
+        $shop->update($request->only('name', 'description', 'price'));
     
         return redirect()->route('store_manager.index')->with('success', '店舗情報が更新されました。');
     }

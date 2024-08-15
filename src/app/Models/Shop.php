@@ -47,9 +47,9 @@ class Shop extends Model
         return $this->hasMany(Review::class);
     }
 
-    public function managers()
+    public function manager()
     {
-        return $this->belongsTo(StoreManager::class);
+        return $this->hasOne(StoreManager::class);
     }
 
     public function isFavorite()
