@@ -37,7 +37,6 @@ class PaymentController extends Controller
 
         $shop = Shop::findOrFail($request->shop_id);
 
-        // $guestCount = $request->guest_count;
         $guestCount = intval($request->guest_count); 
 
         $totalAmount = $shop->price * $guestCount * 100;

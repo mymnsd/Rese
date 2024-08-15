@@ -17,18 +17,11 @@ class StoreManagerController extends Controller
     public function index()
     {
         $storeManagerId = auth()->id();
-        // $addedShops = Shop::where('user_id', $storeManagerId)->get();
 
         $addedShops = Shop::with(['area', 'genre'])
                     ->where('user_id', $storeManagerId)
                     ->get();
 
-        
-        // $managedShops = DB::table('shops')
-        // ->join('store_managers', 'shops.id', '=', 'store_managers.shop_id')
-        // ->where('store_managers.id', $storeManagerId)
-        // ->select('shops.*', 'store_managers.name as manager_name')
-        // ->get();
         $managedShops = Shop::join('store_managers', 'shops.id', '=', 'store_managers.shop_id')
                         ->where('store_managers.id', $storeManagerId) 
                         ->select('shops.*', 'store_managers.name as manager_name')

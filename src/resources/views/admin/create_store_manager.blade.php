@@ -71,11 +71,7 @@
         <button class="btn--blue" type="submit">作成</button>
       </div>
     </form>
-
-    {{-- @if(session('success'))
-      <p class="success">{{ session('success') }}</p>
-    @endif --}}
-
+    
     <form class="form" action="{{ route('admin.logout') }}" method="POST">
     @csrf
       <div class="btn">

@@ -57,7 +57,6 @@ class ShopController extends Controller
     }
         $shop = Shop::findOrFail($shopId);
 
-        // 現在のユーザーがこの店舗のオーナーであるか確認
         if (auth()->id() !== $shop->user_id) {
         return redirect()->route('store_manager.index')->with('error', '削除権限がありません。');
     }

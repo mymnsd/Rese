@@ -20,10 +20,8 @@ class RegisterController extends Controller
         $user['password'] = Hash::make($user['password']);
         $newUser = User::create($user);
 
-        // ログインさせる
         Auth::login($newUser);
 
-        // 認証メールを送信
         $newUser->sendEmailVerificationNotification();
 
         return view('auth.verify-email');

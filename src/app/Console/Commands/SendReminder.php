@@ -42,12 +42,11 @@ class SendReminder extends Command
         $reservations = Reservation::whereDate('start_at', $today)->get();
 
         foreach ($reservations as $reservation) {
-            // ユーザーのメールアドレスを取得
+            
             $userEmail = $reservation->user->email;
 
             $shopName = $reservation->shop->name;
 
-            // 予約情報
             $messageContent = "ご予約当日になりました!\nご来店お待ちしております！\n\n";
             
             $messageContent .= "予約店名: " . $shopName . "\n";
@@ -58,15 +57,20 @@ class SendReminder extends Command
 
             $messageContent .= "予約開始時刻: " . $reservation->start_at->format('Y-m-d H:i:s') . "\n";
 
-            // リマインダーメールを送信
-            Mail::raw($messageContent, function ($message) use ($userEmail) {
-                $message->to($userEmail)
-                        ->subject('Reservation Reminder');
-            });
+            try {
+                Mail::raw($messageContent, function ($message) use ($userEmail) {
+                    $message->to($userEmail)
+                            ->subject('Reservation Reminder');
+                    });
+                $this->info("Reminder sent to $userEmail for reservation ID {$reservation->id}");
+            } catch (\Exception $e) {
+                $this->error("Failed to send reminder to $userEmail: " . $e->getMessage());
+            }
         }
 
         $this->info('Reminders have been sent.');
     
         return 0;
+        
     }
 }

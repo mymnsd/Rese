@@ -39,55 +39,5 @@ class FavoriteController extends Controller
 
       return redirect($redirectUrl);
   }
-
-
-  // test
-  // public function create(Request $request)
-  //   {
-  //       $user = Auth::user();
-  //       if (!$user) {
-  //           return redirect()->back()->with('error', 'User not authenticated.');
-  //       }
-
-  //       $shopId = $request->input('shop_id');
-  //       $redirectUrl = $request->input('redirect_url', '/');
-
-  //       if (!$shopId) {
-  //           return redirect()->back()->with('error', 'Shop ID is required.');
-  //       }
-
-  //       $favorite = $user->favorites()->where('shop_id', $shopId)->first();
-  //       if (!$favorite) {
-  //           Favorite::create([
-  //               'user_id' => $user->id,
-  //               'shop_id' => $shopId
-  //           ]);
-  //       }
-
-  //       return redirect($redirectUrl)->with('success', 'Favorite added successfully.');
-  //   }
-
-  //   public function delete(Request $request)
-  //   {
-  //       $user = Auth::user();
-  //       if (!$user) {
-  //           return redirect()->back()->with('error', 'User not authenticated.');
-  //       }
-
-  //       $shopId = $request->input('shop_id');
-  //       $redirectUrl = $request->input('redirect_url', '/');
-
-  //       if (!$shopId) {
-  //           return redirect()->back()->with('error', 'Shop ID is required.');
-  //       }
-
-  //       $favorite = $user->favorites()->where('shop_id', $shopId)->first();
-  //       if ($favorite) {
-  //           $favorite->delete();
-  //       }
-
-  //       return redirect($redirectUrl)->with('success', 'Favorite removed successfully.');
-  //   }
-
 }
 

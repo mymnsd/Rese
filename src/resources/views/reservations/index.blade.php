@@ -7,7 +7,7 @@
 @section('content')
 <div class="container">
   <div class="inner">
-    <h2 class="content-ttl">レビューを投稿するショップを選択してください</h2>
+    <h2 class="content__ttl">レビューを投稿するショップを選択してください</h2>
     @foreach($reservations as $reservation)
       <div class="reservation-list">
         <p class="reservation-item">予約ID: {{ $reservation->id }}</p>
@@ -22,7 +22,10 @@
         @endif
         <hr>
       </div>
-    @endforeach
+      @endforeach
+      <div class="link">
+        <a class="back-link" href="/mypage">マイページへ戻る</a>
+      </div>
   </div>
 </div>
 @endsection
