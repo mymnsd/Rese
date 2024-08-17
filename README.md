@@ -105,6 +105,17 @@ laravel学習の総まとめとして作成しました。
 
 ## ER図
 
+![スクリーンショット (70)](https://github.com/user-attachments/assets/d3373838-8488-4a7c-b428-d9841b872a81)
+
+## URL
+
+開発環境：http://localhost/
+
+phpMyAdmin:：http://localhost:8080/
+
+
+
+
 
 
 
