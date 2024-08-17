@@ -101,6 +101,13 @@ laravel学習の総まとめとして作成しました。
 
 ![スクリーンショット (75)](https://github.com/user-attachments/assets/a061fbaf-8efd-4dec-b552-09134fb93e91)
 
+![スクリーンショット (76)](https://github.com/user-attachments/assets/00b33704-235e-46a9-817b-93d001f63177)
+
+## ER図
+
+
+
+
 
 
 
