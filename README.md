@@ -93,7 +93,9 @@ laravel学習の総まとめとして作成しました。
 
     php artisan key:generate
 
-    
+## テーブル仕様書
+
+
 
 
 
