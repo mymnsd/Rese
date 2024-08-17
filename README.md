@@ -95,6 +95,8 @@ laravel学習の総まとめとして作成しました。
 
 ## テーブル仕様書
 
+![スクリーンショット (71)](https://github.com/user-attachments/assets/e4557ca9-e45f-4d44-b468-229e8e778e04)
+
 
 
 
