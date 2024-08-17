@@ -99,6 +99,9 @@ laravel学習の総まとめとして作成しました。
 
 ![スクリーンショット (74)](https://github.com/user-attachments/assets/d656ba45-040f-473c-a76d-d37ac64afaa2)
 
+![スクリーンショット (75)](https://github.com/user-attachments/assets/a061fbaf-8efd-4dec-b552-09134fb93e91)
+
+
 
 
 
