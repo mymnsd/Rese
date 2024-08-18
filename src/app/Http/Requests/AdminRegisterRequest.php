@@ -3,8 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Models\User;
-use App\Models\StoreManager;
+
 
 class AdminRegisterRequest extends FormRequest
 {
@@ -27,17 +26,9 @@ class AdminRegisterRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'email' => [
-            'required',
-            'email',
-            'max:255',
-                function ($attribute, $value, $fail) {
-                    if (User::where('email', $value)->exists() || StoreManager::where('email', $value)->exists()) {
-                        $fail('このアドレスは既に使用されています');
-                    }
-                },
-            ],
+            'email' => 'required|email|max:255|unique:users,email',
             'password' => 'required|string|min:8|confirmed',
+            
         ];
     }
 
@@ -54,6 +45,7 @@ class AdminRegisterRequest extends FormRequest
             'password.string' => '文字列で入力してください',
             'password.min' => '8文字以上で入力してください',
             'password.confirmed' => '確認用パスワードが一致しません',
+            
         ];
     }
 }

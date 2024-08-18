@@ -51,7 +51,7 @@
 .shop-item {
   flex: 1 1 calc(50% - 20px);
   background-color: #fff;
-  border-radius: 0 0 5px 5px;
+  border-radius: 5px;
   box-shadow: 3px 3px 5px #888;
   font-size: 16px;
   margin: 5px 0;
@@ -115,6 +115,6 @@
 
 @media screen and (min-width: 768px) {
   .shop-item {
-      flex: 1 1 calc(25% - 20px);
+      flex: 1 1 calc(33.33% - 20px);
   }
 }

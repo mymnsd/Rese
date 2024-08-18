@@ -17,11 +17,6 @@ class StoreManagerLoginController extends Controller
 
     public function login(LoginRequest $request)
     {
-        // $request->validate([
-        //     'email' => 'required|email',
-        //     'password' => 'required',
-        // ]);
-
         $credentials = $request->only('email', 'password');
 
         if (Auth::guard('store_manager')->attempt($credentials, $request->filled('remember'))) {

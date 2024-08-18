@@ -7,6 +7,7 @@ use App\Models\StoreManager;
 use App\Models\Shop;
 use App\Models\User; 
 use App\Http\Requests\AdminRegisterRequest;
+use App\Http\Requests\StoreManagerRegisterRequest;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
@@ -17,45 +18,55 @@ class AdminController extends Controller
 {
     public function createStoreManager()
     {
+        $user = Auth::user();
         $shops = Shop::all();
 
-        return view('admin.create_store_manager', compact('shops'));
+        return view('admin.create_store_manager', compact('shops','user'));
     }
 
-    public function storeStoreManager(AdminRegisterRequest $request)
+    public function storeStoreManager(StoreManagerRegisterRequest $request)
     {
-        DB::table('store_managers')->insert([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'shop_id' => $request->shop_id,
-            'role' => 'store_manager', 
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
+        $validated = $request->validated();
+
+        $user = User::find($request->user_id);
+            if (!$user) {
+                return redirect()->back()->withErrors(['user_id' => '指定されたユーザーが見つかりません。']);
+            }
+
+        $manager = StoreManager::create([
+        'user_id' => $user->id,
+        'name' => $validated['name'],
+        'email' => $validated['email'],
+        'password' => bcrypt($validated['password']),
+    ]);
 
         return redirect()->route('admin.create_store_manager')->with('success', '店舗代表者が登録されました。');
     }
 
     public function createAdmin()
     {
+        // $user = Auth::user();
+
         return view('admin.create_admin');
     }
 
     public function storeAdmin(AdminRegisterRequest $request)
     {
+
         User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'role' => 'admin', 
         ]);
+        
 
         return redirect()->route('admin.registration_complete');
         
     }
 
-    public function comprete(){
+    public function registrationComplete(){
+
         return view('admin.registration_complete');
     }
 

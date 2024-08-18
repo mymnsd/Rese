@@ -24,6 +24,10 @@ class ReservationController extends Controller
         $user = Auth::user();
 
         $startAt = Carbon::createFromFormat('Y-m-d H:i', $request->date . ' ' . $request->time);
+
+        if ($startAt->isPast()) {
+            return redirect()->back()->withErrors(['time' => '過去の時間には予約できません。'])->withInput();
+        }
         
         $reservation = new Reservation();
         $reservation->shop_id = $request->shop_id;
@@ -59,6 +63,12 @@ class ReservationController extends Controller
         $time = $request->input('time');
         $datetime = $date . ' ' . $time . ':00';
 
+        $startAt = Carbon::createFromFormat('Y-m-d H:i:s', $datetime);
+
+        if ($startAt->isPast()) {
+        return redirect()->back()->withErrors(['time' => '過去の時間には予約できません。'])->withInput();
+    }
+
         $reservation->start_at = $datetime;
         $reservation->guest_count = $request->input('guest_count');
         $reservation->save();
@@ -74,7 +84,13 @@ class ReservationController extends Controller
 
     public function verify($reservationId)
     {
+        $user = Auth::user();
+
         $reservation = Reservation::with('shop', 'user')->find($reservationId);
+
+        if ($reservation->shop->manager_id !== $user->id) {
+            return response()->json(['status' => 'fail', 'message' => 'この予約情報にはアクセスできません。']);
+        }
 
         if ($reservation) {
             return response()->json([

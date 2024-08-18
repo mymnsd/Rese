@@ -15,6 +15,13 @@
 @endif
   <div class="index__inner">
     <h2 class="content__ttl">管理している店舗</h2>
+    <p>代表者名: {{ $storeManager->name }}</p>
+    @if (session('selectedShop'))
+        <div class="alert alert-info">
+            <strong>選択された店舗:</strong> {{ session('selectedShop')->name }}
+        </div>
+    @endif
+
     <div class="flex">
       @foreach($allShops as $shop)
         <div class="shop-item">
@@ -42,6 +49,11 @@
     {{-- 予約一覧リンク --}}
     <div class="reservation-area">
       <h2 class="content__ttl">予約一覧</h2>
+        @if (session('info'))
+        <div class="info">
+            {{ session('info') }}
+        </div>
+        @endif
       <div class="reservation-link">
         <a class="link" href="{{ route('store_manager.reservations') }}">予約情報を確認</a>
       </div>
