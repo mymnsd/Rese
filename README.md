@@ -107,6 +107,18 @@ laravel学習の総まとめとして作成しました。
 
 ![スクリーンショット (77)](https://github.com/user-attachments/assets/301d1ab3-97b4-45bc-a488-eb73cd600511)
 
+## テストアカウントについて
+
+管理者様と店舗代表者のテストアカウントを作成しております。
+
+　　・管理者様→アドレス：admin@example.com、パスワード：password
+
+  　　・店舗代表者様→アドレス：storemanager@example.com、パスワード:password
+
+   と入力していただくと管理者様は「Admin User」として、店舗代表者様は「テスト店舗代表者」としてそれぞれログインできます。
+
+  　　　　
+
 ## URL
 
 開発環境：http://localhost/
