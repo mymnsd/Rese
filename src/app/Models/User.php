@@ -57,9 +57,15 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Review::class);
     }
 
+    public function storeManagers()
+    {
+        return $this->hasMany(StoreManager::class);
+    }
+
     public function shop()
     {
-        return $this->hasOne(Shop::class);
+        return $this->hasOne(Shop::class,'manager_id');
+
     }
 
     public function sendEmailVerificationNotification()

@@ -15,6 +15,7 @@
     @csrf
       <div class="form__group">
         <label class="form__label" for="name"></label>
+        <input type="hidden" name="user_id" value="{{ $user->id }}">
         <i class="fa-solid fa-user fa-2x"></i>
         <input class="form__input" type="text" name="name" value="{{ old('name') }}" placeholder="name">
       </div>
@@ -57,16 +58,6 @@
           @enderror
       </p>
 
-      <div class="form__group">
-        <label class="form__label" for="shop_id"></label>
-        <i class="fa-solid fa-shop fa-2x"></i>
-        <select class="form__select" name="shop_id" required>
-          <option value="" disabled selected>選択してください</option>
-        @foreach($shops as $shop)
-          <option class="shops" value="{{ $shop->id }}">{{ $shop->name }}</option>
-        @endforeach
-        </select>
-      </div>
       <div class="btn">
         <button class="btn--blue" type="submit">作成</button>
       </div>

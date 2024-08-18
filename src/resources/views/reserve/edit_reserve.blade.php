@@ -17,6 +17,9 @@
   <div class="edit-container__inner">
     <div class="edit-container__content">
       <h3 class="edit__ttl">変更する項目を入力してください</h3>
+      @error('time')
+          <div class="reservation-error-message">{{ $message }}</div>
+          @enderror
       <form class="edit-form" action="{{ route  ('reserve.update', $reservation->id) }}" method="post">
         @csrf
         @method('put')
@@ -48,6 +51,7 @@
                 @endfor
               </select>
             </td>
+            
           </tr>
       
           <tr class="edit-table__row">

@@ -36,14 +36,6 @@ Route::get('/',[ShopController::class,'index']);
 // 店舗情報
 Route::get('/detail/{shop_id}',[ShopController::class,'detail'])->name('shops.detail');
 
-
-// QRコード
-Route::get('/reservations/{reservation}/qrcode', [QRCodeController::class, 'generate'])->name('reservations.qrcode');
-Route::get('/qrcode/verify', function () {
-    return view('qrcode.verify');
-})->name('qrcode.verify');
-Route::get('/reservations/{reservation}/verify', [ReservationController::class, 'verify'])->name('reservations.verify');
-
 // ユーザー登録
 Route::get('/register',[RegisterController::class,'create']);
 Route::post('/register',[RegisterController::class,'store']);
@@ -55,30 +47,30 @@ Route::post('/login',[AuthController::class,'store']);
 // ユーザールート
 Route::middleware('auth')->group(function () {
   // メール認証
-    Route::get('email/verify', [VerificationController::class, 'show'])->name('verification.notice');
-    Route::get('email/verify/{id}/{hash}', [VerificationController::class, 'verify'])->middleware(['signed','throttle:6,1'])->name('verification.verify');
-    Route::post('email/resend', [VerificationController::class, 'resend'])->middleware(['throttle:6,1'])->name('verification.resend');
-    Route::get('email/verification-sent',[VerificationController::class,'verificationsent'])->name('verification.sent');
+    Route::get('/email/verify', [VerificationController::class, 'show'])->name('verification.notice');
+    Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'verify'])->middleware(['signed','throttle:6,1'])->name('verification.verify');
+    Route::post('/email/resend', [VerificationController::class, 'resend'])->middleware(['throttle:6,1'])->name('verification.resend');
+    Route::get('/email/verification-sent',[VerificationController::class,'verificationsent'])->name('verification.sent');
     Route::get('/thanks',[VerificationController::class,'thanks'])->name('thanks');
 
   // レビュー
-    Route::get('reservations/{reservation}/review', [ReviewController::class, 'create'])->name('reviews.create');
-    Route::post('reservations/{reservation}/review', [ReviewController::class, 'store'])->name  ('reviews.store');
-    Route::get('reviews/thanks', [ReviewController::class, 'thanksReview'])->name('reviews.thanks');
+    Route::get('/reservations/{reservation}/review', [ReviewController::class, 'create'])->name('reviews.create');
+    Route::post('/reservations/{reservation}/review', [ReviewController::class, 'store'])->name  ('reviews.store');
+    Route::get('/reviews/thanks', [ReviewController::class, 'thanksReview'])->name('reviews.thanks');
     
   // ログアウト
     Route::post('/logout', [AuthController::class, 'destroy']);
 
+    // 予約一覧取得
+    Route::get('/reservations', [ReservationController::class, 'index'])->name('reservations.index');
+
   // 予約登録、キャンセル、変更
-    Route::get('/reserve',[ReservationController::class,'index']);
     Route::post('/reserve',[ReservationController::class,'create']);
     Route::post('/reserve/confirm-cancel-page/{id}',[ReservationController::class,'confirmCancelPage'])->name('reserve.confirmCancelPage');
     Route::post('/reserve/confirm-cancel/{id}', [ReservationController::class,'confirmCancel']) ->name('reserve.confirmCancel');
     Route::get('/reserve/{id}/edit',[ReservationController::class,'edit'])->name('reserve.edit_reserve');
     Route::put('/reserve/{id}',[ReservationController::class,'update'])->name('reserve.update');
 
-  // 予約一覧取得
-    Route::get('/reservations', [ReservationController::class, 'index'])->name('reservations.index');
 
   // マイページ
     Route::get('/mypage',[UserController::class,'mypage']);
@@ -93,18 +85,17 @@ Route::middleware('auth')->group(function () {
         Route::post('/store', [PaymentController::class, 'store'])->name('store');
         Route::get('/return', [PaymentController::class, 'return'])->name('return');
     });
+
+    // QRコード生成
+    Route::get('/reservations/{reservation}/qrcode', [QRCodeController::class, 'generate'])->name('reservations.qrcode');
 });
-
-
 
 // 管理者登録
 Route::get('admin/create_admin', [AdminController::class, 'createAdmin'])->name('admin.create_admin');
 Route::post('admin/store_admin', [AdminController::class, 'storeAdmin'])->name('admin.store_admin');
 
 // 管理者登録完了ページ
-Route::get('admin/registration_complete', function() {
-    return view('admin.registration_complete');
-})->name('admin.registration_complete');
+Route::get('admin/registration_complete', [AdminController::class, 'registrationComplete'])->name('admin.registration_complete');
 
 // 管理者用ログイン
 Route::prefix('admin')->group(function () {
@@ -125,7 +116,7 @@ Route::post('store_manager/login', [StoreManagerLoginController::class, 'login']
 
 // 店舗代表者ルート
 Route::middleware(['auth:store_manager', 'role:store_manager'])->group(function () {
-    Route::get('store-manager/index', [StoreManagerController::class, 'index'])->name('store_manager.index');
+    Route::get('store_manager/index', [StoreManagerController::class, 'index'])->name('store_manager.index');
 
     // 店舗作成
     Route::get('store_manager/create', [StoreManagerController::class, 'create'])->name('store_manager.create');
@@ -147,4 +138,10 @@ Route::middleware(['auth:store_manager', 'role:store_manager'])->group(function 
     // お知らせメール送信
     Route::get('/store_manager/notification', [StoreManagerNotificationController::class, 'create'])->name('store_manager.notification');
     Route::post('/store_manager/notification', [StoreManagerNotificationController::class, 'send'])->name('store_manager.sendNotification');
+
+    //QRコード照合
+    Route::get('/qrcode/verify', [QRCodeController::class, 'verify'])->name('qrcode.verify');
+
+    // 予約情報の照合
+    Route::get('/reservations/{reservation}/verify', [ReservationController::class, 'verify'])->name('reservations.verify');
 });

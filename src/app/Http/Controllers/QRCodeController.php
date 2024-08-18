@@ -17,4 +17,9 @@ class QRCodeController extends Controller
 
         return view('qrcode.show', compact('qrCode', 'reservation'));
     }
+
+    public function verify()
+    {
+        return view('qrcode.verify');
+    }
 }

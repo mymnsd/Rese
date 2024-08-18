@@ -17,7 +17,7 @@ class Shop extends Model
         'genre_id',
         'description',
         'image_url',
-        'user_id',
+        'manager_id',
         'price',
     ];
 
@@ -49,7 +49,7 @@ class Shop extends Model
 
     public function manager()
     {
-        return $this->hasOne(StoreManager::class);
+        return $this->belongsTo(StoreManager::class);
     }
 
     public function isFavorite()

@@ -14,15 +14,20 @@ class StoreManager extends Authenticatable
         'name', 
         'email', 
         'password', 
-        'shop_id',
+        'user_id',
         'role',
     ];
 
     protected $hidden = ['password'];
-    
-    public function shop()
+
+    public function user()
     {
-        return $this->belongsTo(Shop::class);
-        
+        return $this->belongsTo(User::class);
     }
+    
+    public function shops()
+    {
+        return $this->hasMany(Shop::class,'manager_id');
+    }
+    
 }

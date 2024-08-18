@@ -5,22 +5,7 @@
 @endsection
 
 @section('content')
-{{-- <div class="container">
-  @if (session('success'))
-    <div class="alert alert-success">
-        {{ session('success') }}
-    </div>
-@endif --}}
   <div class="edit__inner">
-  {{-- @if ($errors->any())
-    <div class="error">
-      <ul>
-      @foreach ($errors->all() as $error)
-        <li>{{ $error }}</li>
-      @endforeach
-      </ul>
-    </div>
-  @endif --}}
     <h2 class="content__ttl">店舗情報の編集</h2>
     <form class="form" action="{{ route('store_manager.update', ['shopId' => $shop->id]) }}" method="POST" enctype="multipart/form-data">
     @csrf
