@@ -61,7 +61,7 @@ laravel学習の総まとめとして作成しました。
 
 ### Dockerビルド
 
-  1.git clone git@github.com:mymnsd/rese.git
+  1.git clone git@github.com:mymnsd/Rese.git
 
   2.DockerDesktopアプリを立ち上げる
 
