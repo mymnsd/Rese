@@ -20,7 +20,7 @@
         <i class="fa-solid fa-envelope fa-2x"></i>
         <input class="form__input" type="email" name="email" id="email" value="{{ old('email') }}" placeholder="Email" autofocus>
       </div>
-      <p class="register-form__error-message">
+      <p class="login-form__error-message">
           @error('email')
           {{ $message }}
           @enderror
@@ -31,7 +31,7 @@
         <i class="fa-solid fa-lock fa-2x"></i>
         <input class="form__input" type="password" name="password" id="password" value="{{ old('password') }}" placeholder="Password">
       </div>
-      <p class="register-form__error-message">
+      <p class="login-form__error-message">
           @error('password')
           {{ $message }}
           @enderror

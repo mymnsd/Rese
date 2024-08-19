@@ -25,13 +25,12 @@
         <textarea class="form-control" name="description" id="description">{{ old('description', $shop->description) }}</textarea>
       </div>
 
-
       <div class="form-group">
         <label class="form__label" for="image">画像</label>
         <input class="form__input" type="file" name="image" id="image" class="form-control">
       </div>
       <div class="edit-img">
-      <img class="img" id="imagePreview" src="{{ $shop->image_url }}" alt="店舗画像" style="display: {{ $shop->image_url ? 'block' : 'none' }}">
+        <img class="img" id="imagePreview" src="{{ $shop->image_url }}" alt="店舗画像" style="display: {{ $shop->image_url ? 'block' : 'none' }}">
       </div>
 
       <button class="btn" type="submit">更新する</button>

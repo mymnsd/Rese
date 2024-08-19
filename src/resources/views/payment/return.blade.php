@@ -7,11 +7,11 @@
 @section('content')
 <div class="container">
     <div class="return__inner">
-    <h2 class="content__ttl">決済が完了しました！</h2>
-    <p class="message">お支払いが正常に処理されました。<br>ご利用いただきありがとうございます。</p>
-    <div class="link">
-        <a class="back-link" href="/">トップページへ戻る</a>
-    </div>
+        <h2 class="content__ttl">決済が完了しました！</h2>
+        <p class="message">お支払いが正常に処理されました。<br>ご利用いただきありがとうございます。</p>
+        <div class="link">
+            <a class="back-link" href="/">トップページへ戻る</a>
+        </div>
     </div>
 </div>
 @endsection

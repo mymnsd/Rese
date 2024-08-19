@@ -51,12 +51,11 @@ class ShopController extends Controller
 
   public function destroy($shopId)
   {
-    if (!auth()->check()) {
-        return redirect()->route('login')->with('error', 'ログインしてください。');
-    }
-        $shop = Shop::findOrFail($shopId);
+    $user = auth()->user();
 
-        if (auth()->id() !== $shop->user_id) {
+    $shop = Shop::findOrFail($shopId);
+
+    if ($shop->manager_id !== $user->id) {
         return redirect()->route('store_manager.index')->with('error', '削除権限がありません。');
     }
 

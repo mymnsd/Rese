@@ -11,7 +11,6 @@ class ReviewController extends Controller
     public function create(Reservation $reservation)
     {
         if (!$reservation->canReview()) {
-             \Log::info('Cannot review: ' . $reservation->id);
             return redirect('mypage')->with('error', 'レビューを投稿できるのは来店後のみです。');
         }
 
@@ -21,11 +20,10 @@ class ReviewController extends Controller
         ->first();
 
         if ($existingReview) {
-              \Log::info('Existing review found: ' . $existingReview->id);
             return redirect()->route('reviews.edit', $existingReview->id)
             ->with('error', 'この店舗にはすでにレビューを投稿しています。レビューは編集してください。');
         }
- \Log::info('Creating new review for reservation: ' . $reservation->id);
+
         return view('reviews.create', compact('reservation'));
     }
 
@@ -62,39 +60,36 @@ class ReviewController extends Controller
     }
 
     public function edit($id)
-{
-    $review = Review::findOrFail($id);
+    {
+        $review = Review::findOrFail($id);
 
-    if ($review->user_id != auth()->id()) {
-        return redirect()->route('mypage')->with('error', 'このレビューを編集する権限がありません。');
+        if ($review->user_id != auth()->id()) {
+            return redirect()->route('mypage')->with('error', 'このレビューを編集する権限がありません。');
+        }
+
+        return view('reviews.edit', compact('review'));
     }
 
-    return view('reviews.edit', compact('review'));
-}
+    public function update(Request $request, $id)
+    {
+        $review = Review::findOrFail($id);
 
-public function update(Request $request, $id)
-{
-    $review = Review::findOrFail($id);
+        if ($review->user_id != auth()->id()) {
+            return redirect()->route('mypage')->with('error', 'このレビューを編集する権限がありません。');
+        }
 
-    // 認証済みユーザーがレビューの投稿者であることを確認
-    if ($review->user_id != auth()->id()) {
-        return redirect()->route('mypage')->with('error', 'このレビューを編集する権限がありません。');
+        $request->validate([
+            'rating' => 'required|integer|between:1,  5',
+            'comment' => 'nullable|string|max:1000',
+        ]);
+
+        $review->update([
+            'rating' => $request->rating,
+            'comment' => $request->comment,
+        ]);
+
+        return redirect()->route('reviews.thanks')->with('success', 'レビューが更新されました');
     }
-
-    // バリデーション
-    $request->validate([
-        'rating' => 'required|integer|between:1,5',
-        'comment' => 'nullable|string|max:1000',
-    ]);
-
-    // レビューを更新
-    $review->update([
-        'rating' => $request->rating,
-        'comment' => $request->comment,
-    ]);
-
-    return redirect()->route('reviews.thanks')->with('success', 'レビューが更新されました');
-}
 
     public function thanksReview()
     {

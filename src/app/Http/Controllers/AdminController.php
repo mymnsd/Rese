@@ -45,7 +45,6 @@ class AdminController extends Controller
 
     public function createAdmin()
     {
-        // $user = Auth::user();
 
         return view('admin.create_admin');
     }

@@ -51,7 +51,7 @@
         <label class="form-label" for="image">画像</label>
         <input  class="form-input" type="file" name="image" id="image" class="form-control">
         <!-- 画像プレビュー -->
-          <img id="imagePreview" src="#" alt="Image Preview" style="display: none; max-width: 200px; margin-top: 10px;">
+          <img clss="img" id="imagePreview" src="#" alt="Image Preview" style="display: none; max-width: 200px; margin-top: 10px;">
       </div>
 
         <button type="submit" class="btn--blue">作成</button>

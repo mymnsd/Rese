@@ -6,7 +6,7 @@
 
 @section('content')
 <div class="container">
-  <div class="inner">
+  <div class="review-inner">
     <h2 class="content__ttl">レビューを投稿するショップを選択してください</h2>
     @foreach($reservations as $reservation)
       <div class="reservation-list">
@@ -20,12 +20,13 @@
         @else
           <p class="after-review">レビューは来店後に投稿できます。</p>
         @endif
-       @if($reservation->user->reviews->where('shop_id', $reservation->shop->id)->first())
-            <div class="edit-btn">
-                {{-- <a href="{{ route('reviews.edit', $reservation->review->id) }}" class="btn">レビューを編集する</a> --}}
-                <a href="{{ route('reviews.edit', $reservation->user->reviews->where('shop_id', $reservation->shop->id)->first()->id) }}" class="btn">レビューを編集する</a>
-            </div>
+
+        @if($reservation->user->reviews->where('shop_id', $reservation->shop->id)->first())
+          <div class="edit-btn">
+            <a href="{{ route('reviews.edit', $reservation->user->reviews->where('shop_id', $reservation->shop->id)->first()->id) }}" class="btn">レビューを編集する</a>
+          </div>
         @endif
+        
       </div>
     @endforeach
       

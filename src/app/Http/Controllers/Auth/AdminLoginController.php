@@ -15,11 +15,6 @@ class AdminLoginController extends Controller
     }
 
     public function login(LoginRequest $request){
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
-
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($request->only('email', 'password'), $request->filled('remember'))) {

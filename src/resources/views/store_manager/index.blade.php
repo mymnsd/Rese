@@ -8,22 +8,27 @@
 
 <div class="container">
   <div class="container">
-  @if (session('success'))
+    @if (session('success'))
     <div class="success">
         {{ session('success') }}
     </div>
-@endif
-  <div class="index__inner">
-    <h2 class="content__ttl">管理している店舗</h2>
-    <p>代表者名: {{ $storeManager->name }}</p>
-    @if (session('selectedShop'))
-        <div class="alert alert-info">
-            <strong>選択された店舗:</strong> {{ session('selectedShop')->name }}
-        </div>
     @endif
+    @if (session('error'))
+    <div class="error">
+        {{ session('error') }}
+    </div>
+    @endif
+    <div class="index__inner">
+      <h2 class="content__ttl">管理している店舗</h2>
+      <p>代表者名: {{ $storeManager->name }}</p>
+        @if (session('selectedShop'))
+          <div class="alert alert-info">
+            <strong>選択された店舗:</strong> {{ session('selectedShop')->name }}
+          </div>
+        @endif
 
-    <div class="flex">
-      @foreach($allShops as $shop)
+      <div class="flex">
+        @foreach($allShops as $shop)
         <div class="shop-item">
           <h3>{{ $shop->name }}</h3>
           <div class="shop-img">
@@ -40,8 +45,8 @@
             <button type="submit" class="btn">店舗を削除する</button>
           </form>
         </div>
-      @endforeach
-    </div>
+        @endforeach
+      </div>
         <div class="create-link">
           <a class="link" href="{{ route('store_manager.create') }}" class="btn btn-success">店舗を追加</a>
         </div>

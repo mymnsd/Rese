@@ -44,13 +44,14 @@
             <div id="card-cvc" class="form-control"></div>
           </div>
 
-          <div id="card-errors" class="text-danger"></div>
+          <div id="card-errors" class="text-danger">
+          </div>
 
           <button class="btn">支払い</button>
         </form>
         <div class="link">
         <a class="back-link" href="/mypage">マイページへ戻る</a>
-      </div>
+        </div>
       </div>
     </div>
   </div>

@@ -16,10 +16,9 @@ class ReservationController extends Controller
         $user = auth()->user();
 
         $reviews = Review::where('user_id', $user->id)->get();
-        // $reservations = Reservation::where('user_id', auth()->id())->with('shop')->get();
+    
+        $reservations = Reservation::where('user_id', $user->id)->get();
         
-         // すべての予約を取得
-    $reservations = Reservation::where('user_id', $user->id)->get();
         return view('reservations.index', compact('reservations','reviews'));
 
     }
