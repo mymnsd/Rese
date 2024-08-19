@@ -56,6 +56,8 @@ Route::middleware('auth')->group(function () {
   // レビュー
     Route::get('/reservations/{reservation}/review', [ReviewController::class, 'create'])->name('reviews.create');
     Route::post('/reservations/{reservation}/review', [ReviewController::class, 'store'])->name  ('reviews.store');
+    Route::get('reviews/{id}/edit', [ReviewController::class, 'edit'])->name('reviews.edit');
+    Route::put('reviews/{id}', [ReviewController::class, 'update'])->name('reviews.update');
     Route::get('/reviews/thanks', [ReviewController::class, 'thanksReview'])->name('reviews.thanks');
     
   // ログアウト
