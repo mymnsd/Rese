@@ -20,9 +20,15 @@
         @else
           <p class="after-review">レビューは来店後に投稿できます。</p>
         @endif
-        <hr>
+       @if($reservation->user->reviews->where('shop_id', $reservation->shop->id)->first())
+            <div class="edit-btn">
+                {{-- <a href="{{ route('reviews.edit', $reservation->review->id) }}" class="btn">レビューを編集する</a> --}}
+                <a href="{{ route('reviews.edit', $reservation->user->reviews->where('shop_id', $reservation->shop->id)->first()->id) }}" class="btn">レビューを編集する</a>
+            </div>
+        @endif
       </div>
-      @endforeach
+    @endforeach
+      
       <div class="link">
         <a class="back-link" href="/mypage">マイページへ戻る</a>
       </div>

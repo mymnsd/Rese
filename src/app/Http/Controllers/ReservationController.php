@@ -5,18 +5,22 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Reservation;
+use App\Models\Review; 
 use App\Models\Shop;
 use Carbon\Carbon;
 use App\Http\Requests\ReservationRequest;
 
-
-
 class ReservationController extends Controller
 {
     public function index(){
-        $reservations = Reservation::where('user_id', auth()->id())->with('shop')->get();
+        $user = auth()->user();
+
+        $reviews = Review::where('user_id', $user->id)->get();
+        // $reservations = Reservation::where('user_id', auth()->id())->with('shop')->get();
         
-        return view('reservations.index', compact('reservations'));
+         // すべての予約を取得
+    $reservations = Reservation::where('user_id', $user->id)->get();
+        return view('reservations.index', compact('reservations','reviews'));
 
     }
 
