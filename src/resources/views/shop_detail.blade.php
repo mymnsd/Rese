@@ -5,10 +5,22 @@
 @endsection
 
 @section('content')
-<div class="detail__content">
+
   <div class="detail__content-inner">
     {{-- 店舗欄 --}}
     <article class="card__group">
+      <div class="detail__content">
+  @if(session('success'))
+    <div class="success">
+        {{ session('success') }}
+    </div>
+  @endif
+
+  @if(session('error'))
+    <div class="error">
+        {{ session('error') }}
+    </div>
+  @endif
       <div class="ttl-group">
         @if(Auth::check())
         <a class="back-link" href="/mypage"></a>
@@ -19,20 +31,6 @@
         <p class="card__price">価格：{{ $shop->price }}円</p>
       </div>
 
-      {{-- レビュー、コメント欄 --}}
-      <h3>レビュー</h3>
-        @if($shop->reviews->isEmpty())
-          <p>レビューはまだありません。</p>
-        @else
-        @foreach($shop->reviews as $review)
-          <div>
-            <p><strong>{{ $review->user->name }}</strong>さんの満足度（５段階）: {{ $review->rating }}</p>
-            <p>{{ $review->comment }}</p>
-            <p>投稿日時: {{ $review->created_at->format('Y-m-d H:i') }}</p>
-          </div>    
-        @endforeach
-        @endif
-      
       <div class="card__img">
           <img src="{{ $shop->image_url}}" alt="店舗画像">
       </div>
@@ -41,8 +39,40 @@
         <span class="card__tag">#{{ $shop->genre->name }}</span>
       </div>
       <p class="card-desc">{{ $shop->description }}</p>
-    </article>
+
+      @if ($reservation)
+        <a href="{{ route('reviews.create', $reservation) }}" class="review-link">口コミを投稿する</a>
+      @endif
+      
+      <a href="{{ route('reviews.all', $shop->id) }}" class="btn--blue">すべての口コミ情報</a>
+      <hr>
+
+      <div class="review-actions">
+        @if ($user && $user->hasReviewed($shop->id))
+          @php
+            $userReview = $shop->reviews()->where('user_id', $user->id)->first();
+          @endphp
+          <a href="{{ route('reviews.edit', $userReview->id) }}" class="review-link edit">口コミを編集</a>
     
+          <form action="{{ route('reviews.destroy', $userReview->id) }}" method="POST" style="display:inline;">
+          @csrf
+          @method('DELETE')
+          <button type="submit" class="review-link delete">口コミを削除</button>
+          </form>
+        @endif
+      </div>
+
+      @if ($firstReview)
+        <div class="review">
+          <p>{!! ratingStars($firstReview->rating) !!}</p>
+          <p>{{ $firstReview->comment }}</p>
+        </div>
+        <hr>
+      @else
+        <p>レビューはまだありません。</p>
+      @endif
+    </article>
+
     {{-- 予約欄 --}}
     <div class="reservation__group">
       <h3 class="reservation__ttl">予約</h3>
@@ -86,7 +116,7 @@
           @enderror
         </div>
         
-      <input type="hidden" name="start_at" id="start_at"> 
+        <input type="hidden" name="start_at" id="start_at"> 
         <table class="reservation-table">
           <tr class="reservation-table__row">
             <th class="reservation-table__ttl">Shop</th>
@@ -110,6 +140,7 @@
     </div>
   </div>  
 </div>
+
 <script>
     document.getElementById('date').addEventListener('input', function() {
         document.getElementById('reservation_date').textContent = this.value;

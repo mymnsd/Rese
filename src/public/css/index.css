@@ -1,3 +1,50 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  /* ソートメニューとエリア・ジャンルメニューの位置を分ける */
+  padding: 10px;
+  align-items: center;
+  /* 垂直方向の中央揃え */
+}
+
+/* ソートメニューのスタイル */
+.sort-nav {
+  display: flex;
+  align-items: center;
+  /* margin-right: auto; */
+  /* 左寄せにするために margin-right を auto に設定 */
+}
+
+.sort-nav-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+.sort-nav-item--sort {
+  margin-right: 10px;
+}
+
+.search-select--sort {
+  box-shadow: 3px 3px 5px #888;
+  border-radius: 5px;
+  border-style: none;
+  padding: 16px 10px;
+  width: 150px;
+  /* 固定幅を設定 */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  position: relative;
+}
+
+.search-select--sort:focus {
+  outline: none;
+}
+
+
 .header__nav{
   width: 60%;
 }

@@ -17,6 +17,7 @@ class UserController extends Controller
     $favorites = $user->favorites()->with('shop')->get();
     $reservations = Reservation::where('user_id',Auth::id())->get();
 
+
     return view('mypage', compact('reservations','favorites'));
   }
 }

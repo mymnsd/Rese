@@ -69,6 +69,7 @@
         <button class="btn--blue" type="submit">ログアウト</button>
       </div>
     </form>
+
   </div>
 </div>
 @endsection

@@ -16,7 +16,8 @@ class Review extends Model
         'user_id', 
         'shop_id',
         'rating', 
-        'comment'
+        'comment',
+        'image_path'
     ];
 
     public function reservation()

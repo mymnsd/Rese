@@ -72,4 +72,10 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         $this->notify(new \App\Notifications\VerifyEmailJapanese);
     }
+
+    public function hasReviewed($shopId)
+    {
+        return $this->reviews()->where('shop_id', $shopId)->exists();
+    }
+
 }

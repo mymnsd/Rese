@@ -50,3 +50,13 @@
 .back-link:hover {
   opacity: 0.7;
 }
+
+.review-image {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.review-image img {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}

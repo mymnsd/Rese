@@ -4,9 +4,9 @@
 <link rel="stylesheet" href="{{ asset('css/mypage.css') }}">
 @endsection
 
-@section('reservations')
+{{-- @section('reservations')
   <a class="review-btn" href="{{ route('reservations.index') }}" >ショップレビュー投稿ページへ</a>
-@endsection
+@endsection --}}
 
 @section('content')
 <div class="mypage">
@@ -39,7 +39,9 @@
         <table class="reservation-table">
         <tr class="reservation-table__row">
           <th class="reservation-table__ttl">Shop</th>
-          <td class="reservation-table__item">{{ $reservation->shop->name }}</td>
+          <td class="reservation-table__item">{{ $reservation->shop->name }}
+            
+          </td>
         </tr>
         <tr class="reservation-table__row">
           <th class="reservation-table__ttl">Date</th>
