@@ -1,3 +1,164 @@
+.review__inner{
+  width: 100%;
+  padding: 0 5%;
+}
+
+.review{
+  background-color: #fff;
+  margin: 0 auto;
+  padding: 30px;
+  text-align: center;
+  width: 60%;
+}
+
+.flex--right{
+  margin-top: 50px;
+  width: 100%;
+}
+
+.flex--left{
+  width: 100%;
+}
+
+.contnt__ttl{
+  font-size: 1.5rem;
+}
+.table{
+  margin: 0 auto;
+  width: 100%;
+}
+
+.btn-area{
+  margin-top: 30px;
+}
+
+@media screen and (min-width: 768px) {
+  .flex {
+      display: flex;
+      justify-content: center
+    }
+
+  .flex--right {
+    margin-left: 50px;
+    width: 50%;
+  }
+
+  .flex--left {
+    border-right: 1px solid gray;
+    padding-right: 50px;
+    width: 30%;
+  }
+}
+
+/* 星 */
+.rating-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 50px;
+}
+
+.rating-stars {
+  display: flex;
+  direction: rtl;
+  font-size: 2rem;
+}
+
+.rating-stars input[type="radio"] {
+  display: none;
+}
+
+.rating-stars label {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.rating-stars i.fas.fa-star {
+  color: #a7a5a5;
+  transition: color 0.2s;
+}
+
+.rating-stars input[type="radio"]:checked~label i.fas.fa-star {
+  color: #00f;
+}
+
+/* 店舗カード */
+.card__area {
+  max-width: 1500px;
+}
+
+.card__area-inner {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 0 5%;
+  width: 100%;
+}
+
+.card__group {
+  background-color: #fff;
+  box-shadow: 3px 3px 5px #888;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.card__img {
+  width: 100%;
+}
+
+.card__img img {
+  border-radius: 5px 5px 0 0;
+  width: 100%;
+}
+
+.card__content {
+  padding: 0 15px;
+}
+
+.card__ttl {
+  font-size: 1.2rem;
+  margin-bottom: 0;
+}
+
+.card__tag {
+  font-size: 0.9rem;
+}
+
+.card__flex {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 0;
+}
+
+.card-link--button {
+  border-radius: 5px;
+  background-color: blue;
+  color: #fff;
+  padding: 5px 10px;
+}
+
+.card-link--button:hover {
+  opacity: 0.8;
+}
+
+.heart input[type="checkbox"] {
+  display: none;
+}
+
+.heart i {
+  color: gray;
+}
+
+.heart input[type="checkbox"]:checked+i {
+  color: red;
+}
+
+.fa-regular.fa-heart {
+  color: gray;
+}
+
 .error {
   background-color: #f8d7da;
   border: 1px solid #f5c6cb;
@@ -9,8 +170,23 @@
   width: 40%;
 }
 
+.success {
+  background-color: #d4edda;
+  border: 1px solid #c3e6cb;
+  border-radius: 4px;
+  color: #155724;
+  padding: 10px;
+  margin: 0 auto 15px;
+  text-align: center;
+  width: 40%;
+}
+
 .form-group {
-  margin-bottom: 8px;
+  margin-bottom: 50px;
+}
+
+.form-label{
+  font-weight: bold;
 }
 
 .rating {
@@ -20,6 +196,7 @@
 }
 
 .form-control {
+  background-color: transparent;
   font-size: 1.2em;
   height: 100px;
   width: 100%;
@@ -38,6 +215,19 @@
   width: 100%;
 }
 
+.btn-white {
+  border: none;
+  background-color: #fff;
+  border-radius: 50px;
+  color: black;
+  display: block;
+  padding: 8px 5px;
+  margin: 50px auto;
+  text-align: center;
+  text-align: center;
+  width: 100%;
+}
+
 .btn:hover{
   opacity: 0.8;
 }
@@ -52,4 +242,32 @@
 
 .link:hover {
   opacity: 0.7;
+}
+
+/* 画像エリア */
+.drop-area {
+  background-color: #fff;
+  padding: 20px;
+  text-align: center;
+}
+
+.drop-area:hover {
+  opacity: 0.8;
+}
+
+.drop-area.dragover {
+  background-color: #d3d3ff;
+  
+}
+
+.drop-area p {
+  margin: 0;
+  font-size: 1rem;
+  color: #666;
+}
+
+@media screen and (min-width: 768px) {
+  .btn-white {
+    width: 50%;
+  }
 }

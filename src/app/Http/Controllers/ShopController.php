@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Shop;
 use App\Models\Area;
 use App\Models\Genre;
+use App\Models\Reservation;
+use App\Models\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,6 +16,8 @@ class ShopController extends Controller
     $area = $request->input('area');
     $genre = $request->input('genre');
     $keyword = $request->input('keyword');
+    $sort = $request->input('sort');
+
 
     $query = Shop::query()->with('area', 'genre');
 
@@ -29,6 +33,24 @@ class ShopController extends Controller
         $query->keyword($keyword);
     }
 
+    if ($sort == 'random') {
+        $query->inRandomOrder();
+    } elseif ($sort == 'rating_asc') {
+        $query->leftJoin('reviews', 'shops.id', '=', 'reviews.shop_id')
+              ->selectRaw('shops.*, AVG(reviews.rating) as average_rating')
+              ->groupBy('shops.id')
+              ->orderBy('average_rating', 'asc')
+              ->orderByRaw('COUNT(reviews.id) = 0 DESC'); 
+    } elseif ($sort == 'rating_desc') {
+        $query->leftJoin('reviews', 'shops.id', '=', 'reviews.shop_id')
+              ->selectRaw('shops.*, AVG(reviews.rating) as average_rating')
+              ->groupBy('shops.id')
+              ->orderBy('average_rating', 'desc')
+              ->orderByRaw('COUNT(reviews.id) = 0 DESC'); 
+    }
+
+
+
     $shops = $query->get();
 
     $areas = Area::all();
@@ -39,15 +61,36 @@ class ShopController extends Controller
   }
 
   public function detail($id){
-    $shop = Shop::find($id);
+    $shop = Shop::with('reviews.user')->findOrFail($id);
+    
+    $reservation = Reservation::where('shop_id', $shop->id)->first(); 
 
-    return view('shop_detail',compact('shop',));
+    $firstReview = Review::where('shop_id', $id)
+      ->orderBy('created_at', 'asc') 
+      ->first();
+
+    $otherReviews = Review::where('shop_id', $id)
+        ->whereNotIn('id', function ($query) {
+          $query->selectRaw('min(id)')
+          ->from('reviews')
+          ->groupBy('user_id');
+        })
+        ->with('user')
+        ->get();
+
+        $user = auth()->user();
+
+    return view('shop_detail', compact('shop','reservation','firstReview','otherReviews','user'));
   }
 
-  public function show(Shop $shop){
-    $shop->load('reviews.user'); 
-    return view('show', compact('shop'));
-  }
+  public function allReviews($id)
+{
+    $shop = Shop::findOrFail($id);
+  
+    $otherReviews = Review::where('shop_id', $id)->where('id', '!=', 1)->with('user')->get();
+
+    return view('reviews.all_reviews', compact('shop', 'otherReviews'));
+}
 
   public function destroy($shopId)
   {

@@ -27,6 +27,20 @@ a {
   text-align: center;
 }
 
+/* 星 */
+.star-filled {
+  color: blue;
+}
+
+.star-empty {
+  color: #a7a5a5;
+}
+
+.star-filled,
+.star-empty {
+  font-size: 1.5rem;
+}
+
 /* ヘッダー */
 .header {
   height: 100px;

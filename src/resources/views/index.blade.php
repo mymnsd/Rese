@@ -4,6 +4,23 @@
 <link rel="stylesheet" href="{{ asset('css/index.css') }}">
 @endsection
 
+@section('sort')
+<nav class="sort-nav">
+  <form class="search-form" action="{{ url('/') }}" method="get">
+    @csrf
+    <ul class="sort-nav-list">
+      <li class="sort-nav-item--sort">
+        <select class="search-select--sort" name="sort" id="sort" onchange="this.form.submit()">
+          <option value="" selected>並び替え：評価高/低</option>
+          <option value="random" {{ request('sort') == 'random' ? 'selected' : '' }}>ランダム</option>
+          <option value="rating_desc" {{ request('sort') == 'rating_desc' ? 'selected' : '' }}>評価が高い順</option>
+          <option value="rating_asc" {{ request('sort') == 'rating_asc' ? 'selected' : '' }}>評価が低い順</option>
+        </select>
+      </li>
+    </ul>
+  </form>
+@endsection
+
 @section('nav')
 <nav class="header__nav">
   <ul class="header__nav-list">

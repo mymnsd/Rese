@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{{ asset('css/common.css') }}">
     @yield('css')
     <script src="https://kit.fontawesome.com/cf74f62674.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   </head>
   <body>
     <header class="header">
@@ -37,8 +38,8 @@
             </h1>
           </div>
         </div>
+        @yield('sort')
         @yield('nav')
-        @yield('reservations')
       </div>
     </header>
 

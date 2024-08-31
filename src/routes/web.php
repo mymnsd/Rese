@@ -58,7 +58,10 @@ Route::middleware('auth')->group(function () {
     Route::post('/reservations/{reservation}/review', [ReviewController::class, 'store'])->name  ('reviews.store');
     Route::get('reviews/{id}/edit', [ReviewController::class, 'edit'])->name('reviews.edit');
     Route::put('reviews/{id}', [ReviewController::class, 'update'])->name('reviews.update');
+    Route::delete('reviews/{review}', [ReviewController::class, 'destroy'])->name('reviews.destroy');
     Route::get('/reviews/thanks', [ReviewController::class, 'thanksReview'])->name('reviews.thanks');
+    Route::get('/shops/{id}/reviews', [ShopController::class, 'allReviews'])->name('reviews.all');
+    Route::get('reviews/{review}/remove-image', [ReviewController::class, 'removeImage'])->name('reviews.removeImage');
     
   // ログアウト
     Route::post('/logout', [AuthController::class, 'destroy']);
@@ -90,25 +93,33 @@ Route::middleware('auth')->group(function () {
 
     // QRコード生成
     Route::get('/reservations/{reservation}/qrcode', [QRCodeController::class, 'generate'])->name('reservations.qrcode');
+
 });
 
-// 管理者登録
-Route::get('admin/create_admin', [AdminController::class, 'createAdmin'])->name('admin.create_admin');
-Route::post('admin/store_admin', [AdminController::class, 'storeAdmin'])->name('admin.store_admin');
-
-// 管理者登録完了ページ
-Route::get('admin/registration_complete', [AdminController::class, 'registrationComplete'])->name('admin.registration_complete');
-
-// 管理者用ログイン
+// 管理者ログイン関連のルート
 Route::prefix('admin')->group(function () {
-  Route::get('login',[AdminLoginController::class,'showLoginForm'])->name('admin.login');
-  Route::post('login',[AdminLoginController::class,'login']);
+    Route::get('login', [AdminLoginController::class, 'showLoginForm'])->name('admin.login');
+    Route::post('login', [AdminLoginController::class, 'login']);
 });
 
-// 店舗代表者作成ルート（管理者のみアクセス）
+// 管理者登録ルート
 Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('admin/create_admin', [AdminController::class, 'createAdmin'])->name('admin.create_admin');
+    Route::post('admin/store_admin', [AdminController::class, 'storeAdmin'])->name('admin.store_admin');
+    Route::get('admin/registration_complete', [AdminController::class, 'registrationComplete'])->name('admin.registration_complete');
+
+    // 管理者ダッシュボード
+    Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+
+    // 店舗代表者作成ルート
     Route::get('admin/create_store_manager', [AdminController::class, 'createStoreManager'])->name('admin.create_store_manager');
     Route::post('admin/store_store_manager', [AdminController::class, 'storeStoreManager'])->name('admin.store_store_manager');
+
+    // 口コミ削除ルート
+    Route::delete('/admin/reviews/{review}', [AdminController::class, 'destroyReview'])->name('admin.destroy');
+    Route::get('/admin/reviews', [AdminController::class, 'indexReviews'])->name('admin.index');
+
+    // 管理者ログアウト
     Route::post('admin/logout', [AdminController::class, 'logout'])->name('admin.logout');
 });
 
