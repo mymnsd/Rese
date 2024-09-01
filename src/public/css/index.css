@@ -1,18 +1,16 @@
 header {
   display: flex;
   justify-content: space-between;
-  /* ソートメニューとエリア・ジャンルメニューの位置を分ける */
   padding: 10px;
   align-items: center;
-  /* 垂直方向の中央揃え */
 }
 
-/* ソートメニューのスタイル */
 .sort-nav {
   display: flex;
   align-items: center;
-  /* margin-right: auto; */
-  /* 左寄せにするために margin-right を auto に設定 */
+  justify-content: right;
+  width: 70%;
+  
 }
 
 .sort-nav-list {
@@ -33,7 +31,7 @@ header {
   border-style: none;
   padding: 16px 10px;
   width: 150px;
-  /* 固定幅を設定 */
+  
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -123,7 +121,7 @@ header {
 
 .search-form{
   display: flex;
-  justify-content: left;
+  justify-content: right;
   width: 100%;
 }
 
