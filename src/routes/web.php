@@ -99,14 +99,19 @@ Route::middleware('auth')->group(function () {
 // 管理者ログイン関連のルート
 Route::prefix('admin')->group(function () {
     Route::get('login', [AdminLoginController::class, 'showLoginForm'])->name('admin.login');
-    Route::post('login', [AdminLoginController::class, 'login']);
+    Route::post('login', 
+    [AdminLoginController::class, 'login']);
+    // 管理者登録ルート
+    Route::get('create_admin', [AdminController::class, 'createAdmin'])->name('admin.create_admin');
+    Route::post('store_admin', [AdminController::class, 'storeAdmin'])->name('admin.store_admin');
+    Route::get('registration_complete', [AdminController::class, 'registrationComplete'])->name('admin.registration_complete');
 });
 
 // 管理者登録ルート
 Route::middleware(['auth', 'role:admin'])->group(function () {
-    Route::get('admin/create_admin', [AdminController::class, 'createAdmin'])->name('admin.create_admin');
-    Route::post('admin/store_admin', [AdminController::class, 'storeAdmin'])->name('admin.store_admin');
-    Route::get('admin/registration_complete', [AdminController::class, 'registrationComplete'])->name('admin.registration_complete');
+    // Route::get('admin/create_admin', [AdminController::class, 'createAdmin'])->name('admin.create_admin');
+    // Route::post('admin/store_admin', [AdminController::class, 'storeAdmin'])->name('admin.store_admin');
+    // Route::get('admin/registration_complete', [AdminController::class, 'registrationComplete'])->name('admin.registration_complete');
 
     // 管理者ダッシュボード
     Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
@@ -121,6 +126,11 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
     // 管理者ログアウト
     Route::post('admin/logout', [AdminController::class, 'logout'])->name('admin.logout');
+
+    // CSVインポート
+    Route::get('admin/import_shops', [AdminController::class, 'showImportForm'])->name('admin.import_shops.form');
+    Route::post('admin/import_shops', [AdminController::class, 'importShops'])->name('admin.import_shops');
+
 });
 
 // 店舗代表者用ログインページ
