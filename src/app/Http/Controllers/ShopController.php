@@ -49,8 +49,6 @@ class ShopController extends Controller
               ->orderByRaw('COUNT(reviews.id) = 0 DESC'); 
     }
 
-
-
     $shops = $query->get();
 
     $areas = Area::all();
@@ -84,13 +82,13 @@ class ShopController extends Controller
   }
 
   public function allReviews($id)
-{
+  {
     $shop = Shop::findOrFail($id);
   
     $otherReviews = Review::where('shop_id', $id)->where('id', '!=', 1)->with('user')->get();
 
     return view('reviews.all_reviews', compact('shop', 'otherReviews'));
-}
+  }
 
   public function destroy($shopId)
   {

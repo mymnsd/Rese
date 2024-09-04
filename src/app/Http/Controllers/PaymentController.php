@@ -61,10 +61,11 @@ class PaymentController extends Controller
             return redirect($paymentIntent->next_action->redirect_to_url->url);
         }
             return redirect()->route('payment.return')->with('status', '決済が完了しました！');
-        } catch (\Stripe\Exception\ApiErrorException $e) {
-            return back()->with('flash_alert', '決済に失敗しました！('. $e->getMessage() . ')');
-            }
-    }        
+            } catch         (\Stripe\Exception\ApiErrorException $e) {
+                $errorMessage = '決済に失敗しました！';
+                return back()->with('flash_alert', $errorMessage);
+            } 
+    }       
 
     public function return()
     {

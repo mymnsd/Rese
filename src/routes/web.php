@@ -36,6 +36,9 @@ Route::get('/',[ShopController::class,'index']);
 // 店舗情報
 Route::get('/detail/{shop_id}',[ShopController::class,'detail'])->name('shops.detail');
 
+// レビュー一覧表示
+Route::get('/shops/{id}/reviews', [ShopController::class, 'allReviews'])->name('reviews.all');
+
 // ユーザー登録
 Route::get('/register',[RegisterController::class,'create']);
 Route::post('/register',[RegisterController::class,'store']);
@@ -43,6 +46,7 @@ Route::post('/register',[RegisterController::class,'store']);
 // ユーザーログイン
 Route::get('/login',[AuthController::class,'create'])->name('login');
 Route::post('/login',[AuthController::class,'store']);
+
 
 // ユーザールート
 Route::middleware('auth')->group(function () {
@@ -60,7 +64,6 @@ Route::middleware('auth')->group(function () {
     Route::put('reviews/{id}', [ReviewController::class, 'update'])->name('reviews.update');
     Route::delete('reviews/{review}', [ReviewController::class, 'destroy'])->name('reviews.destroy');
     Route::get('/reviews/thanks', [ReviewController::class, 'thanksReview'])->name('reviews.thanks');
-    Route::get('/shops/{id}/reviews', [ShopController::class, 'allReviews'])->name('reviews.all');
     Route::get('reviews/{review}/remove-image', [ReviewController::class, 'removeImage'])->name('reviews.removeImage');
     
   // ログアウト
@@ -107,12 +110,8 @@ Route::prefix('admin')->group(function () {
     Route::get('registration_complete', [AdminController::class, 'registrationComplete'])->name('admin.registration_complete');
 });
 
-// 管理者登録ルート
+// 管理者ルート
 Route::middleware(['auth', 'role:admin'])->group(function () {
-    // Route::get('admin/create_admin', [AdminController::class, 'createAdmin'])->name('admin.create_admin');
-    // Route::post('admin/store_admin', [AdminController::class, 'storeAdmin'])->name('admin.store_admin');
-    // Route::get('admin/registration_complete', [AdminController::class, 'registrationComplete'])->name('admin.registration_complete');
-
     // 管理者ダッシュボード
     Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 

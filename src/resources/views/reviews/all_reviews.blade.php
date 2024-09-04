@@ -21,7 +21,7 @@
             <hr>
         </div>
     @empty
-        <p>レビューはありません。</p>
+        <p>口コミはありません。</p>
     @endforelse
 
     <a href="{{ route('shops.detail', $shop->id) }}" class="btn">店舗詳細に戻る</a>

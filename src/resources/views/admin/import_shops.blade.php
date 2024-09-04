@@ -5,23 +5,33 @@
 @endsection
 
 @section('content')
+
+  @if(session('success'))
+    <div class="success">{{ session('success') }}</div>
+  @endif
+
+  @if ($errors->any())
+    <div class="error ">
+      <ul>
+        @foreach ($errors->all() as $error)
+          <li>{{ $error }}</li>
+        @endforeach
+      </ul>
+    </div>
+  @endif
+
+  @if(session('messages'))
+    <div class="info">
+        <ul class="info-list">
+            @foreach(session('messages') as $message)
+                <li class="info-item">{{ $message }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 <div class="container">
   <div class="import__inner">
     <h2 class="content__ttl">店舗情報CSVインポート</h2>
-
-    @if(session('success'))
-      <div class="alert alert-success">{{ session('success') }}</div>
-    @endif
-
-    @if($errors->any())
-      <div class="alert alert-danger">
-        <ul>
-          @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
-          @endforeach
-        </ul>
-      </div>
-    @endif
 
     <form action="{{ route('admin.import_shops') }}" method="POST" enctype="multipart/form-data">
       @csrf
@@ -33,8 +43,14 @@
       <button type="submit" class="import-btn">インポート
       </button>
     </form>
+
+    <form action="{{ route('admin.logout') }}" method="POST" style="display:inline;">
+        @csrf
+          <button type="submit" class="btn btn-secondary">ログアウト</button>
+    </form>
+
     <div class="back-link--import">
-        <a href="{{ route('admin.dashboard') }}" class="link">トップページに戻る</a>
+        <a href="{{ route('admin.dashboard') }}" class="link">管理者トップページに戻る</a>
     </div>
   </div>
 </div>

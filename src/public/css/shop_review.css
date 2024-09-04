@@ -12,6 +12,10 @@
   text-align: center;
 }
 
+.review{
+  margin-bottom: 20px;
+}
+
 .btn {
   border-radius: 5px;
   background: #2b43f8;

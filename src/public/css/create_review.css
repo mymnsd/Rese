@@ -1,16 +1,16 @@
 .review__inner{
-  box-shadow: 3px 3px 5px #888;
-  border-radius: 5px;
   width: 100%;
   padding: 0 5%;
 }
 
 .review{
   background-color: #fff;
+  box-shadow: 3px 3px 5px #888;
+  border-radius: 5px;
   margin: 0 auto;
   padding: 30px;
   text-align: center;
-  width: 60%;
+  width: 80%;
 }
 
 .flex--right{
@@ -34,6 +34,30 @@
   margin-top: 30px;
 }
 
+.text-danger{
+  color: red;
+}
+
+/* レビュー編集 */
+.edit-inner{
+  background-color: #fff;
+  border-radius: 5px;
+  box-sizing: border-box;
+  box-shadow: 3px 3px 5px #888;
+  margin: 40px auto 0;
+  padding: 15px;
+  width: 60%;
+}
+
+.star {
+  font-size: 2em;
+  color: #ccc;
+  cursor: pointer;
+}
+
+.star.selected {
+  color: blue;
+}
 
 @media screen and (min-width: 768px) {
   .flex {
@@ -51,6 +75,14 @@
     padding-right: 50px;
     width: 30%;
   }
+
+  .edit-inner {
+    width: 40%;
+  }
+
+  .review {
+    width: 60%;
+  }
 }
 
 /* 星 */
@@ -64,7 +96,6 @@
 .rating-stars {
   display: flex;
   direction: rtl;
-  font-size: 2rem;
 }
 
 .rating-stars input[type="radio"] {
@@ -281,7 +312,7 @@
   background-color: #fff;
   box-shadow: 3px 3px 5px #888;
   border-radius: 5px;
-  margin: 0 auto;
+  margin: 30px auto;
   padding: 20px;
   width: 50%;
 }
@@ -309,4 +340,17 @@
 .back-link--import{
   text-align: center;
   margin-top: 20px;
+}
+
+.info{
+  margin: 0 auto;
+  width: 50%;
+}
+
+.info-list{
+  padding: 0;
+}
+
+.info-item{
+  text-align: center;
 }

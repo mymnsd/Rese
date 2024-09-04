@@ -46,6 +46,90 @@
     <main>
     @yield('content')
     </main>
-    
+
+      {{-- モーダル --}}
+    <div class="modal" id="modal">
+      <a href="#!" class="modal-overlay"></a>
+      <div class="modal__inner">
+        <div class="modal__content">
+          {{-- モーダルボタン --}}
+          <div class="modal__content-button">
+            <a class="modal__content-button--icon"
+          href="#">
+              <span class="modal__content-link--border"></span>
+              <span class="modal__content-link--border"></span>
+            </a>
+          </div>
+          <div class="modal-form__group">
+            <p class="modal-form__btn">
+              <a href="/">Home</a>
+            </p>
+            <p class="modal-form__btn">
+              <a href="/register">Registration</a>
+            </p>
+            <p class="modal-form__btn">
+              <a href="/login">Login</a>
+            </p>  
+          </div>
+        </div>
+      </div>
+    </div>
+    {{-- モーダル2 --}}
+    <div class="modal" id="modal2">
+      <a href="#!" class="modal-overlay"></a>
+      <div class="modal__inner">
+        <div class="modal__content">
+        {{-- モーダルボタン --}}
+          <div class="modal__content-button">
+            <a class="modal__content-button--icon"
+          href="#">
+              <span class="modal__content-link--border"></span>
+              <span class="modal__content-link--border"></span>
+            </a>
+          </div>
+          <div class="modal-form__group">
+            <p class="modal-form__btn">
+              <a class="modal-form__btn" href="/">Home</a>
+            </p>
+            <form class="form__logout" action="/logout" method="post">
+            @csrf
+              <button class="logout__btn" type="submit">Logout</button>
+            </form>
+            <form class="form__mypage" action="/mypage" method="get">
+            @csrf
+              <button class="mypage__btn" type="submit">Mypage</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    @if(session('modal') === 'modal2')
+    <div class="modal" id="modal2" style="display: none;">
+      <a href="#!" class="modal-overlay"></a>
+      <div class="modal__inner">
+        <div class="modal__content">
+          <div class="modal-form__group">
+            <a href="/">Home</a>
+            <form class="form__logout" action="/logout" method="post">
+            @csrf
+              <button class="logout__btn" type="submit">Logout</button>
+            </form>
+            <form class="form__mypage" action="/mypage" method="get">
+            @csrf
+              <button class="mypage__btn" type="submit">Mypage</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        var modal = document.getElementById('modal2');
+        if (modal) {
+          modal.style.display = 'block';
+        }
+      });
+    </script>
+    @endif
   </body>
 </html>

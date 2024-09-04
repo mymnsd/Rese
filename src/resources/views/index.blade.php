@@ -19,6 +19,7 @@
       </li>
     </ul>
   </form>
+</nav>
 @endsection
 
 @section('nav')
@@ -65,7 +66,7 @@
     {{-- モーダルボタン --}}
       <div class="modal__content-button">
         <a class="modal__content-button--icon"
-          href="/">
+          href="#">
           <span class="modal__content-link--border"></span>
           <span class="modal__content-link--border"></span>
         </a>
@@ -92,7 +93,7 @@
       {{-- モーダルボタン --}}
       <div class="modal__content-button">
         <a class="modal__content-button--icon"
-          href="/">
+          href="#">
           <span class="modal__content-link--border"></span>
           <span class="modal__content-link--border"></span>
         </a>
@@ -140,8 +141,7 @@
         }
       });
     </script>
-    @endif
-
+@endif
 {{-- 店舗詳細パネル --}}
 <div class="card__area">
   <div class="card__area-inner">

@@ -5,16 +5,15 @@
 @endsection
 
 @section('content')
-
   <div class="detail__content-inner">
     {{-- 店舗欄 --}}
     <article class="card__group">
       <div class="detail__content">
-  @if(session('success'))
-    <div class="success">
-        {{ session('success') }}
-    </div>
-  @endif
+        @if(session('success'))
+          <div class="success">
+            {{ session('success') }}
+          </div>
+        @endif
 
   @if(session('error'))
     <div class="error">
@@ -40,11 +39,13 @@
       </div>
       <p class="card-desc">{{ $shop->description }}</p>
 
-      @if ($reservation)
+      @if ($reservation && !$reservation->shop->reviews()->where('user_id', auth()->id())->exists())
         <a href="{{ route('reviews.create', $reservation) }}" class="review-link">口コミを投稿する</a>
       @endif
       
-      <a href="{{ route('reviews.all', $shop->id) }}" class="btn--blue">すべての口コミ情報</a>
+      @if($shop->reviews()->exists())
+        <a href="{{ route('reviews.all', $shop->id) }}" class="btn--blue">すべての口コミ情報</a>
+      @endif
       <hr>
 
       <div class="review-actions">
@@ -69,7 +70,7 @@
         </div>
         <hr>
       @else
-        <p>レビューはまだありません。</p>
+        <p>口コミはまだありません。</p>
       @endif
     </article>
 

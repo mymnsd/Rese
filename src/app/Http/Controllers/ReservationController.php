@@ -80,10 +80,10 @@ class ReservationController extends Controller
     }
 
     public function show($reservationId)
-{
-    $reservation = Reservation::with('shop', 'user')->findOrFail($reservationId);
-    return view('reservations.show', compact('reservation'));
-}
+    {
+        $reservation = Reservation::with('shop', 'user')->findOrFail($reservationId);
+        return view('reservations.show', compact('reservation'));
+    }
 
     public function verify($reservationId)
     {

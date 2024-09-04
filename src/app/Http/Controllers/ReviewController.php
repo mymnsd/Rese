@@ -12,7 +12,8 @@ class ReviewController extends Controller
     public function create(Reservation $reservation)
     {
     if (!$reservation->canReview()) {
-        return redirect('mypage')->with('error', 'レビューを投稿できるのは来店後のみです。');
+        return redirect()->route('shops.detail', ['shop_id' => $reservation->shop->id])
+            ->with('error', '口コミを投稿できるのは来店後のみです。');
     }
 
     $existingReview = Review::where('user_id', auth()->id())
@@ -21,10 +22,11 @@ class ReviewController extends Controller
 
     if ($existingReview) {
         return redirect()->route('reviews.edit', $existingReview->id)
-            ->with('error', 'この店舗にはすでにレビューを投稿しています。レビューは編集してください。');
+            ->with('error', 'この店舗にはすでに口コミを投稿しています。口コミは編集してください。');
     }
 
     $shop = $reservation->shop;
+
 
     return view('reviews.create', compact('reservation', 'shop'));
     }
@@ -45,11 +47,11 @@ class ReviewController extends Controller
             ->first();
 
     if ($existingReview) {
-            return redirect()->route('mypage')->with('error', 'この店舗にはすでにレビューを投稿しています。レビューは編集してください。');
+            return redirect()->route('mypage')->with('error', 'この店舗にはすでに口コミを投稿しています。口コミは編集してください。');
         }
 
     if (!$reservation->canReview()) {
-            return redirect()->route('mypage')->with('error', 'レビューを投稿できるのは来店後のみです。');
+            return redirect()->route('mypage')->with('error', '口コミを投稿できるのは来店後のみです。');
         }
 
     Review::create([
@@ -61,7 +63,7 @@ class ReviewController extends Controller
             'image_path' => $request->file('image') ? $request->file('image')->store('reviews', 'public') : null, 
         ]);
 
-    return redirect()->route('reviews.thanks')->with('success', '評価が保存されました');
+    return redirect()->route('reviews.thanks')->with('success', '口コミが保存されました');
     }
 
     public function edit($id)
@@ -69,7 +71,7 @@ class ReviewController extends Controller
         $review = Review::findOrFail($id);
 
         if ($review->user_id != auth()->id()) {
-            return redirect()->route('mypage')->with('error', 'このレビューを編集する権限がありません。');
+            return redirect()->route('mypage')->with('error', 'この口コミを編集する権限がありません。');
         }
 
         $shop = $review->reservation->shop;
@@ -82,7 +84,7 @@ class ReviewController extends Controller
         $review = Review::findOrFail($id);
 
     if ($review->user_id != auth()->id()) {
-        return redirect()->route('mypage')->with('error', 'このレビューを編集する権限がありません。');
+        return redirect()->route('mypage')->with('error', 'この口コミを編集する権限がありません。');
     }
 
     $request->validate([
@@ -107,7 +109,7 @@ class ReviewController extends Controller
         'image_path' => $imagePath,
     ]);
 
-    return redirect()->route('reviews.thanks')->with('success', 'レビューが更新されました');
+    return redirect()->route('reviews.thanks')->with('success', '口コミが更新されました');
     }
 
     public function thanksReview()
@@ -120,7 +122,7 @@ class ReviewController extends Controller
     $review = Review::findOrFail($id);
 
     if ($review->user_id != auth()->id()) {
-        return redirect()->route('mypage')->with('error', 'このレビューを削除する権限がありません。');
+        return redirect()->route('mypage')->with('error', 'この口コミを削除する権限がありません。');
     }
 
     $shopId = $review->shop_id;

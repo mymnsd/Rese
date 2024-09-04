@@ -13,7 +13,7 @@
       </div>
     @endif
     <div class="thanks-review__content">
-      <p class="thanks-review__message">レビュー投稿ありがとうございます</p>
+      <p class="thanks-review__message">口コミ投稿ありがとうございます</p>
       <div class="thanks-review__link">
         <a class="login-link" href="/">トップページへ戻る</a>
       </div>
