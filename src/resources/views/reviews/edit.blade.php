@@ -27,9 +27,19 @@
         <span data-value="5" class="star"><i class="fas fa-star"></i></span>
       </div>
     <input type="hidden" name="rating" id="rating" value="{{ old('rating', $review->rating) }}" required>
+      @error('rating')
+        <div class="text-danger">{{ $message }}</div>
+      @enderror
+
       <div class="form-group">
         <label class="form__label" for="comment">コメント:</label>
-        <textarea class="form-control" name="comment">{{ old('comment', $review->comment) }}</textarea>
+        <textarea class="form-control" id="comment" name="comment">{{ old('comment', $review->comment) }}</textarea>
+        <div style="text-align: right;">
+          <small id="char-count">0/400（最高文字数）</small>
+        </div>
+        @error('comment')
+          <div class="text-danger">{{ $message }}</div>
+        @enderror
       </div>
 
       <div class="form-group">
@@ -40,7 +50,9 @@
           <div class="current-image" id="imageContainer">
             <p>現在の画像:</p>
             <img id="currentImage" src="{{ asset('storage/' . $review->image_path) }}" alt="Review Image" style="max-width: 200px; height: auto;">
-            <a href="{{ route('reviews.removeImage', $review->id) }}" class="btn btn-link">画像を削除</a>
+            <div class="delete-image-btn">
+              <a href="{{ route('reviews.removeImage', $review->id) }}" class="btn">画像を削除</a>
+            </div>
           </div>
         @endif
 
@@ -120,5 +132,18 @@
 
         reader.readAsDataURL(event.target.files[0]);
     }
+
+    $(document).ready(function() {
+    var maxLength = 400;
+    var textArea = $('#comment');
+    var charCount = $('#char-count');
+
+    charCount.text(`${textArea.val().length}/${maxLength}（最高文字数）`);
+
+    textArea.on('input', function() {
+        var currentLength = $(this).val().length;
+        charCount.text(`${currentLength}/${maxLength}`);
+    });
+});
 </script>
 @endsection

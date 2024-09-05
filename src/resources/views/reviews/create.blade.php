@@ -55,14 +55,20 @@
                   <input type="radio" id="star1" name="rating" value="1">
                   <label for="star1" class="star"><i class="fas fa-star"></i></label>
                 </div>
+                  @error('rating')
+                    <div class="text-danger">{{ $message }}</div>
+                  @enderror
             </div>
 
             <div class="form-group">
               <label class="form-label" for="comment">口コミを投稿</label>
-              <textarea id="comment" name="comment" class="form-control text" rows="4" maxlength="400" placeholder="カジュアルな夜のお出かけにおすすめのスポット" required>{{ old('comment') }}</textarea>
+              <textarea id="comment" name="comment" class="form-control text" rows="4" maxlength="400" placeholder="カジュアルな夜のお出かけにおすすめのスポット">{{ old('comment') }}</textarea>
               <div style="text-align: right;">
                 <small id="char-count">0/400（最高文字数）</small>
               </div>
+              @error('comment')
+                <div class="text-danger">{{ $message }}</div>
+              @enderror
             </div>
 
             <div class="form-group">

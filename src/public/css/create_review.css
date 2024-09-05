@@ -59,6 +59,10 @@
   color: blue;
 }
 
+.delete-image-btn{
+  margin-top: 30px;
+}
+
 @media screen and (min-width: 768px) {
   .flex {
       display: flex;
@@ -171,6 +175,7 @@
   background-color: blue;
   color: #fff;
   padding: 5px 10px;
+  font-size: 0.9rem;
 }
 
 .card-link--button:hover {

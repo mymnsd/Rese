@@ -139,14 +139,19 @@ class AdminController extends Controller
                     'ジャンル' => 'required|in:寿司,焼肉,イタリアン,居酒屋,ラーメン',
                     '店舗概要' => 'required|string|max:400',
                     '画像URL' => 'required|url|ends_with:.jpeg,.jpg,.png',
+                    '価格' => 'required|numeric|min:0',
+                    '店舗代表者' => 'required|string|max:50',
+                ],[
+                    '価格.numeric' => '価格には、半角数字を指定してください。',
                 ]);
+
 
             if ($validator->fails()) {
                 return redirect()->route('admin.import_shops.form')
                     ->withErrors($validator)
                     ->withInput();
             }
-
+    
             if (in_array($data['店舗名'], $existingShops)) {
                 $messages[] = '店舗がすでに存在しています: ' . $data['店舗名'];
                 continue;

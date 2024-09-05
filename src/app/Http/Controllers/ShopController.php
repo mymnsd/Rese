@@ -33,30 +33,29 @@ class ShopController extends Controller
         $query->keyword($keyword);
     }
 
+    // 並び替え処理
     if ($sort == 'random') {
-        $query->inRandomOrder();
+      $query->inRandomOrder();
     } elseif ($sort == 'rating_asc') {
-        $query->leftJoin('reviews', 'shops.id', '=', 'reviews.shop_id')
-              ->selectRaw('shops.*, AVG(reviews.rating) as average_rating')
-              ->groupBy('shops.id')
-              ->orderBy('average_rating', 'asc')
-              ->orderByRaw('COUNT(reviews.id) = 0 DESC'); 
+      $query->leftJoin('reviews', 'shops.id', '=', 'reviews.shop_id')
+          ->selectRaw('shops.*, COALESCE(AVG(reviews.rating), 0) as average_rating, COUNT(reviews.id) as reviews_count')
+          ->groupBy('shops.id')
+          ->orderByRaw('reviews_count = 0, average_rating asc'); 
     } elseif ($sort == 'rating_desc') {
-        $query->leftJoin('reviews', 'shops.id', '=', 'reviews.shop_id')
-              ->selectRaw('shops.*, AVG(reviews.rating) as average_rating')
-              ->groupBy('shops.id')
-              ->orderBy('average_rating', 'desc')
-              ->orderByRaw('COUNT(reviews.id) = 0 DESC'); 
+      $query->leftJoin('reviews', 'shops.id', '=', 'reviews.shop_id')
+          ->selectRaw('shops.*, COALESCE(AVG(reviews.rating), 0) as average_rating, COUNT(reviews.id) as reviews_count')
+          ->groupBy('shops.id')
+          ->orderByRaw('reviews_count = 0, average_rating desc'); 
     }
-
+  
     $shops = $query->get();
 
     $areas = Area::all();
     $genres = Genre::all();
 
     return view('index', compact('shops', 'areas', 'genres'));
-
   }
+
 
   public function detail($id){
     $shop = Shop::with('reviews.user')->findOrFail($id);

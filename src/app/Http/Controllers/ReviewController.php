@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Reservation;
 use App\Models\Review;
+use App\Http\Requests\ReviewRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -31,16 +32,10 @@ class ReviewController extends Controller
     return view('reviews.create', compact('reservation', 'shop'));
     }
 
-    public function store(Request $request,Reservation $reservation)
+    public function store(ReviewRequest $request,Reservation $reservation)
     {
-    $request->validate([
-        'comment' => 'required|max:400',
-        'rating' => 'required|integer|between:1,5',
-        'image' => 'nullable|mimes:jpeg,png|max:2048',
-    ],[
-        'image.mimes' => '画像ファイルは JPEG または PNG 形式でなければなりません。',
-        'image.max' => '画像ファイルは 2MB 以下でなければなりません。',
-    ]);
+    
+    $validated = $request->validated();
 
     $existingReview = Review::where('user_id', auth()->id())
             ->where('shop_id', $reservation->shop->id)
@@ -79,19 +74,15 @@ class ReviewController extends Controller
         return view('reviews.edit', compact('review', 'shop'));
     }
 
-    public function update(Request $request, $id)
+    public function update(ReviewRequest $request, $id)
     {
         $review = Review::findOrFail($id);
+
+        $validated = $request->validated();
 
     if ($review->user_id != auth()->id()) {
         return redirect()->route('mypage')->with('error', 'この口コミを編集する権限がありません。');
     }
-
-    $request->validate([
-        'rating' => 'required|integer|between:1,5',
-        'comment' => 'nullable|string|max:1000',
-        'image' => 'nullable|mimes:jpeg,png|max:2048', 
-    ]);
 
     if ($request->hasFile('image')) {
         if ($review->image_path) {
