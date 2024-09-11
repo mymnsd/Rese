@@ -13,8 +13,8 @@
         <select class="search-select--sort" name="sort" id="sort" onchange="this.form.submit()">
           <option value="" selected>並び替え：評価高/低</option>
           <option value="random" {{ request('sort') == 'random' ? 'selected' : '' }}>ランダム</option>
-          <option value="rating_desc" {{ request('sort') == 'rating_desc' ? 'selected' : '' }}>評価が高い順</option>
-          <option value="rating_asc" {{ request('sort') == 'rating_asc' ? 'selected' : '' }}>評価が低い順</option>
+          <option value="star_count_desc" {{ request('sort') == 'star_count_desc' ? 'selected' : '' }}>評価が高い順</option>
+          <option value="star_count_asc" {{ request('sort') == 'star_count_asc' ? 'selected' : '' }}>評価が低い順</option>
         </select>
       </li>
     </ul>

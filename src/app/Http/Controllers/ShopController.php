@@ -36,16 +36,16 @@ class ShopController extends Controller
     // 並び替え処理
     if ($sort == 'random') {
       $query->inRandomOrder();
-    } elseif ($sort == 'rating_asc') {
+    } elseif ($sort == 'star_count_asc') {
       $query->leftJoin('reviews', 'shops.id', '=', 'reviews.shop_id')
-          ->selectRaw('shops.*, COALESCE(AVG(reviews.rating), 0) as average_rating, COUNT(reviews.id) as reviews_count')
+          ->selectRaw('shops.*, COALESCE(SUM(reviews.rating), 0) as total_star_count, COUNT(reviews.id) as reviews_count')
           ->groupBy('shops.id')
-          ->orderByRaw('reviews_count = 0, average_rating asc'); 
-    } elseif ($sort == 'rating_desc') {
+          ->orderByRaw('reviews_count = 0, total_star_count asc'); 
+    } elseif ($sort == 'star_count_desc') {
       $query->leftJoin('reviews', 'shops.id', '=', 'reviews.shop_id')
-          ->selectRaw('shops.*, COALESCE(AVG(reviews.rating), 0) as average_rating, COUNT(reviews.id) as reviews_count')
+          ->selectRaw('shops.*, COALESCE(SUM(reviews.rating), 0) as total_star_count, COUNT(reviews.id) as reviews_count')
           ->groupBy('shops.id')
-          ->orderByRaw('reviews_count = 0, average_rating desc'); 
+          ->orderByRaw('reviews_count = 0, total_star_count desc'); 
     }
   
     $shops = $query->get();

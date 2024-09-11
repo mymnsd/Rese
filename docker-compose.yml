@@ -10,11 +10,15 @@ services:
             - ./src:/var/www/
         depends_on:
             - php
+        networks:
+            - rese_network
 
     php:
         build: ./docker/php
         volumes:
             - ./src:/var/www/
+        networks:
+            - rese_network
 
     mysql:
         image: mysql:8.0.26
@@ -28,6 +32,8 @@ services:
         volumes:
             - ./docker/mysql/data:/var/lib/mysql
             - ./docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
+        networks:
+            - rese_network
 
     phpmyadmin:
         image: phpmyadmin/phpmyadmin
@@ -40,3 +46,9 @@ services:
             - mysql
         ports:
             - 8080:80
+        networks:
+            - rese_network
+
+networks:
+    rese_network:
+        driver: bridge
