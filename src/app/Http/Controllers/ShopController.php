@@ -8,7 +8,6 @@ use App\Models\Genre;
 use App\Models\Reservation;
 use App\Models\Review;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB; // ここでDBをインポート
 use Illuminate\Support\Facades\Auth;
 
 class ShopController extends Controller
@@ -49,7 +48,6 @@ class ShopController extends Controller
             ->orderByRaw('CASE WHEN COUNT(reviews.id) = 0 THEN 1 ELSE 0 END, total_star_count DESC, shops.id DESC');
     }
 
-  
     $shops = $query->get();
 
     $areas = Area::all();
