@@ -8,6 +8,7 @@ use App\Models\Genre;
 use App\Models\Reservation;
 use App\Models\Review;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB; // ここでDBをインポート
 use Illuminate\Support\Facades\Auth;
 
 class ShopController extends Controller
@@ -35,18 +36,19 @@ class ShopController extends Controller
 
     // 並び替え処理
     if ($sort == 'random') {
-      $query->inRandomOrder();
+        $query->inRandomOrder();
     } elseif ($sort == 'star_count_asc') {
-      $query->leftJoin('reviews', 'shops.id', '=', 'reviews.shop_id')
-          ->selectRaw('shops.*, COALESCE(SUM(reviews.rating), 0) as total_star_count, COUNT(reviews.id) as reviews_count')
-          ->groupBy('shops.id')
-          ->orderByRaw('reviews_count = 0, total_star_count asc'); 
+        $query->leftJoin('reviews', 'shops.id', '=', 'reviews.shop_id')
+            ->selectRaw('shops.*, COALESCE(SUM(reviews.rating), 0) as total_star_count, COUNT(reviews.id) as reviews_count')
+            ->groupBy('shops.id')
+            ->orderByRaw('CASE WHEN COUNT(reviews.id) = 0 THEN 1 ELSE 0 END, total_star_count ASC, shops.id ASC');
     } elseif ($sort == 'star_count_desc') {
-      $query->leftJoin('reviews', 'shops.id', '=', 'reviews.shop_id')
-          ->selectRaw('shops.*, COALESCE(SUM(reviews.rating), 0) as total_star_count, COUNT(reviews.id) as reviews_count')
-          ->groupBy('shops.id')
-          ->orderByRaw('reviews_count = 0, total_star_count desc'); 
+        $query->leftJoin('reviews', 'shops.id', '=', 'reviews.shop_id')
+            ->selectRaw('shops.*, COALESCE(SUM(reviews.rating), 0) as total_star_count, COUNT(reviews.id) as reviews_count')
+            ->groupBy('shops.id')
+            ->orderByRaw('CASE WHEN COUNT(reviews.id) = 0 THEN 1 ELSE 0 END, total_star_count DESC, shops.id DESC');
     }
+
   
     $shops = $query->get();
 
